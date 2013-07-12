@@ -1,0 +1,26 @@
+/*
+Theme Name: -theme_name-
+Author: El Cultivo
+Author URI: http://elcultivo.mx
+Version: 0.0
+*/
+
+@import url('css/yui_base.css');
+@import url('css/yui_fonts.css');
+@import url('css/yui_reset.css');
+
+/*@font-face {
+	font-family: 'nombre_fuente';
+	src: url('fonts/nombre_file.eot');
+	src: url('fonts/nombre_file.eot?#iefix') format('embedded-opentype'),
+			 url('fonts/nombre_file.woff') format('woff'),
+			 url('fonts/nombre_file.ttf') format('truetype'),
+			 url('fonts/nombre_file.svg#nombre_file') format('svg');
+	font-weight: -500-;
+	font-style: -normal-;
+}*/
+
+
+/*	GENERALES
+	---------
+*/
