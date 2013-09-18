@@ -42,13 +42,13 @@ function cltvo_js(){
 function cltvo_posttypes(){
 	//Nombre del posttype!
 	// $args = array(
-	// 	'label' => 'Artistas',
-	// 	'public' => true,
-	// 	'rewrite' => array( 'slug' => 'artistas' ),
-	// 	'has_archive' => true,
-	// 	'supports' => array( 'title', 'editor', 'thumbnail' )
+	// 	'label' => 'Artistas',  								//nombre
+	// 	'public' => true,										//Público
+	// 	'rewrite' => array( 'slug' => 'artistas' ),				//Nombre en la url
+	// 	'has_archive' => true,									//Se puede usar en un archivo
+	// 	'supports' => array( 'title', 'editor', 'thumbnail' )	//Inupts UI en la página de new post
 	// );
-	// register_post_type( 'inter_artistas_pt', $args );
+	// register_post_type( 'inter_artistas_pt', $args );		//Se registra
 }
 
 
@@ -59,18 +59,18 @@ function cltvo_posttypes(){
 	
 function cltvo_custom_tax(){
 	//Nombre de la taxonomía
-	// $argumentos = array(
+	// $argumentos = array(						
 	// 	'labels' => array(
-	// 		'name'			=> 'Secciones',
-	// 		'add_new_item'	=> 'Nueva Sección',
-	// 		'parent_item'	=> 'Sección madre'
+	// 		'name'			=> 'Secciones',			//Nombre
+	// 		'add_new_item'	=> 'Nueva Sección',		//Nombre del botón para agregar nuevo término
+	// 		'parent_item'	=> 'Sección madre'		//Asignar el término a un término padre
 	// 	),
 	// 	'hierarchical' => true
 	// );
 	
 	// register_taxonomy(
-	// 	'inter_seccion_tax',
-	// 	'inter_activi_pt',
+	// 	'inter_seccion_tax',						//nombre de la tax
+	// 	'inter_activi_pt',							//a qué posttype pertenece
 	// 	$argumentos
 	// );	
 }
@@ -83,11 +83,11 @@ function cltvo_custom_tax(){
 	
 function cltvo_metaboxes(){
 	// add_meta_box(
-	// 	'inter_descripcion_mb',
-	// 	'Descripción',
-	// 	'inter_descripcion_mb',
-	// 	'inter_activi_pt',
-	// 	'side'
+	// 	'inter_descripcion_mb',		//id
+	// 	'Descripción',				//título
+	// 	'inter_descripcion_mb',		//callback function
+	// 	'inter_activi_pt',			//post type
+	// 	'side'						//posición
 	// );
 	// add_meta_box(
 	// 	'inter_colaborador_mb',
