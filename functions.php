@@ -40,7 +40,15 @@ function cltvo_js(){
 */
 
 function cltvo_posttypes(){
-	// Cultiva Código
+	//Nombre del posttype!
+	// $args = array(
+	// 	'label' => 'Artistas',
+	// 	'public' => true,
+	// 	'rewrite' => array( 'slug' => 'artistas' ),
+	// 	'has_archive' => true,
+	// 	'supports' => array( 'title', 'editor', 'thumbnail' )
+	// );
+	// register_post_type( 'inter_artistas_pt', $args );
 }
 
 
@@ -50,7 +58,21 @@ function cltvo_posttypes(){
 */
 	
 function cltvo_custom_tax(){
-	// Cultiva Código
+	//Nombre de la taxonomía
+	// $argumentos = array(
+	// 	'labels' => array(
+	// 		'name'			=> 'Secciones',
+	// 		'add_new_item'	=> 'Nueva Sección',
+	// 		'parent_item'	=> 'Sección madre'
+	// 	),
+	// 	'hierarchical' => true
+	// );
+	
+	// register_taxonomy(
+	// 	'inter_seccion_tax',
+	// 	'inter_activi_pt',
+	// 	$argumentos
+	// );	
 }
 
 
@@ -60,8 +82,33 @@ function cltvo_custom_tax(){
 */
 	
 function cltvo_metaboxes(){
-	// Cultiva Código
+	// add_meta_box(
+	// 	'inter_descripcion_mb',
+	// 	'Descripción',
+	// 	'inter_descripcion_mb',
+	// 	'inter_activi_pt',
+	// 	'side'
+	// );
+	// add_meta_box(
+	// 	'inter_colaborador_mb',
+	// 	'Colaborador',
+	// 	'inter_colaborador_mb',
+	// 	'inter_colabora_pt',
+	// 	'side'
+	// );
 }
+
+// function inter_descripcion_mb($object){
+// 	echo '<p><input type="checkbox" name="inter_descripcion_in" ';
+// 	if( get_post_meta($object->ID, 'inter_descripcion_meta') )echo "checked";
+// 	echo '> Descripción de sección</p>';
+// }
+// function inter_colaborador_mb($object){
+// 	echo '<p><label>Nombre del colaborador:</label></p>';
+// 	echo '<input name="inter_colaborador_in" type="text" value="';
+// 	echo get_post_meta($object->ID, 'inter_colaborador_meta', true);
+// 	echo '" />';
+// }
 
 
 
@@ -81,6 +128,8 @@ function cltvo_save_post($id){
 }
 
 
-
+/*	FUNCIONES DEL TEMA
+	------------------
+*/
 
 ?>
