@@ -117,6 +117,31 @@ function cltvo_metaboxes(){
 // 	echo '" />';
 // }
 
+//function crdmn_equipo_mb($object){?>
+<!-- 	<div class="cltvo_multi_mb">
+		<div class="cltvo_multi_papa">
+			<?php //$crdmn_equipo_arr = get_post_meta($object->ID, 'crdmn_equipo_meta', true) ? get_post_meta($object->ID, 'crdmn_equipo_meta', true) : array(''=>'');?>
+			<?php //$i=1;?>
+			<?php //foreach ($crdmn_equipo_arr as $nombre => $link):?>
+			<div class="cltvo_multi_hijo cltvo_multi_hijo<?php //echo $i;?>">
+				<p>
+					<label>Nombre </label>
+					<input name="crdmn_equipo_nom<?php //echo $i;?>" type="text" value="<?php //echo $nombre;?>" />
+				</p>
+				<p>
+					<label>Link </label>
+					<input name="crdmn_equipo_link<?php //echo $i;?>" type="text" value="<?php //echo $link;?>" />
+				</p>
+				<hr>
+			</div>
+			<?php //$i++;?>
+			<?php //endforeach;?>
+		</div>
+		<a href="#" class="nuevo-equipo-JS">+ agregar otro miembro de equipo</a>
+	</div> -->
+<?php
+//}
+
 
 
 /*	AL GUARDAR EL POST
