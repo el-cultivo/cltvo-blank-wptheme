@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="<?php echo substr(get_bloginfo ( 'language' ), 0, 2);?>">
 <head>
 	<meta charset="UTF-8">
 	<title><?php
