@@ -38,5 +38,6 @@
 	<?php wp_head(); ?>
 </head>
 <body>
+	<?php if( !cltvo_is_local_h() ) include_once("inc/analytics.php");?>
 
 	<!-- Aquí podría abrir el main-wrap -->
