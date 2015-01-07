@@ -1,0 +1,163 @@
+// MIXINS
+// ------
+//
+// Agrega aquí tus mixins
+// 
+
+// Puro CSS
+
+@mixin place-holder($color){
+	::-webkit-input-placeholder {color: $color;}
+	:-moz-placeholder {color: $color;}/* Firefox 18- */
+	::-moz-placeholder {color: $color;}/* Firefox 19+ */
+	:-ms-input-placeholder {color: $color;}
+}
+
+@mixin border-radius( $radius ){
+	border-radius: $radius;
+		-moz-border-radius: $radius;
+		-webkit-border-radius: $radius;
+		-khtml-border-radius: $radius;
+}
+
+@mixin border-sizing($box) {
+	box-sizing: $box;
+		-webkit-box-sizing: $box;
+		-moz-box-sizing: $box;
+}
+
+@mixin declara-font-face($font-family, $font-filename, $font-weight: normal, $font-style: normal, $font-stretch: normal) {
+	@font-face {
+		font-family: '#{$font-family}';
+		src: url('#{$font-filename}.eot');
+    	src: url('#{$font-filename}.eot?#iefix') format('embedded-opentype'),
+         url('#{$font-filename}.woff') format('woff'),
+         url('#{$font-filename}.ttf') format('truetype'),
+         url('#{$font-filename}.svg##{$font-filename}') format('svg');
+		font-weight: $font-weight;
+		font-style: $font-style;
+		font-stretch: $font-stretch;
+	}
+}
+
+ 
+// Devuelve tamaño de fuente con line-height y margin bottom.
+// 
+// @param number $font-size: (req) tamaño de la fuente
+// @param number $line-height: Alto de la interlínea. Si no le pasas número lo calcula 
+// @param bool/number $margin: Margen inferior. Si no le pasas número usa la interlínea
+//
+
+@mixin tamano-fuente($font-size, $line-height: $font-size + 1, $margin: true){
+	font-size: tamano($font-size);
+	line-height: tamano($line-height);
+	@if( type-of($margin) == bool and $margin == true ){
+		margin-bottom: tamano($line-height);
+	}@else if( type-of($margin) == number ){
+		margin-bottom: tamano($margin);
+	}
+}
+
+// Interfaz para media queries!!
+
+@mixin respond-to($media) {
+	@if $media == chico {
+		@media only screen and (max-width: $break-chico) { @content; }
+	}
+	@else if $media == medio {
+		@media only screen and (max-width: $break-medio) { @content; }
+	}
+	@else if $media == grande {
+		@media only screen and (max-width: $break-grande) { @content; }
+	}
+	@else if type-of($media)== "number"{
+		@media only screen and (max-width: $media) { @content; }
+	}
+}
+
+@mixin background-image-retina($file, $type, $width, $height) {
+	background-image: url($file + '.' + $type);
+
+	@media (-webkit-min-device-pixel-ratio: 2), (-moz-min-device-pixel-ratio: 2) {
+		& {
+			background-image: url($file + '@2x.' + $type);
+			-webkit-background-size: $width $height;
+		}
+	}
+}
+
+@mixin link-claro($color, $element: a, $donde: background-color) {
+	#{$element} { #{$donde}: lighten($color, 7%);
+		&:hover { #{$donde}: lighten($color, 14%) };
+	}
+}
+
+@mixin opacidad($opacidad){
+	-moz-opacity: $opacidad;
+	-khtml-opacity: $opacidad;
+	opacity: $opacidad;
+	-ms-filter:'"progid:DXImageTransform.Microsoft.Alpha" (Opacity='+$opacidad+')';
+	filter: progid:DXImageTransform.Microsoft.Alpha(opacity=$opacidad);
+	filter:alpha(opacity=$opacidad);
+}
+
+/* MIXINS LOCALES */
+
+@mixin fuente_gnl(){
+	font-family: $fuente-sans;
+	font-size: tamano(1.5);
+	line-height: tamano(2);
+}
+@mixin fuente_gnl_2(){
+	font-family: $fuente-sans;
+	font-size: tamano(1);
+	line-height: tamano(1.5);
+}
+
+@mixin p_gnl(){
+	font-family: $fuente-sans;
+	font-size: tamano(1);
+	line-height: tamano(1.25);
+	color: $color-texto;
+}
+
+@mixin p_gnl_2(){
+	font-family: $fuente-sans;
+	font-size: tamano(1.25);
+	line-height: tamano(1.75);
+	color: $color-texto;
+}
+
+@mixin bckgrnd_filter($file, $type, $width, $height){
+	background-size: $width $height;
+    -moz-background-size: $width $height;
+    -webkit-background-size: $width $height;
+
+	filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(
+	src=$file + '.' + $type,
+	sizingMethod='scale');
+
+	-ms-filter: '"progid:DXImageTransform.Microsoft.AlphaImageLoader(src=' + $file  + '.' + $type ', sizingMethod='scale')"';
+}
+
+@mixin nuevo-grid-simple($cols, $respond-to){
+	@include respond-to($respond-to){
+		.ret-#{$cols}.ret-#{$respond-to} {
+			.ret-col.columns{
+				width: cada_col($cols);
+			}
+		}
+	}
+}
+
+@mixin registro_redes(){
+	.registro-redes{display: inline-block; vertical-align: top; width: 113px; height: 49px; margin-bottom: tamano(0.5);
+					background: no-repeat 14px 12px $color-destacado2;
+					color: white; font-size: tamano(1); line-height: tamano(1.25);
+		&.facebook, &.twitter {margin-right: tamano(0.5);}
+		&.facebook{background-image: url(../images/registro-redes-facebook.png);}
+		&.twitter{background-image: url(../images/registro-redes-twitter.png); background-position:10px 14px;}
+
+		.texto{ margin-left: 38px; display: block; margin-top: 5px;}
+	}
+}

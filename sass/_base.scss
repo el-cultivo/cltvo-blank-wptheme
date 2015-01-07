@@ -1,0 +1,135 @@
+/**
+* ESTILOS BÁSICOS 
+* ---------------
+*
+* Estilos básicos de ultraligero
+* Edítalos o sobreescríbelos
+* 
+*/
+
+*{
+	@include border-sizing(border-box);
+	&::selection{ background: $color-destacado; }
+	&::-moz-selection{background: $color-destacado; }
+}
+
+html{font-size: $base-px;}
+
+html, body {height: 100%;}
+
+body {
+	position: relative;
+	font-family: $fuente-sans;
+	text-rendering: optimizeLegibility;  // mejor legibilidad
+	-webkit-font-smoothing: antialiased; // Hace la fuente más bonita
+	// font-size: $base-px;
+}
+
+strong{font-weight: bold;}
+
+a {color: $color-destacado2; text-decoration: none;
+   &:hover{color: $color-principal;}
+}
+
+img {-ms-interpolation-mode: bicubic;}
+.column, .columns {
+	img{max-width:100%;}
+}
+p{
+	em{font-style: italic;}
+	@include p_gnl(); 
+}
+ol{
+	list-style: decimal;
+	margin-left: 1.55em;
+}
+ul{
+	list-style: disc;
+	margin-left: 1.1em;
+}
+input, textarea{
+	border: 1px solid $color-claro;
+	padding-right: .5em;
+	padding-left: .5em;
+	width: 100%;
+	&[type="submit"]{cursor: pointer;}
+	
+	-moz-appereance:none;
+    -webkit-appearance: none;
+    border-radius: 0;
+}
+
+input:focus,
+select:focus,
+textarea:focus,
+button:focus {
+    outline: none;
+    border-color: lighten($color-fondo, 40%);
+}
+
+form{
+	input[type="text"], textarea, input[type="password"]{
+		@include fuente_gnl();
+		margin-bottom: tamano(1);
+	}
+	input{height: tamano(3.5);}
+	textarea{padding-top: tamano(1);}
+	input[type="submit"]{margin-bottom: tamano(6);}
+}
+
+
+/**
+* CLASES GLOBALES 
+* ---------------
+*
+* Algunos elementos están pre-estilisados
+* Usa estas clases para esilizar menús, botones, etc
+* Edita o sobreescribe lo que no te guste
+* 
+*/
+
+// Alineación texto
+.centrado{ text-align: center; }
+.derecha{ text-align: right; }
+.izquierda{ text-align: left; }
+.justificado{ text-align: justify; }
+
+
+// Quitar el margen o padding a alguna columna dependiendo el tamaño de pantalla
+.sin-mar-izq{margin-left: 0 !important;}
+@include respond-to(medio) {
+	.medio-sin-mar-izq{margin-left: 0 !important;}
+}
+@include respond-to(chico) {
+	.chico-sin-mar-izq{margin-left: 0 !important;}
+}
+
+.sin-mar-der{margin-right: 0 !important;}
+.sin-mar-btm{margin-bottom: 0 !important;}
+
+.sin-pad-btm{padding-bottom: 0 !important;}
+
+// Botones
+.boton{
+	text-decoration: none;
+	display: inline-block;
+	padding: tamano(1) tamano(1);
+	font-size: tamano(1);
+	line-height: tamano(1);
+	background-color: $color-principal;
+	color: $color-claro;
+	text-align: center;
+	cursor: pointer;
+
+	&.chico{padding: tamano(.5) }
+	&.mediano{padding: tamano(1.5) tamano(2) tamano(1.5) tamano(2); font-size: tamano(1.5);}
+	&.grande{padding: tamano(2) tamano(2.5) tamano(2) tamano(2.5); font-size: tamano(2);}
+	&.redondeado{@include border-radius(4px);}
+}
+
+// Mensaje de para IE8
+.cltvo-browser-check{display: fixed; top: 0; left: 0; width: 100%; background-color: #312822; color: white; text-align: center; padding: 5px 0;
+	p{color: inherit; font-size: 16px; font-family: Arial, Helvetica, sans-serif;
+		a{color: #EA7640; text-decoration: underline;}
+	}
+}

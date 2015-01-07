@@ -1,0 +1,45 @@
+/**
+* SET UP VARS
+* -----------
+*
+* Antes de sobreescirbir, échale un ojo a este file
+* Algunos estilos son fácilmente configurables 
+* con sólo cambiando el valor de las variables en _config.scss
+* 
+*/
+
+// True para ver el la retícula con borde
+$border-debug: false;
+
+// Tamaños mínimos
+$row-max-width: 1024px;
+$min-device-width: 320px;
+
+// Tamaño base. Todos los tamaños de ajustan a esta unidad.
+$base: 16;
+$base-px: 16px;
+$base-porcentaje: percentage($base-px / $row-max-width); // no cambiar
+$cols: 12;
+
+// Mod Scale: Lista de posibles tamaños a usar
+// Usar variable a través de la función tamano()
+// ver completa: http://modularscale.com/scale/?px1=17&px2=14&ra1=1.618&ra2=0
+$tamanos: 14 17 22.652 27.506 36.651 44.505 59.301 72.009 95.949 116.511 155.245 188.515;
+
+// Cambios de medidas
+$break-chico: 568px;
+$break-medio: 768px;
+$break-grande: 1024px;
+
+// Colores
+$color-destacado: #F26C52;
+$color-destacado2: #C23350;
+$color-fondo: #00B5AF;
+$color-texto: #333333;
+$color-principal: #6D1E39;
+$color-claro: #F1EAD2;
+
+// Fuentes
+$fuente-sans: 'Myriad', sans-serif;
+$fuente-serif: TimesNewRoman, "Times New Roman", Times, Baskerville, Georgia, serif;
+$fuente-cond: 'Myriad-Cond', sans-serif;

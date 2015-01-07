@@ -1,0 +1,58 @@
+/**
+* Ultraligero Framework
+* ---------------------
+*
+* Desarrollado por El Cultivo
+* http://elcultivo.mx
+*
+*
+*
+* Usar ese archivo para customizar estilos
+* 
+*/
+
+@charset "UTF-8";
+
+@import "reset";
+@import "_config";
+@import "_mixins";
+@import "_funciones";
+@import "_base";
+@import "_reticula";
+
+
+/**
+* FUENTES
+* -------
+*/
+
+// Declara tus fuentes usando el MIXIN
+
+@include declara-font-face(Open, '../fonts/OpenSans-Regular-webfont');
+@include declara-font-face(Open, '../fonts/OpenSans-Bold-webfont', bold);
+@include declara-font-face(Open, '../fonts/OpenSans-Italic-webfont', normal, italic);
+
+/**
+* TIPOGRAFÍA
+* ----------
+*/
+
+// Tamaños de tipografía
+// Crea clases para los principales tamaños que usas
+// Asígnales tamaños usando el MIXIN tamano-fuente()
+
+// .tam-prin{ @include tamano-fuente(7, 8); }
+
+
+
+/**
+* SECCIONES
+* -----------
+*/
+
+// Customiza cada sección
+// Usa las clases que queiras para cada sección
+// Modifica sus estilos aquí
+
+.seccion{
+}

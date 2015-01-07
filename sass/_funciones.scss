@@ -1,0 +1,66 @@
+// FUNCTIONS
+// ---------
+//
+// Agrega aquí tus funciones
+// 
+//
+
+// Cuánto debe medir cada columna (unidad)
+@function cada_col($cuantas-cols){
+	@return (100% - ( $base-porcentaje * ($cuantas-cols - 1)) ) / $cuantas-cols;
+}
+
+// Se usa en el Loop para crear todos los tamaños de columnas ej. .grade-12.columns
+@function columns($num){
+    @return (cada_col($cols) * $num) + ($base-porcentaje * ($num - 1));
+}
+
+// Calculate Centered Class Margins
+@function centered($num) {
+    @return 50% - ((($num * cada_col($cols)) + (($num - 1) * $base-porcentaje)) / 2);
+}
+
+// Crea el estilo para empujar columnas
+@function push_x($num, $first-child: false) {
+	@if $first-child {
+		@return (cada_col($cols) * $num) + ($base-porcentaje * $num);
+	}
+	@else {
+		@return (cada_col($cols) * $num) + ($base-porcentaje * $num ) + $base-porcentaje;
+	}
+}
+
+
+// $ratio el número de veces que quieres multiplicar la base
+
+@function tamano($ratio){
+	@return $base * $ratio + px;
+}
+
+// @function tamano($n, $unit:px, $division:false){
+
+// 	$tamano: nth($tamanos, $n);
+// 	@if( type-of($division) == number ){
+// 		$tamano: $tamano/2;
+// 	}
+// 	@if($unit == px){
+// 		@return $tamano + px;
+// 	}@else if($unit == rem){
+// 		@return $tamano / $base + rem;
+// 	}	
+// }
+
+// Regresa el valor sin unidades
+@function sinUnidad($num) {
+	@return ($num / ($num * 0 + 1));
+}
+
+// Create class names from column count integers
+@function number-as-word($number){
+  $w: "one", "two", "three", "four", "five", "six", "seven", "eight", "nine", "ten", "eleven",
+"twelve", "thirteen", "fourteen", "fifteen", "sixteen", "seventeen", "eighteen", "nineteen",
+"twenty", "twenty-one", "twenty-two", "twenty-three", "twenty-four", "twenty-five", "twenty-six", "twenty-seven",
+"twenty-eight", "twenty-nine", "thirty", "thirty-one", "thirty-two", "thirty-three",
+"thirty-four", "thirty-five", "thirty-six";
+  @return nth($w, $number);
+}

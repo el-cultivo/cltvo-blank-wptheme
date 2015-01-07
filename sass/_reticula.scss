@@ -1,0 +1,161 @@
+/**
+* LA RETÍCULA
+* -----------
+*/
+
+// Las filas
+.row {
+	@if($border-debug){ border: thin solid #DDD; }
+
+	display: block;
+	overflow: hidden;
+	width: 100%;
+	max-width: $row-max-width;
+	min-width: $min-device-width;
+	margin: 0 auto;
+	padding-left: $base-px;
+	padding-right: $base-px;
+	position: relative;
+	.row {
+		min-width: 0;
+		padding-left: 0;
+		padding-right: 0;
+	}
+	@include respond-to(iPadVer) {
+		&.ipad-ver-break{
+			.column, .columns{width: 100% !important; margin-left: 0;}
+		}
+	}
+
+}
+
+// La columnas
+.column, .columns {
+	@if($border-debug){ border: thin solid #998; }
+
+	display: block;
+	margin-left: $base-porcentaje;
+	float: left;
+	position: relative;
+}
+
+// Primer hijo
+.column:first-child, .columns:first-child {
+	margin-left: 0;
+}
+
+// Genera cada tamaño de columna
+.row {
+	@for $i from 1 through $cols{
+		.grande-#{$i}.columns{
+			width: columns($i);
+		}
+	}
+}
+// Genera tamaños de columnas para dispositivos medios
+@include respond-to(medio) {
+	.row {
+		@for $i from 1 through $cols{
+			.medio-#{$i}.columns{
+				width: columns($i);
+			}
+		}
+	}
+	.row{
+		.medio-12{
+			margin-bottom: tamano(2);
+			margin-left: 0;
+		}
+
+	}
+}
+// Genera tamaños de columnas para dispositivos chico
+@include respond-to(chico) {
+	.row {
+		@for $i from 1 through $cols{
+			.chico-#{$i}.columns{
+				width: columns($i);
+			}
+		}
+	}
+	.row{
+		.chico-12{
+			margin-bottom: tamano(2);
+			margin-left: 0;
+		}
+
+	}
+}
+
+// Margen para las columnas centradas
+.row {
+	@for $i from 1 through $cols - 1 {
+		.grande-#{$i}.centered {
+			margin-left: centered($i);
+		}
+	}
+}
+// Margen para columnas centradas medio
+@include respond-to(medio) {
+	.row {
+		@for $i from 1 through $cols - 1 {
+			.medio-#{$i}.centered {
+				margin-left: centered($i);
+			}
+		}
+		.medio-12.centered {margin-left: 0 !important;}
+	}
+}
+// Margen para columnas centradas chico
+@include respond-to(chico) {
+	.row {
+		@for $i from 1 through $cols - 1 {
+			.chico-#{$i}.centered {
+				margin-left: centered($i);
+			}
+		}
+		.chico-12.centered {margin-left: 0 !important;}
+	}
+}
+
+// Pone margen a las columnas .empuja-grande
+.row {
+	@for $i from 1 through $cols - 1 {
+		.empuja-grande-#{$i} {
+			margin-left: push_x($i);
+			&:first-child {
+				margin-left: push_x($i, true);
+			}
+		}
+	}
+}
+// Pone margen a las columnas .empuja-medio
+@include respond-to(medio) {
+	.row {
+		@for $i from 1 through $cols - 1 {
+			.empuja-medio-#{$i} {
+				margin-left: push_x($i);
+				&:first-child {
+					margin-left: push_x($i, true);
+				}
+			}
+		}
+		.empuja-medio-0 {margin-left: 0 !important;}
+	}
+}
+// Pone margen a las columnas .empuja-chico
+@include respond-to(chico) {
+	.row {
+		@for $i from 1 through $cols - 1 {
+			.empuja-chico-#{$i} {
+				margin-left: push_x($i);
+				&:first-child {
+					margin-left: push_x($i, true);
+				}
+			}
+		}
+		.empuja-chico-0 {margin-left: 0 !important;}
+	}
+}
+
+@include nuevo-grid-simple(5, medio);

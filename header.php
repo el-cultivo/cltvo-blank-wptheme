@@ -40,4 +40,7 @@
 <body>
 	<?php if( !cltvo_is_local_h() ) include_once("inc/analytics.php");?>
 
+	<!--[if gt IE 8]><div class="cltvo-browser-check"><p>Consider <a href="http://www.google.com/intl/es/chrome/browser/" target="_blank">updating your browser</a> in order to render this site correctly.</p></div><!-->
+<!--<![endif]-->
+
 	<!-- Aquí podría abrir el main-wrap -->
