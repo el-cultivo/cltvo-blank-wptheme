@@ -2,20 +2,20 @@
 * SET UP VARS
 * -----------
 *
-* Antes de sobreescirbir, échale un ojo a este file
+* Antes de sobrescribir, échale un ojo a este file
 * Algunos estilos son fácilmente configurables 
 * con sólo cambiando el valor de las variables en _config.scss
 * 
 */
 
-// True para ver el la retícula con borde
+// true para ver el la retícula con borde
 $border-debug: false;
 
 // Tamaños mínimos
 $row-max-width: 1024px;
 $min-device-width: 320px;
 
-// Tamaño base. Todos los tamaños de ajustan a esta unidad.
+// Tamaño base. Todos los tamaños se ajustan a esta unidad.
 $base: 16;
 $base-px: 16px;
 $base-porcentaje: percentage($base-px / $row-max-width); // no cambiar

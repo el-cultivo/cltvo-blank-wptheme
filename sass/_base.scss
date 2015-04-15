@@ -51,13 +51,17 @@ input, textarea{
 	border: 1px solid $color-claro;
 	padding-right: .5em;
 	padding-left: .5em;
-	width: 100%;
+	
 	&[type="submit"]{cursor: pointer;}
 	
 	-moz-appereance:none;
     -webkit-appearance: none;
     border-radius: 0;
 }
+input[type="text"], input[type="password"],  textarea{
+	width: 100%;
+}
+
 
 input:focus,
 select:focus,
@@ -127,9 +131,35 @@ form{
 	&.redondeado{@include border-radius(4px);}
 }
 
-// Mensaje de para IE8
-.cltvo-browser-check{display: fixed; top: 0; left: 0; width: 100%; background-color: #312822; color: white; text-align: center; padding: 5px 0;
-	p{color: inherit; font-size: 16px; font-family: Arial, Helvetica, sans-serif;
-		a{color: #EA7640; text-decoration: underline;}
+// El MENU
+
+.el-menu{
+	width: 100%;
+	z-index: 1000;
+
+	height: tamano(6);
+	display: table;
+
+	ul { float: right; list-style-type: none;}
+	li {
+		float: left;
+		margin-left: tamano(2);
+		a {
+			vertical-align: middle;
+			display: table-cell;
+			font-size: tamano(2);
+			height: tamano(6);
+		}
+	}
+
+
+	.logo{
+		vertical-align: middle;
+		display: table-cell;
+		height: tamano(6);
+	}
+	&.fijo{
+		position: fixed;
+		display: none;
 	}
 }

@@ -1,11 +1,11 @@
-// MIXINS
-// ------
-//
-// Agrega aquí tus mixins
-// 
+/**
+* MIXINS
+* ------
+* Agrega aquí tus mixins
+* 
+*/
 
-// Puro CSS
-
+// incorporación del palceholder 
 @mixin place-holder($color){
 	::-webkit-input-placeholder {color: $color;}
 	:-moz-placeholder {color: $color;}/* Firefox 18- */
@@ -13,6 +13,7 @@
 	:-ms-input-placeholder {color: $color;}
 }
 
+// esquinas de las cajas curvas 
 @mixin border-radius( $radius ){
 	border-radius: $radius;
 		-moz-border-radius: $radius;
@@ -20,11 +21,22 @@
 		-khtml-border-radius: $radius;
 }
 
+// ajuste para el tamaño de las cajas con contenido interno
 @mixin border-sizing($box) {
 	box-sizing: $box;
 		-webkit-box-sizing: $box;
 		-moz-box-sizing: $box;
 }
+
+/**
+*  Especificar la fuentes personalizada para el diseño de la pagina
+*	
+*  @param string $font-family: nombre de la fuente
+*  @param string $font-filename: nombre del origen (archivo) que contiene la fuente
+*  @param string|number $font-weight: alto de la fuente. 
+*  @param string $font-style: estilo de la fuente. 
+*  @param string $font-stretch: anchura de la fuente. 
+*/
 
 @mixin declara-font-face($font-family, $font-filename, $font-weight: normal, $font-style: normal, $font-stretch: normal) {
 	@font-face {
@@ -40,13 +52,15 @@
 	}
 }
 
- 
-// Devuelve tamaño de fuente con line-height y margin bottom.
-// 
-// @param number $font-size: (req) tamaño de la fuente
-// @param number $line-height: Alto de la interlínea. Si no le pasas número lo calcula 
-// @param bool/number $margin: Margen inferior. Si no le pasas número usa la interlínea
-//
+/**
+* Devuelve tamaño de fuente con line-height y margin bottom.
+* 
+* @param number $font-size: (req) tamaño de la fuente
+* @param number $line-height: Alto de la interlínea. Si no le pasas número lo calcula 
+* @param bool/number $margin: Margen inferior. Si no le pasas número usa la interlínea
+*
+* la función tamano se encuentra en el archivo _funciones.scss
+*/
 
 @mixin tamano-fuente($font-size, $line-height: $font-size + 1, $margin: true){
 	font-size: tamano($font-size);
@@ -70,10 +84,22 @@
 	@else if $media == grande {
 		@media only screen and (max-width: $break-grande) { @content; }
 	}
+	@else if $media == ex-grande {
+		@media only screen and (min-width: $break-grande) { @content; }
+	}
 	@else if type-of($media)== "number"{
 		@media only screen and (max-width: $media) { @content; }
 	}
 }
+
+/**
+*  imagen de fondo
+* 
+* @param string $file: nombre del origen (archivo) de la imagen
+* @param string $type: formato (extensión) de la imagen
+* @param number $width: Ancho de la imagen
+* @param number $height: Alto de la imagen
+*/
 
 @mixin background-image-retina($file, $type, $width, $height) {
 	background-image: url($file + '.' + $type);
@@ -86,11 +112,15 @@
 	}
 }
 
+// atenuación del color de fondo
+
 @mixin link-claro($color, $element: a, $donde: background-color) {
 	#{$element} { #{$donde}: lighten($color, 7%);
 		&:hover { #{$donde}: lighten($color, 14%) };
 	}
 }
+
+// ajuste de la transparencia 
 
 @mixin opacidad($opacidad){
 	-moz-opacity: $opacidad;
@@ -101,8 +131,15 @@
 	filter:alpha(opacity=$opacidad);
 }
 
-/* MIXINS LOCALES */
+/**
+* MIXINS LOCALES
+* ------
+* Agrega aquí tus mixins locales
+* 
+*/
 
+// fuentes
+// la función cada_col se encuentra en el archivo _funciones.scss
 @mixin fuente_gnl(){
 	font-family: $fuente-sans;
 	font-size: tamano(1.5);
@@ -128,6 +165,15 @@
 	color: $color-texto;
 }
 
+/**
+*  filtro para mostrar la imagen dentro de los límites fondo
+* 
+* @param string $file: nombre del origen (archivo) de la imagen
+* @param string $type: formato (extensión) de la imagen
+* @param number $width: Ancho de la imagen
+* @param number $height: Alto de la imagen
+*/
+
 @mixin bckgrnd_filter($file, $type, $width, $height){
 	background-size: $width $height;
     -moz-background-size: $width $height;
@@ -140,6 +186,15 @@
 	-ms-filter: '"progid:DXImageTransform.Microsoft.AlphaImageLoader(src=' + $file  + '.' + $type ', sizingMethod='scale')"';
 }
 
+/**
+*  Asigna el ancho a las columnas 
+* 
+* @param number $cols: numero de columnas 
+* @param string|number $respond-to: ajuste del tamaño de las media queries
+*
+* la función cada_col se encuentra en el archivo _funciones.scss
+*/
+
 @mixin nuevo-grid-simple($cols, $respond-to){
 	@include respond-to($respond-to){
 		.ret-#{$cols}.ret-#{$respond-to} {
@@ -149,6 +204,9 @@
 		}
 	}
 }
+
+// registro de redes 
+// la función cada_col se encuentra en el archivo _funciones.scss
 
 @mixin registro_redes(){
 	.registro-redes{display: inline-block; vertical-align: top; width: 113px; height: 49px; margin-bottom: tamano(0.5);

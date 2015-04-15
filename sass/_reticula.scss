@@ -4,40 +4,64 @@
 */
 
 // Las filas
-.row {
+.row, .cuadricula {
 	@if($border-debug){ border: thin solid #DDD; }
 
 	display: block;
 	overflow: hidden;
-	width: 100%;
 	max-width: $row-max-width;
 	min-width: $min-device-width;
 	margin: 0 auto;
 	padding-left: $base-px;
-	padding-right: $base-px;
+	padding-right: $base-px;	
 	position: relative;
-	.row {
+	.cuadricula, .row {
 		min-width: 0;
 		padding-left: 0;
 		padding-right: 0;
 	}
+	// Considerar quitar este cacho
 	@include respond-to(iPadVer) {
 		&.ipad-ver-break{
 			.column, .columns{width: 100% !important; margin-left: 0;}
 		}
 	}
-
 }
 
-// La columnas
-.column, .columns {
+// Row ocupa el 100%
+.row{
+	width: 100%;
+}
+
+//Cuadricula ocupa el 100% mas el margen de la ultima columna
+.cuadricula {
+	width: 100% + $base-porcentaje;
+}
+
+// Margen para Cuadricula mayor al grande
+@include respond-to(ex-grande) {
+	.cuadricula {
+		padding-right: 0px;
+	}
+}
+
+// La columnas y cuadros
+.column, .columns, .cuadro{
 	@if($border-debug){ border: thin solid #998; }
 
 	display: block;
-	margin-left: $base-porcentaje;
 	float: left;
 	position: relative;
 }
+
+// Margenes columnas y cuadros
+.cuadro {
+	margin-right: $base-porcentaje;
+}
+.column, .columns{
+	margin-left: $base-porcentaje;
+}
+
 
 // Primer hijo
 .column:first-child, .columns:first-child {
@@ -52,6 +76,16 @@
 		}
 	}
 }
+
+// Genera cada tamaño de cuadro
+.cuadricula {
+	@for $i from 1 through $cols{
+		.grande-#{$i}.cuadro{
+			width: cuadros($i);
+		}
+	}
+}
+
 // Genera tamaños de columnas para dispositivos medios
 @include respond-to(medio) {
 	.row {
@@ -61,8 +95,15 @@
 			}
 		}
 	}
+	.cuadricula {
+	@for $i from 1 through $cols{
+			.medio-#{$i}.cuadro{
+				width: cuadros($i);
+			}
+		}
+	}
 	.row{
-		.medio-12{
+		.medio-12.columns{
 			margin-bottom: tamano(2);
 			margin-left: 0;
 		}
@@ -78,8 +119,15 @@
 			}
 		}
 	}
+	.cuadricula {
+	@for $i from 1 through $cols{
+			.chico-#{$i}.cuadro{
+				width: cuadros($i);
+			}
+		}
+	}
 	.row{
-		.chico-12{
+		.chico-12.columns{
 			margin-bottom: tamano(2);
 			margin-left: 0;
 		}
