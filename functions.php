@@ -1,5 +1,8 @@
 <?php
-
+/** ==============================================================================================================
+ *                                       Constantes y variables Globales 
+ *  ==============================================================================================================
+ */
 define( 'JSPATH', get_template_directory_uri() . '/js/' );
 define( 'BLOGURL', get_home_url('/') );
 define( 'THEMEURL', get_bloginfo('template_url').'/' );
@@ -14,17 +17,15 @@ define( 'THEMEURL', get_bloginfo('template_url').'/' );
  */
 
 
-$special_pages = array(
-						'example' => 9
-						);
+$GLOBALS['special_pages'] = array(
+								'example' => 9
+								);
 
 
-/** .................................................................................................
- * Inluye los archivos generarles 
- *
+/** ==============================================================================================================
+ *                                       Inluye los archivos generarles 
+ *  ==============================================================================================================
  */
-
-
 // ---------------- scripts
 // Contiene la llamada de los archivos functions.js y admin-functions.js asi como inclucion de valiables java  
 
@@ -35,15 +36,12 @@ include_once('functions/general-scripts_js.php');
 
 include_once('functions/general-functions_cltvo.php');
 
-// ---------------- filtros generales
-// ???
-
-include_once('functions/general-filters.php');
 
 
-/** .................................................................................................
- * Inluye los archivos de admin  
- *
+
+/** ==============================================================================================================
+ *                                       Inluye los archivos de admin  
+ *  ==============================================================================================================
  */
 
 // ---------------- personaizacion del menu
@@ -71,17 +69,24 @@ include_once('functions/admin-taxonomies.php');
 include_once('functions/admin-metabox_savepost.php');
 
 
-/** .................................................................................................
- * Inluye los archivos del thema   
- *
+/** ==============================================================================================================
+ *                                         Inluye los archivos del tema   
+ *  ==============================================================================================================
  */
 
+// ---------------- funciones del menu
+// Contiene el menú del sitio y sus funciones
+
+include_once('functions/theme-menu.php');
+
 // ---------------- filtros del tema 
-// Se incluyen los filtros especificos del tema 
+// Contiene los filtros específicos del tema
+
 include_once('functions/theme-filters.php');
 
-/* ---------------- funciones del tema  -------------------------------*/
-// Se incluyen las funciones especificas del tema
+// ---------------- funciones del tema
+// Contiene los funciones específicas del tema
+
 include_once('functions/theme-functions.php');
 
 

@@ -5,23 +5,25 @@
  *
  */
 
-
-// add_theme_support( 'post-thumbnails' );
-// add_filter('intermediate_image_sizes_advanced', 'cltvo_quita_tamanos_default');
-
-// add_filter( 'attachment_fields_to_edit', 'aca_edit_tamano_img', null, 2 );
-// add_filter( 'attachment_fields_to_save', 'aca_save_tamano_img', null, 2 );
-
-
-
-
-
-/**
- * TAMAÑOS de IMGS
- * ---------------
- *
+/** ==============================================================================================================
+ *                                           HOOKS
+ *  ==============================================================================================================
  */
 
+// add_theme_support( 'post-thumbnails' ); // habilita el thumbnails 
+// add_filter('intermediate_image_sizes_advanced', 'cltvo_quita_tamanos_default'); // remueve los tamaños  estandar de las imagenes de wp
+
+// add_filter( 'attachment_fields_to_edit', 'aca_edit_tamano_img', null, 2 ); // crea el menú de imagen titular 
+// add_filter( 'attachment_fields_to_save', 'aca_save_tamano_img', null, 2 ); // salva la opccion del menú de imagen titular 
+
+
+
+
+
+/** ==============================================================================================================
+ *                                       FUNCIONES de IMGS
+ *  ==============================================================================================================
+ */
 
 // agrega tamaño personalizado
 if ( function_exists( 'add_image_size' ) ) { 
@@ -29,7 +31,6 @@ if ( function_exists( 'add_image_size' ) ) {
 }
 
 // quita tamaños estándar
-
 function cltvo_quita_tamanos_default( $sizes) {
 		
 	unset( $sizes['thumbnail']);
@@ -41,7 +42,6 @@ function cltvo_quita_tamanos_default( $sizes) {
 
 
 // crea el menú de imagen titular 
-
 function cltvo_edit_tamano_img( $form_fields, $post ) {
 	$tamano_guardado = get_post_meta($post->ID, 'cltvo_tamano_img_meta', true);
 	$tamanos = array('imagen_titular', 'poster_evento');
@@ -63,7 +63,6 @@ function cltvo_edit_tamano_img( $form_fields, $post ) {
 }
 
 // salva la opción de imagen titular 
-
 function cltvo_save_tamano_img($post, $attachment) {
 	$post_id = $post['ID'];
 	if ( isset( $attachment['cltvo_tamano_img_in'] ) ) {

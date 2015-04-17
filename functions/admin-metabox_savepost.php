@@ -5,26 +5,23 @@
  *
  */
 
+/** ==============================================================================================================
+ *                                                  HOOKS
+ *  ==============================================================================================================
+ */
 
-// add_action( 'add_meta_boxes', 'cltvo_metaboxes' );
-// add_action( 'save_post', 'cltvo_save_post' );
-
-
-// add_filter( 'manage_edit-post_columns', 'cltvo_nueva_col_post' );
-// add_filter( 'manage_edit-crdmn_proyecto_pt_columns', 'cltvo_nueva_col_proy' );
-// add_action( 'manage_posts_custom_column' , 'cltvo_tax_col', 10, 2 );
-// add_action( 'manage_crdmn_proyecto_pt_posts_custom_column' , 'cltvo_tax_col', 10, 2 );
+// add_action( 'add_meta_boxes', 'cltvo_metaboxes' ); // agrega las metabox
+// add_action( 'save_post', 'cltvo_save_post' ); // guarda el valor de las metabox 
 
 
-
-/**
- * Meta box
- * --------
- *
+/** ==============================================================================================================
+ *                                                Meta box
+ *  ==============================================================================================================
  */
 
 
-/* ---------------------- agrega el meta box ---------------------- */
+
+// ---------------------- agrega el meta box ---------------------- 
 function cltvo_metaboxes(){
 
 	add_meta_box(
@@ -38,7 +35,7 @@ function cltvo_metaboxes(){
 	// agrega aqui ...
 }
 
-/* ---------------------- funcion del meta box ---------------------- */
+// ---------------------- funcion del meta box ---------------------- 
 
 function inter_descripcion_fc($object){
 	echo '<p><input type="checkbox" name="inter_descripcion_in" ';
@@ -77,15 +74,13 @@ function crdmn_equipo_fc($object){?>
 <?php
 }
 
-// funcion aqui ...
+// funciones aqui ...
 
 
-/**
- * Save post
- * ---------
- *
+/** ==============================================================================================================
+ *                                                Save post
+ *  ==============================================================================================================
  */
-
 
 function cltvo_save_post($id){
 	// Permisos
@@ -95,7 +90,7 @@ function cltvo_save_post($id){
 	if( defined('DOING_AUTOSAVE') AND DOING_AUTOSAVE ) return $id;
 	if( wp_is_post_revision($id) OR wp_is_post_autosave($id) ) return $id;
 
-	/* ---------------------- salva el meta box ---------------------- */ 
+	// ---------------------- salva el meta box ----------------------  
 
 	// coloca el meta del metabox en el array 
 
@@ -108,15 +103,20 @@ function cltvo_save_post($id){
 		cltvo_save_metabox($meta_data);
 	}
 
-	/* ---------------------- funciones adicionales del save ---------------------- */ 
+	// ---------------------- funciones interiores del save ---------------------- 
 
 
 }
 
+/** ==============================================================================================================
+ *                               funciones adicionales de los metabox o del save post
+ *  ==============================================================================================================
+ */
+
 /**
  * Guarda o actulaliza el valor de un meta data 
  * 
- * Parametros
+ * Parametros:
  *
  * @param string $meta_data nombre del meta data 
  *

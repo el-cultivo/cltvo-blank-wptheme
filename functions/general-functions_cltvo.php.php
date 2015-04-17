@@ -3,13 +3,12 @@
 /**
  * En este archivo se incluyen las Funciones de El Cultivo
  *
+ * No agregar funciones del tema 
  */
 
-
-/**
- * Funciones de El Cultivo
- * -----------------------
- *
+/** ==============================================================================================================
+ *                                       Funciones de El Cultivo
+ *  ==============================================================================================================
  */
 
 
@@ -88,12 +87,15 @@ function cltvo_todosIdsImgsDelPost($parentId, $exclude= false){
 	return $images;	
 }
 
+// ???
 function cltvo_wpURL_2_path( $url ){
 	$path = get_theme_root();
 	$path = str_replace('wp-content/themes', '', $path);
 	$path = str_replace(home_url('/'), $path, $url);
 	return $path;
 }
+
+// verifica si te encuentras en el localhost 
 if( !function_exists('cltvo_is_local_h') ){
 	function cltvo_is_local_h(){
 		if($_SERVER['HTTP_HOST'] == 'localhost:8888'){
@@ -103,6 +105,8 @@ if( !function_exists('cltvo_is_local_h') ){
 		}
 	}
 }
+
+// modificacion de la funcion print_r
 if( !function_exists('cltvo_print_r') ){
 	function cltvo_print_r($var){
 		echo "<pre>";
@@ -118,4 +122,6 @@ if( !function_exists('cltvo_dinero') ){
 	}
 }
 
+
+// agrega aqui ...
 ?>
