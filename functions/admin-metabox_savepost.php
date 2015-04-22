@@ -100,7 +100,7 @@ function cltvo_save_post($id){
 							);
 
 	foreach ( $meta_data_array as $meta_data ) {
-		cltvo_save_metabox($meta_data);
+		cltvo_save_metabox($id,$meta_data);
 	}
 
 	// ---------------------- funciones interiores del save ---------------------- 
@@ -122,7 +122,7 @@ function cltvo_save_post($id){
  *
  */
 
-function cltvo_save_metabox($meta_data){
+function cltvo_save_metabox($id,$meta_data){
 
 		if( isset( $_POST[ $meta_data ] ) ) {
 	    update_post_meta( $id, $meta_data , $_POST[ $meta_data ] );
