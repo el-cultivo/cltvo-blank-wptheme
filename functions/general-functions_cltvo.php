@@ -95,17 +95,6 @@ function cltvo_wpURL_2_path( $url ){
 	return $path;
 }
 
-// verifica si te encuentras en el localhost 
-if( !function_exists('cltvo_is_local_h') ){
-	function cltvo_is_local_h(){
-		if($_SERVER['HTTP_HOST'] == 'localhost:8888'){
-			return true;
-		}else{
-			return false;
-		}
-	}
-}
-
 // modificacion de la funcion print_r
 if( !function_exists('cltvo_print_r') ){
 	function cltvo_print_r($var){
