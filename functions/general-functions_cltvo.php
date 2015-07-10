@@ -3,7 +3,7 @@
 /**
  * En este archivo se incluyen las Funciones de El Cultivo
  *
- * No agregar funciones del tema 
+ * No agregar funciones del tema
  */
 
 /** ==============================================================================================================
@@ -26,44 +26,67 @@ function es_mail($string){
 	return $es_mail;
 }
 
-//dale el ID del post
-//y un array con los ids de las imágenes a excluir, (si ninguna usar false)
-//y te regresará un array con las URL de las imágenes de ese post
-function cltvo_todasImgsDelPost($parentId, $size, $exclude=false){
-	
-	$query_images_args = array(
-		'post_parent' => $parentId,
-	    'post_type' => 'attachment',
-	    'orderby' => 'title',
-	    'order' => 'ASC',
-	    'post_mime_type' =>'image',
-	    'post_status' => 'inherit',
-	    'posts_per_page' => -1
-	);
-	
-	if( $exclude && is_array($exclude)){
-		$query_images_args['post__not_in'] = $exclude;
-	}
-	
-	$query_images = get_posts( $query_images_args );
-	
-	if(!$query_images){
-		return false;		
-	}else{
-		$images = array();
-		foreach ( $query_images as $image) {
-		    $imagesArray = wp_get_attachment_image_src( $image->ID, $size );
-		    $images[] = $imagesArray[0];
-		}
-		return $images;	
+
+/**
+ * Clase para las imagenes del post que contiene el id de la imagen, la src, el tamaño y el alt  
+ *
+ */
+
+class Cltvo_Img{
+	public $img_id;
+	public $src;
+	public $width;
+	public $height;
+	public $alt;
+	public function __construct( $img_id, $size='full' ){
+	    $this->img_id = $img_id;
+	    $img = wp_get_attachment_image_src( $this->img_id, $size);
+	    $this->src = $img[0];
+	    $this->width = $img[1];
+	    $this->height = $img[2];
+	    $this->alt = get_post_meta($this->img_id, '_wp_attachment_image_alt', true);
 	}
 }
+
+/**
+ * regresa todas las imagenes del post con sus caracteristicas en un array
+ *
+ * Parametros:
+ *
+ * @param int $parentId id del post
+ * @param string $size tamaño de las imagenes (por defecto full)
+ * @param boolean|array $exclude imagenes a ser excluidas (por defecto false)
+ *
+ * @return array con las imagenes y sus caracteristicas
+ */
+
+ function cltvo_todasImgsDelPost($parentId, $size='full', $exclude= false){
+	 $query_images_args = array(
+	     'post_parent' => $parentId,
+	     'post_type' => 'attachment',
+	     'post_mime_type' =>'image',
+	     'post_status' => 'inherit',
+	     'posts_per_page' => -1
+	 );
+
+	 if( !empty($exclude) ){
+	     $query_images_args['post__not_in'] = $exclude;
+	 }
+
+	 $query_images = get_posts( $query_images_args );
+	 $images = array();
+	 foreach ( $query_images as $image) {
+	     $images[] = new Cltvo_Img($image->ID, $size);
+	 }
+	 return $images;
+ }
+
 
 //dale el ID del post
 //y un array con los ids de las imágenes a excluir, (si ninguna usar false)
 //y te regresará un array con los IDS de las imágenes de ese post
 function cltvo_todosIdsImgsDelPost($parentId, $exclude= false){
-	
+
 	$query_images_args = array(
 		'post_parent' => $parentId,
 	    'post_type' => 'attachment',
@@ -73,18 +96,18 @@ function cltvo_todosIdsImgsDelPost($parentId, $exclude= false){
 	    'post_status' => 'inherit',
 	    'posts_per_page' => -1
 	);
-	
+
 	if( $exclude && is_array($exclude)){
 		$query_images_args['post__not_in'] = $exclude;
 	}
-	
+
 	$query_images = get_posts( $query_images_args );
 	$images = array();
 	foreach ( $query_images as $image) {
 	    $images[] = $image->ID;
 	}
-	
-	return $images;	
+
+	return $images;
 }
 
 // ???
