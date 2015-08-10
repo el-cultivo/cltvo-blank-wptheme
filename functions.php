@@ -25,33 +25,50 @@ add_action('init', function(){
  *
  */
 
-$GLOBALS['special_pages'] = array(
-		'nosotros' => 'Nosotros',
-		'ajax-mail' => 'Ajax para enviar mails'
-	);
+ $GLOBALS['special_pages'] = array(
+ 		'nosotros' => 'Nosotros',
+ 		'ajax-mail' => 'Ajax para enviar mails'
+ 	);
 
-	foreach ($GLOBALS['special_pages'] as $slug => $name) {
+ 	$special_pages_ids = get_option('special_pages_ids'); // almacena los ids de las paginas especiales
 
-		$args = array(
-		 'name'        => $slug,
-		 'post_type'   => 'page',
-		 'post_status' => 'publish',
-		 'numberposts' => 1
-		);
+ 	if ( !is_array($special_pages_ids) )  { //crea la opccion si aun no esta creada
+ 		add_option('special_pages_ids');
+ 		$special_pages_ids=array();
+ 	}
 
-		if( !get_posts($args) ){ // busca la paginas por slug y si no las encuetra las crea
+ 	foreach ($GLOBALS['special_pages'] as $slug => $name) {
+ 		$CreaPost = true;
+ 		if( isset($special_pages_ids[$slug]) ){ // si aun se ha creado
+ 			$pagina = get_post( intval($special_pages_ids[$slug]) );
+ 			if ( $pagina ) { // si borraron permanentemente la pagina
+ 				$CreaPost = false;
 
-			$page = array(
-			'post_author'  => 1,
-			'post_status'  => 'publish',
-			'post_name' => $slug,
-			'post_title'   => $name,
-			'post_type'    => 'page'
-			);
+ 				if ( $pagina->post_status != 'publish' ){ // evita que las paginas se coloquen en borador o se envien a la papelera.
+ 					$pagina_args = array(
+ 						'ID'           => $pagina->ID,
+ 						'post_status'   => 'publish',
+ 					);
+ 					wp_update_post( $pagina_args );
+ 				}
+ 			}
+ 		}
 
-			wp_insert_post( $page, true );
-		}
-	}
+ 		if( $CreaPost ){ // si no existe la pagina guarda
+
+ 			$page = array(
+ 			'post_author'  => 1,
+ 			'post_status'  => 'publish',
+ 			'post_name' => $slug,
+ 			'post_title'   => $name,
+ 			'post_type'    => 'page'
+ 			);
+
+ 			$special_pages_ids[$slug] = wp_insert_post( $page, true );
+ 		}
+ 	}
+
+ 	update_option('special_pages_ids',$special_pages_ids);
 
 });
 
