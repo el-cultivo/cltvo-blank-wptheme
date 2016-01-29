@@ -4,8 +4,10 @@
  *  ==============================================================================================================
  */
 define( 'JSPATH', get_template_directory_uri() . '/js/' );
+define( 'CSSPATH', get_template_directory_uri() . '/css/' ); // css para el adimin
 define( 'BLOGURL', get_home_url('/') );
 define( 'THEMEURL', get_bloginfo('template_url').'/' );
+define( 'METADOXDIR', get_template_directory().'/functions/metaboxes/' );
 
 
 /**
@@ -25,50 +27,84 @@ add_action('init', function(){
  *
  */
 
- $GLOBALS['special_pages'] = array(
- 		'nosotros' => 'Nosotros',
- 		'ajax-mail' => 'Ajax para enviar mails'
- 	);
+ $special_pages = array(
+     'clientes' => array( 'Clientes', "" ) ,
+     'contacto' => array( 'Contacto', "" )
+ );
 
- 	$special_pages_ids = get_option('special_pages_ids'); // almacena los ids de las paginas especiales
+ $special_pages_ids = get_option('special_pages_ids'); // almacena los ids de las paginas especiales
 
- 	if ( !is_array($special_pages_ids) )  { //crea la opccion si aun no esta creada
- 		add_option('special_pages_ids');
- 		$special_pages_ids=array();
- 	}
+ if ( !is_array($special_pages_ids) )  { //crea la opccion si aun no esta creada
+     add_option('special_pages_ids');
+     $special_pages_ids=array();
+ }
 
- 	foreach ($GLOBALS['special_pages'] as $slug => $name) {
- 		$CreaPost = true;
- 		if( isset($special_pages_ids[$slug]) ){ // si aun se ha creado
- 			$pagina = get_post( intval($special_pages_ids[$slug]) );
- 			if ( $pagina ) { // si borraron permanentemente la pagina
- 				$CreaPost = false;
+ foreach ($special_pages as $slug => $args) { // genera y revisa las paginas
+     $CreaPost = true;
+     if( isset($special_pages_ids[$slug]) ){ // si ya se ha creado
 
- 				if ( $pagina->post_status != 'publish' ){ // evita que las paginas se coloquen en borador o se envien a la papelera.
- 					$pagina_args = array(
- 						'ID'           => $pagina->ID,
- 						'post_status'   => 'publish',
- 					);
- 					wp_update_post( $pagina_args );
- 				}
- 			}
- 		}
+         $special_pages_ids[$slug] = intval($special_pages_ids[$slug]);
+         $pagina = get_post( $special_pages_ids[$slug] );
 
- 		if( $CreaPost ){ // si no existe la pagina guarda
+         if ( $pagina ) { // si no borraron permanentemente la pagina
+             $CreaPost = false;
+             $actualizar = false;
 
- 			$page = array(
- 			'post_author'  => 1,
- 			'post_status'  => 'publish',
- 			'post_name' => $slug,
- 			'post_title'   => $name,
- 			'post_type'    => 'page'
- 			);
+             $pagina_sustituta = get_page_by_path($slug);
 
- 			$special_pages_ids[$slug] = wp_insert_post( $page, true );
- 		}
- 	}
+             if($pagina_sustituta){ // verifica que el slug no lo tenga otra pagina
+                 $pagina = ($pagina_sustituta->ID != $pagina->ID ) ? $pagina_sustituta : $pagina ;
+                 $special_pages_ids[$slug] = $pagina->ID;
+             }
 
- 	update_option('special_pages_ids',$special_pages_ids);
+             $pagina_args = array(
+                 'ID'           =>   $pagina->ID,
+                 'post_title'   =>   $pagina->post_title,
+                 'post_content' =>   $pagina->post_content,
+             );
+         // si no esta publicada
+             if ( $pagina->post_status != 'publish' ){ // evita que las paginas se coloquen en borador o se envien a la papelera.
+                 $pagina_args['post_status'] = 'publish';
+                 $actualizar = true;
+             }
+
+         // si modificaron el post parent
+             $parent =  empty($args[1]) ? 0 : $special_pages_ids[ $args[1] ];
+
+             if ( $pagina->post_parent != $parent ){ // evita que las paginas se cambien de padre
+                 $pagina_args['post_parent'] = $parent;
+                 $actualizar = true;
+             }
+
+         // si modificaron el slug
+             if ( $pagina->post_name != $slug ){ // evita que las paginas se cambien de slug
+                 $pagina_args['post_name'] = $slug;
+                 $actualizar = true;
+             }
+
+             if( $actualizar ){
+                 wp_update_post( $pagina_args );
+             }
+         }
+     }
+
+     if( $CreaPost ){ // si no existe la pagina guarda
+
+         $page = array(
+             'post_author'  => 1,
+             'post_status'  => 'publish',
+             'post_name'    => $slug,
+             'post_title'   => $args[0],
+             'post_type'    => 'page',
+             'post_parent'  => empty($args[1]) ? 0 : $special_pages_ids[ $args[1] ]
+             );
+
+         $special_pages_ids[$slug] = wp_insert_post( $page, true );
+     }
+ }
+
+ update_option('special_pages_ids',$special_pages_ids);
+ $GLOBALS['special_pages_ids'] = $special_pages_ids;
 
 });
 
@@ -123,6 +159,10 @@ include_once('functions/admin-taxonomies.php');
 
 include_once('functions/admin-metabox_savepost.php');
 
+// ---------------- ajax del admin
+// Contiene los funciones ajax  del admin
+
+include_once('functions/admin-ajax.php');
 
 /** ==============================================================================================================
  *                                         Inluye los archivos del tema
@@ -144,6 +184,10 @@ include_once('functions/theme-filters.php');
 
 include_once('functions/theme-functions.php');
 
+// ---------------- ajax del tema
+// Contiene los funciones ajax especificas del tema
+
+include_once('functions/theme-ajax.php');
 
 
 ?>

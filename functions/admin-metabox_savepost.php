@@ -1,132 +1,172 @@
 <?php
 
 /**
- * En este archivo se incluyen los meta box y las funciones de save post. 
+ * Los metabox se incluyen como clases en la carpeta metaboxes
  *
  */
 
 /** ==============================================================================================================
- *                                                  HOOKS
+ *                                                inaterface
  *  ==============================================================================================================
  */
 
-// add_action( 'add_meta_boxes', 'cltvo_metaboxes' ); // agrega las metabox
-// add_action( 'save_post', 'cltvo_save_post' ); // guarda el valor de las metabox 
+interface Cltvo_metabox_interface{
+	/**
+	 * Es la funcion que muestra el contenido del metabox
+	 * @param object $object en principio es un objeto de WP_post
+	 */
+	public function CltvoDisplayMetabox($object);
+	/**
+	 * en esta funcion se inicializan los valores del metabox
+	 */
+	public  function setMetaValue($meta_value);
+	/**
+	 * regresa los valores del metabox para un post
+	 */
+	public function getMetaValue($object);
+	/**
+	 * define el metodo donde se mostrara el meta
+	 * @param object $object en principio es un objeto de WP_post
+	 */
+	public static function displayRule();
+	/**
+	 * guarda el valor del metabox
+	 */
+	public function CltvoSaveMetaValue();
+	/**
+	 * Agrega el hook que coloca el meta en el admin
+	 */
+	public function CltvoMetaBox();
 
+}
 
 /** ==============================================================================================================
- *                                                Meta box
+ *                                                abstract class
  *  ==============================================================================================================
  */
+abstract class Cltvo_metabox_master implements Cltvo_metabox_interface{
 
+	protected $meta_key;
+	protected $meta_value;
 
+	private $id_metabox;
+	private $description_metabox;
+	private $post_type = "post";
+	private $position = "normal";
+	private $prioridad = "default";
+	private $ags = null;
 
-// ---------------------- agrega el meta box ---------------------- 
-function cltvo_metaboxes(){
+	/**
+	 * construccion del metabox
+	 * @param string $meta_key     nombre del meta
+	 * @param string $metabox_name titulo de la caja del metabox
+	 * @param array $values       agumentos restante para costruir el meta
+	 */
 
-	add_meta_box(
-		'inter_descripcion_mb',		//id
-		'Descripción',				//título
-		'inter_descripcion_fc',		//callback function
-		'inter_activi_pt',			//post type
-		'side'						//posición
-	);
+	function __construct(  $meta_key, $metabox_name, array $values = [] ){
 
-	// agrega aqui ...
-}
+		$this->meta_key = $meta_key;
+		$this->description_metabox = $metabox_name;
 
-// ---------------------- funcion del meta box ---------------------- 
+		$this->id_metabox = $this->meta_key."_mb";
 
-function inter_descripcion_fc($object){
-	echo '<p><input type="checkbox" name="inter_descripcion_in" ';
-	if( get_post_meta($object->ID, 'inter_descripcion_meta') )echo "checked";
-	echo '> Descripción de sección</p>';
-}
-function inter_colaborador_fc($object){
-	echo '<p><label>Nombre del colaborador:</label></p>';
-	echo '<input name="inter_colaborador_in" type="text" value="';
-	echo get_post_meta($object->ID, 'inter_colaborador_meta', true);
-	echo '" />';
-}
+		$this->post_type = isset($values["post_type"]) ? $values["post_type"] : $this->post_type ;
+		$this->position = isset($values["position"]) ? $values["position"] : $this->position ;
+		$this->prioridad = isset($values["prioridad"]) ? $values["prioridad"] : $this->prioridad ;
+		$this->ags = isset($values["ags"]) ? $values["ags"] : $this->ags ;
 
-function crdmn_equipo_fc($object){?>
-	<div class="cltvo_multi_mb">
-		<div class="cltvo_multi_papa">
-			<?php $crdmn_equipo_arr = get_post_meta($object->ID, 'crdmn_equipo_meta', true) ? get_post_meta($object->ID, 'crdmn_equipo_meta', true) : array(''=>'');?>
-			<?php $i=1;?>
-			<?php foreach ($crdmn_equipo_arr as $nombre => $link):?>
-			<div class="cltvo_multi_hijo cltvo_multi_hijo<?php echo $i;?>">
-				<p>
-					<label>Nombre </label>
-					<input name="crdmn_equipo_nom<?php echo $i;?>" type="text" value="<?php echo $nombre;?>" />
-				</p>
-				<p>
-					<label>Link </label>
-					<input name="crdmn_equipo_link<?php echo $i;?>" type="text" value="<?php echo $link;?>" />
-				</p>
-				<hr>
-			</div>
-			<?php $i++;?>
-			<?php endforeach;?>
-		</div>
-		<a href="#" class="nuevo-equipo-JS">+ agregar otro miembro de equipo</a>
-	</div>
-<?php
-}
+		if ($this->displayRule()) {
+			$this->CltvoMetaBox();
+		}
 
-// funciones aqui ...
-
-
-/** ==============================================================================================================
- *                                                Save post
- *  ==============================================================================================================
- */
-
-function cltvo_save_post($id){
-	// Permisos
-	if( !current_user_can('edit_post', $id) ) return $id;
-
-	// Vs Autosave
-	if( defined('DOING_AUTOSAVE') AND DOING_AUTOSAVE ) return $id;
-	if( wp_is_post_revision($id) OR wp_is_post_autosave($id) ) return $id;
-
-	// ---------------------- salva el meta box ----------------------  
-
-	// coloca el meta del metabox en el array 
-
-	$meta_data_array = array( 
-								'inter_descripcion_meta', 
-								'inter_colaborador_meta'
-							);
-
-	foreach ( $meta_data_array as $meta_data ) {
-		cltvo_save_metabox($id,$meta_data);
+		$this->CltvoSaveMetaValue();
 	}
 
-	// ---------------------- funciones interiores del save ---------------------- 
-
-
-}
-
-/** ==============================================================================================================
- *                               funciones adicionales de los metabox o del save post
- *  ==============================================================================================================
- */
-
-/**
- * Guarda o actulaliza el valor de un meta data 
- * 
- * Parametros:
- *
- * @param string $meta_data nombre del meta data 
- *
- */
-
-function cltvo_save_metabox($id,$meta_data){
-
-		if( isset( $_POST[ $meta_data ] ) ) {
-	    update_post_meta( $id, $meta_data , $_POST[ $meta_data ] );
+	/**
+	 * Agrega el hook que coloca el meta en el admin
+	 */
+	public function CltvoMetaBox(){
+		add_action( 'add_meta_boxes', function(){
+			add_meta_box(
+				$this->id_metabox,		//id
+				$this->description_metabox, //título
+				function($object){
+					$this->meta_value = $this->getMetaValue($object);
+					$this->CltvoDisplayMetabox($object);
+				},		//callback function
+				$this->post_type,			//post type
+				$this->position,						//posición
+				$this->prioridad
+			);
+		} ); // agrega las metabox
 	}
 
+	/**
+	 * guarda el valor del metabox
+	 */
+	public function CltvoSaveMetaValue(){
+		add_action( 'save_post', function($id){
+
+			if( !current_user_can('edit_post', $id) ) return $id;
+
+			// Vs Autosave
+			if( defined('DOING_AUTOSAVE') AND DOING_AUTOSAVE ) return $id;
+			if( wp_is_post_revision($id) OR wp_is_post_autosave($id) ) return $id;
+
+			// ---------------------- salva el meta box ----------------------
+
+			if( isset( $_POST[ $this->meta_key ] ) ) {
+			    update_post_meta( $id, $this->meta_key , $_POST[ $this->meta_key ] );
+			}
+
+		} ); // guarda el valor de las metabox
+	}
+
+	/**
+	* define el metodo donde se mostrara el meta
+	* @return boolean si es verdadero el meta sera desplegado en el admin en caso constrario no
+	*/
+	public static function displayRule(){
+		return true;
+	}
+
+	/**
+	 * define el metodo que inicializa el valor del meta
+	 */
+	public function setMetaValue($meta_value){
+		return $meta_value;
+	}
+
+	/**
+	 * regresa el el valor del meta inicializado para un post
+	 * @param object $object en principio es un objeto de WP_post
+	 * @return string|array valor del meta inicalizado
+	 */
+	public function getMetaValue($object){
+		return $this->setMetaValue(
+			get_post_meta($object->ID, $this->meta_key, true)
+		);;
+	}
+
+
+
+	/**
+	 * Es la funcion que muestra el contenido del metabox
+	 * @param object $object en principio es un objeto de WP_post
+	 */
+	abstract public function CltvoDisplayMetabox( $object );
+
 }
-?>
+
+
+/** ==============================================================================================================
+ *                                               agrega todos los metaboxes
+ *  ==============================================================================================================
+ */
+add_action('admin_init', function(){
+	foreach (glob(METADOXDIR.'*.php') as $filename){
+		$clase =  str_replace( [METADOXDIR,".php"],[""], $filename );
+		include $filename;
+		new $clase;
+	}
+});

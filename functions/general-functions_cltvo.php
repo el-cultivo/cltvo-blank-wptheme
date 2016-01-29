@@ -28,7 +28,7 @@ function es_mail($string){
 
 
 /**
- * Clase para las imagenes del post que contiene el id de la imagen, la src, el tamaño y el alt  
+ * Clase para las imagenes del post que contiene el id de la imagen, la src, el tamaño y el alt
  *
  */
 
@@ -38,6 +38,9 @@ class Cltvo_Img{
 	public $width;
 	public $height;
 	public $alt;
+
+	public $class;
+	public $aspect_ratio;
 	public function __construct( $img_id, $size='full' ){
 	    $this->img_id = $img_id;
 	    $img = wp_get_attachment_image_src( $this->img_id, $size);
@@ -45,6 +48,20 @@ class Cltvo_Img{
 	    $this->width = $img[1];
 	    $this->height = $img[2];
 	    $this->alt = get_post_meta($this->img_id, '_wp_attachment_image_alt', true);
+
+	// modificacion para aspect radio de la imagen
+		$img_info = wp_get_attachment_metadata($img_id );
+
+		if($img_info){
+
+			$this->aspect_ratio = $img_info['height']/$img_info['width'];
+			if($img_info['width'] >= $img_info['height'] ){
+				$this->class = "img_horizontal";
+			}else{
+				$this->class = "img_vertical";
+			}
+
+		}
 	}
 }
 
@@ -134,6 +151,53 @@ if( !function_exists('cltvo_dinero') ){
 	}
 }
 
+/**
+ * trae el permalink de una pagina especial
+ * @param  string $slug slug de la pagina especial
+ * @return string       url de la pagina
+ */
+function specialPagePermalink($slug) {
+	get_permalink( specialPage($slug) );
+}
 
-// agrega aqui ...
-?>
+/**
+ * verifica si la pagina especial existe
+ * @param  string $slug slug de la pagina especial
+ * @return boolean       generera una esepcion en caso de  que la pagia especial no exista
+ */
+function existEspecialPage($slug){
+
+	if (!isset( $GLOBALS['special_pages_ids'][$slug] ) ) {
+
+		throw new Exception("Special page -- $slug -- not found");
+	}
+
+	return true;
+}
+
+/**
+ * Trae las paginas especiales
+ * @param  string  $slug   Slug de la página especial
+ * @param  boolean $object Si se desea traer el un objeto o sólo el id
+ * @return objeto o string
+ */
+function specialPage( $slug, $object = false )
+{
+	existEspecialPage($slug);
+
+	if ($object){
+		return get_post($GLOBALS['special_pages_ids'][$slug]);
+	}
+	return $GLOBALS['special_pages_ids'][$slug];
+}
+
+/**
+ * funcion auxuliar para las paginas especiales, verifica si la pagina a editar es una pagina especial
+ * @param  string  $slug slug de la pagina a verificar
+ * @return boolean      si se edita la pagina especual mencionada 
+ */
+function isSpecialPage($slug)
+{
+	existEspecialPage($slug);
+	return isset($_GET['post']) && $_GET['post'] == specialPage( $slug);
+}

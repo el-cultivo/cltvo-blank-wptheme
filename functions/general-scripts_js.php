@@ -25,7 +25,7 @@
 function cltvo_js(){
 	wp_register_script( 'cltvo_functions_js', JSPATH.'functions.js', array('jquery'), false, true );
 	wp_localize_script( 'cltvo_functions_js', 'cltvo_js_vars', cltvo_js_vars() );
-	
+
 	wp_enqueue_script('jquery');
 	wp_enqueue_script('cltvo_functions_js');
 }
@@ -36,15 +36,18 @@ function cltvo_admin_js(){
 	wp_register_script( 'cltvo_admin_functions_js', JSPATH.'admin-functions.js', array('jquery'), false, false );
 	wp_localize_script( 'cltvo_admin_functions_js', 'cltvo_js_vars', cltvo_js_vars() );
 
+	wp_enqueue_style('admin-styles', CSSPATH.'ultraligero_admin.css' );
+	wp_enqueue_script('jquery');
 	wp_enqueue_script('cltvo_admin_functions_js');
 }
 
-// genera el site_url y template_url para javascript  
+// genera el site_url y template_url para javascript
 
 function cltvo_js_vars(){
 	$php2js_vars = array(
 		'site_url'     => home_url('/'),
-		'template_url' => get_bloginfo('template_url')
+		'template_url' => get_bloginfo('template_url'),
+		'ajax_url' 		=> admin_url( 'admin-ajax.php' ),
 	);
 	return $php2js_vars;
 }
