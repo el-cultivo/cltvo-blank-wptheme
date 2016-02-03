@@ -42,7 +42,7 @@ class Cltvo_Lookbook extends Cltvo_Post_Type_master implements Cltvo_Post_Type_i
     		'supports'           => array( 'title', 'editor')
     	);
 
-    	register_post_type( 'oclot_lookbook_pt', $args );
+    	//register_post_type( 'oclot_lookbook_pt', $args );
 
     }
 

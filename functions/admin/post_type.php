@@ -95,10 +95,10 @@ foreach (glob(POSTTYPESDIR.'*.php') as $filename){
 	include $filename;
 }
 
-foreach (glob(POSTTYPESDIR.'/customs/*.php') as $filename){
+foreach (glob(POSTTYPESDIR.'customs/*.php') as $filename){
 	include $filename;
 	add_action('init', function() use ($filename) {
-		$clase =  str_replace( [POSTTYPESDIR.'/customs/',".php"],[""], $filename );
+		$clase =  str_replace( [POSTTYPESDIR.'customs/',".php"],[""], $filename );
 		$clase::registerPostype();
 	});
 }
