@@ -1,23 +1,20 @@
 <?php
 
 /**
- * En este archivo se incluyen los post type personalizados  y las columnas personalizadas 
+ * En este archivo se incluyen los post type personalizados  y las columnas personalizadas
  *
  */
+
+define( 'POSTTYPESDIR', get_template_directory().'/functions/admin/posttypes/' ); // directorio de las clases de posttypes
 
 /** ==============================================================================================================
  *                                                  HOOKS
  *  ==============================================================================================================
  */
 
-// ------------ post type ---------------------------
-
-// add_action( 'init', 'cltvo_posttypes' ); // incluye los post types personalizados 
-
-
 // ------------ colunmas  ---------------------------
 
-// add_action( 'manage_posts_custom_column' , 'cltvo_tax_col', 10, 2 ); 
+// add_action( 'manage_posts_custom_column' , 'cltvo_tax_col', 10, 2 );
 // add_action( 'manage_crdmn_proyecto_pt_posts_custom_column' , 'cltvo_tax_col', 10, 2 );
 
 // add_filter( 'manage_edit-post_columns', 'cltvo_nueva_col_post' );
@@ -26,28 +23,7 @@
 
 
 /** ==============================================================================================================
- *                                                TIPOS DE POSTS   
- *  ==============================================================================================================
- */
-
-function cltvo_posttypes(){
-	//Nombre del posttype!
-	$args = array(
-		'label' => 'Artistas',  								//nombre
-		'public' => true,										//Público
-		'rewrite' => array( 'slug' => 'artistas' ),				//Nombre en la url
-		'has_archive' => true,									//Se puede usar en un archivo
-		'supports' => array( 'title', 'editor', 'thumbnail' )	//Inupts UI en la página de new post
-	);
-	register_post_type( 'inter_artistas_pt', $args );		//Se registra
-
-	// agrega aqui ...
-
-}
-
-
-/** ==============================================================================================================
- *                                                  Columnas en PT 
+ *                                                  Columnas en PT
  *  ==============================================================================================================
  */
 
@@ -95,4 +71,34 @@ function cltvo_tax_col( $column_name, $post_id ) {
 	}
 }
 
-?>
+
+/** ==============================================================================================================
+ *                                                inaterface
+ *  ==============================================================================================================
+ */
+
+	include 'Classes/Cltvo_Post_Type_interface.php';
+
+/** ==============================================================================================================
+ *                                                abstract class
+ *  ==============================================================================================================
+ */
+
+	include 'Classes/Cltvo_Post_Type_master.php';
+
+/** ==============================================================================================================
+ *                                               agrega todos los objetos de posttypes
+ *  ==============================================================================================================
+ */
+
+foreach (glob(POSTTYPESDIR.'*.php') as $filename){
+	include $filename;
+}
+
+foreach (glob(POSTTYPESDIR.'/customs/*.php') as $filename){
+	include $filename;
+	add_action('init', function() use ($filename) {
+		$clase =  str_replace( [POSTTYPESDIR.'/customs/',".php"],[""], $filename );
+		$clase::registerPostype();
+	});
+}

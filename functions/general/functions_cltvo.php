@@ -32,38 +32,7 @@ function es_mail($string){
  *
  */
 
-class Cltvo_Img{
-	public $img_id;
-	public $src;
-	public $width;
-	public $height;
-	public $alt;
-
-	public $class;
-	public $aspect_ratio;
-	public function __construct( $img_id, $size='full' ){
-	    $this->img_id = $img_id;
-	    $img = wp_get_attachment_image_src( $this->img_id, $size);
-	    $this->src = $img[0];
-	    $this->width = $img[1];
-	    $this->height = $img[2];
-	    $this->alt = get_post_meta($this->img_id, '_wp_attachment_image_alt', true);
-
-	// modificacion para aspect radio de la imagen
-		$img_info = wp_get_attachment_metadata($img_id );
-
-		if($img_info){
-
-			$this->aspect_ratio = $img_info['height']/$img_info['width'];
-			if($img_info['width'] >= $img_info['height'] ){
-				$this->class = "img_horizontal";
-			}else{
-				$this->class = "img_vertical";
-			}
-
-		}
-	}
-}
+	include 'Classes/Cltvo_Img.php';
 
 /**
  * regresa todas las imagenes del post con sus caracteristicas en un array
@@ -71,13 +40,12 @@ class Cltvo_Img{
  * Parametros:
  *
  * @param int $parentId id del post
- * @param string $size tamaño de las imagenes (por defecto full)
  * @param boolean|array $exclude imagenes a ser excluidas (por defecto false)
  *
  * @return array con las imagenes y sus caracteristicas
  */
 
- function cltvo_todasImgsDelPost($parentId, $size='full', $exclude= false){
+ function cltvo_todasImgsDelPost($parentId, $exclude= false){
 	 $query_images_args = array(
 	     'post_parent' => $parentId,
 	     'post_type' => 'attachment',
@@ -93,39 +61,10 @@ class Cltvo_Img{
 	 $query_images = get_posts( $query_images_args );
 	 $images = array();
 	 foreach ( $query_images as $image) {
-	     $images[] = new Cltvo_Img($image->ID, $size);
+	     $images[] = new Cltvo_Img($image->ID);
 	 }
 	 return $images;
  }
-
-
-//dale el ID del post
-//y un array con los ids de las imágenes a excluir, (si ninguna usar false)
-//y te regresará un array con los IDS de las imágenes de ese post
-function cltvo_todosIdsImgsDelPost($parentId, $exclude= false){
-
-	$query_images_args = array(
-		'post_parent' => $parentId,
-	    'post_type' => 'attachment',
-	    'orderby' => 'title',
-	    'order' => 'ASC',
-	    'post_mime_type' =>'image',
-	    'post_status' => 'inherit',
-	    'posts_per_page' => -1
-	);
-
-	if( $exclude && is_array($exclude)){
-		$query_images_args['post__not_in'] = $exclude;
-	}
-
-	$query_images = get_posts( $query_images_args );
-	$images = array();
-	foreach ( $query_images as $image) {
-	    $images[] = $image->ID;
-	}
-
-	return $images;
-}
 
 // ???
 function cltvo_wpURL_2_path( $url ){
@@ -194,7 +133,7 @@ function specialPage( $slug, $object = false )
 /**
  * funcion auxuliar para las paginas especiales, verifica si la pagina a editar es una pagina especial
  * @param  string  $slug slug de la pagina a verificar
- * @return boolean      si se edita la pagina especual mencionada 
+ * @return boolean      si se edita la pagina especual mencionada
  */
 function isSpecialPage($slug)
 {
