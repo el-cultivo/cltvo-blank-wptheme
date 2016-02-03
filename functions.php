@@ -15,7 +15,7 @@ define( 'THEMEURL', get_bloginfo('template_url').'/' );
  // ---------------- paginas especiales
  // Hook que crea las paginas especificas o especiales de manera automatica
 
- include_once('functions/general/special_pages.php');
+ include_once('functions/special_pages.php');
 
 /** ==============================================================================================================
  *                                       Inluye los archivos generarles
