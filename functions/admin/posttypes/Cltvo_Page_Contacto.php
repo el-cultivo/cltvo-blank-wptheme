@@ -13,7 +13,7 @@ class Cltvo_Page_Contacto extends Cltvo_Page
 
     public function setMetas()
     {
-        $this->social_net = (new socialNet)->getMetaValue($this->post);
+        $this->social_net = socialNet::getMetaValue($this->post);
     }
 
 }

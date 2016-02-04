@@ -4,7 +4,7 @@ class socialNet extends Cltvo_metabox_master
 {
 
 
-    private $redesConUrl = [
+    protected static $redesConUrl = [
                         'facebook' => 'Facebook:',
 						'twitter' => 'Twitter:',
 						// 'pinterest' => 'Pinterest:',
@@ -13,33 +13,42 @@ class socialNet extends Cltvo_metabox_master
 						// 'tumblr' => 'Tumblr:'
 					];
 
-    private $redesSinUrl = [ 'mail' => 'Email:',
+    protected static $redesSinUrl = [ 'mail' => 'Email:',
 						'telefono' => 'Teléfono:'
 					];
 
+  protected $description_metabox = "Redes Sociales";
 
-	function __construct(){
-		parent::__construct(
-			"social_net",
-			"Redes Sociales",
-			[
-				"post_type" => "page"
-			]
-		);
+  protected $post_type = "page";
+
+  /**
+   * define el meta key
+   */
+  public static function GetMetaKey(){
+    return "social_net";
+  }
+
+  /**
+	 * define el metodo donde se mostrara el meta
+	 * @return boolean si es verdadero el meta sera desplegado en el admin en caso constrario no
+	 */
+	public static function displayRule(){
+		return isSpecialPage("contacto");
 	}
+
 
     /**
      * define el metodo que inicializa el valor del meta
      */
-    public function setMetaValue($meta){
+    public static function setMetaValue($meta){
 
         $meta = is_array($meta) ? $meta : [] ;
 
-        foreach ($this->redesSinUrl as $red => $imagen) {
+        foreach (self::$redesSinUrl as $red => $imagen) {
 			$meta[$red] = isset($meta[$red]) ? $meta[$red] :  "";
 		}
 
-		foreach ($this->redesConUrl as $red => $imagen) {
+		foreach (self::$redesConUrl as $red => $imagen) {
 			$meta[$red] = isset($meta[$red]) ? $meta[$red] :  array('cuenta'=> '', 'link'=> '');
 		}
 
@@ -72,7 +81,7 @@ class socialNet extends Cltvo_metabox_master
         					<input type="email" placeholder="ejemplo@ejemplo.com" name="<?php echo  $this->meta_key; ?>[mail]" id="<?php echo  $this->meta_key; ?>[mail]" value="<?php echo $this->meta_value['mail']; ?>" class="ancho_100" />
         				</td>
         			</tr>
-        			<?php foreach ($this->redesConUrl as $slug => $nombre): ?>
+        			<?php foreach (self::$redesConUrl as $slug => $nombre): ?>
         				<tr>
         					<td>
         						<?php echo $nombre; ?>
@@ -88,13 +97,7 @@ class socialNet extends Cltvo_metabox_master
         		<?php
 	}
 
-	/**
-	 * define el metodo donde se mostrara el meta
-	 * @return boolean si es verdadero el meta sera desplegado en el admin en caso constrario no
-	 */
-	public static function displayRule(){
-		return isSpecialPage("contacto");
-	}
+
 
     /**
      * Imprime los input de las redes sociales

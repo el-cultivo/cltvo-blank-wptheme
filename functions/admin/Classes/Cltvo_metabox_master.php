@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 abstract class Cltvo_metabox_master implements Cltvo_metabox_interface{
 
@@ -6,30 +6,18 @@ abstract class Cltvo_metabox_master implements Cltvo_metabox_interface{
 	protected $meta_value;
 
 	private $id_metabox;
-	private $description_metabox;
-	private $post_type = "post";
-	private $position = "normal";
-	private $prioridad = "default";
-	private $ags = null;
+	protected $description_metabox;
+	protected $post_type = "post";
+	protected $position = "normal";
+	protected $prioridad = "default";
+	protected $ags = null;
 
-	/**
-	 * construccion del metabox
-	 * @param string $meta_key     nombre del meta
-	 * @param string $metabox_name titulo de la caja del metabox
-	 * @param array $values       agumentos restante para costruir el meta
-	 */
 
-	function __construct(  $meta_key, $metabox_name, array $values = [] ){
+	function __construct(){
 
-		$this->meta_key = $meta_key;
-		$this->description_metabox = $metabox_name;
-
+		$this->meta_key = $this->GetMetaKey();
 		$this->id_metabox = $this->meta_key."_mb";
 
-		$this->post_type = isset($values["post_type"]) ? $values["post_type"] : $this->post_type ;
-		$this->position = isset($values["position"]) ? $values["position"] : $this->position ;
-		$this->prioridad = isset($values["prioridad"]) ? $values["prioridad"] : $this->prioridad ;
-		$this->ags = isset($values["ags"]) ? $values["ags"] : $this->ags ;
 
 		if ($this->displayRule()) {
 			$this->CltvoMetaBox();
@@ -61,6 +49,7 @@ abstract class Cltvo_metabox_master implements Cltvo_metabox_interface{
 	 * guarda el valor del metabox
 	 */
 	public function CltvoSaveMetaValue(){
+
 		add_action( 'save_post', function($id){
 
 			if( !current_user_can('edit_post', $id) ) return $id;
@@ -72,6 +61,7 @@ abstract class Cltvo_metabox_master implements Cltvo_metabox_interface{
 			// ---------------------- salva el meta box ----------------------
 
 			if( isset( $_POST[ $this->meta_key ] ) ) {
+
 			    update_post_meta( $id, $this->meta_key , $_POST[ $this->meta_key ] );
 			}
 
@@ -89,7 +79,7 @@ abstract class Cltvo_metabox_master implements Cltvo_metabox_interface{
 	/**
 	 * define el metodo que inicializa el valor del meta
 	 */
-	public function setMetaValue($meta_value){
+	public static function setMetaValue($meta_value){
 		return $meta_value;
 	}
 
@@ -98,9 +88,9 @@ abstract class Cltvo_metabox_master implements Cltvo_metabox_interface{
 	 * @param object $object en principio es un objeto de WP_post
 	 * @return string|array valor del meta inicalizado
 	 */
-	public function getMetaValue($object){
-		return $this->setMetaValue(
-			get_post_meta($object->ID, $this->meta_key, true)
+	public static function getMetaValue($object){
+		return static::setMetaValue(
+			get_post_meta($object->ID, static::GetMetaKey(), true)
 		);;
 	}
 
@@ -111,5 +101,10 @@ abstract class Cltvo_metabox_master implements Cltvo_metabox_interface{
 	 * @param object $object en principio es un objeto de WP_post
 	 */
 	abstract public function CltvoDisplayMetabox( $object );
+
+	/**
+	 * define el meta key
+	 */
+	abstract static function GetMetaKey();
 
 }
