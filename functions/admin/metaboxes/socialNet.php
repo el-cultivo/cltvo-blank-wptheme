@@ -32,7 +32,7 @@ class socialNet extends Cltvo_metabox_master
 	 * define el metodo donde se mostrara el meta
 	 * @return boolean si es verdadero el meta sera desplegado en el admin en caso constrario no
 	 */
-	public static function displayRule(){
+	public static function metaboxDisplayRule(){
 		return isSpecialPage("contacto");
 	}
 

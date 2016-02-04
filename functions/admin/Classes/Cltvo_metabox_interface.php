@@ -17,7 +17,7 @@ interface Cltvo_metabox_interface{
 	/**
 	 * define el metodo donde se mostrara el meta
 	 */
-	public static function displayRule();
+	public static function metaboxDisplayRule();
 	/**
 	 * guarda el valor del metabox
 	 */

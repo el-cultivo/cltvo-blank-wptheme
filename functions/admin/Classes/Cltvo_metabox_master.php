@@ -18,8 +18,7 @@ abstract class Cltvo_metabox_master implements Cltvo_metabox_interface{
 		$this->meta_key = $this->GetMetaKey();
 		$this->id_metabox = $this->meta_key."_mb";
 
-
-		if ($this->displayRule()) {
+		if ($this->metaboxDisplayRule()) {
 			$this->CltvoMetaBox();
 		}
 
@@ -72,7 +71,7 @@ abstract class Cltvo_metabox_master implements Cltvo_metabox_interface{
 	* define el metodo donde se mostrara el meta
 	* @return boolean si es verdadero el meta sera desplegado en el admin en caso constrario no
 	*/
-	public static function displayRule(){
+	public static function metaboxDisplayRule(){
 		return true;
 	}
 
