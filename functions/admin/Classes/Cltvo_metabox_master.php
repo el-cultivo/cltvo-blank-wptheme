@@ -104,6 +104,8 @@ abstract class Cltvo_metabox_master implements Cltvo_metabox_interface{
 	/**
 	 * define el meta key
 	 */
-	abstract static function GetMetaKey();
+	public static function GetMetaKey(){
+		return "";
+	}
 
 }
