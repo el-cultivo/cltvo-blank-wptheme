@@ -104,7 +104,7 @@ function specialPagePermalink($slug) {
  * @param  string $slug slug de la pagina especial
  * @return boolean       generera una esepcion en caso de  que la pagia especial no exista
  */
-function existEspecialPage($slug){
+function specialPageExists($slug){
 
 	if (!isset( $GLOBALS['special_pages_ids'][$slug] ) ) {
 
@@ -122,7 +122,7 @@ function existEspecialPage($slug){
  */
 function specialPage( $slug, $object = false )
 {
-	existEspecialPage($slug);
+	specialPageExists($slug);
 
 	if ($object){
 		return get_post($GLOBALS['special_pages_ids'][$slug]);
@@ -137,6 +137,6 @@ function specialPage( $slug, $object = false )
  */
 function isSpecialPage($slug)
 {
-	existEspecialPage($slug);
+	specialPageExists($slug);
 	return isset($_GET['post']) && $_GET['post'] == specialPage( $slug);
 }

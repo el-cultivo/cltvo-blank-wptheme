@@ -37,4 +37,13 @@ class Cltvo_Img{
 		}
 
 	}
+
+	/**
+	 * regresa el src de la imagen en un tamaño desplegado
+	 * @param  string  $size tamaño de ña imagen
+	 * @return string        src de la imagen
+	 */
+	public function getImgSrc($size){
+		return isset($this->srcs[$size]) ? $this->srcs[$size] : $this->src;
+	}
 }

@@ -1,6 +1,6 @@
 <?php
 
-class socialNet extends Cltvo_metabox_master
+class SocialNet extends Cltvo_metabox_master
 {
 
 

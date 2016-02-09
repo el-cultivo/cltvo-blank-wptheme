@@ -23,7 +23,7 @@
 /**
 *  configuracion del ajax mail y funciones
 */
-include_once get_template_directory()."/ajax/ajax-mail.php";
+// include_once get_template_directory()."/ajax/ajax-mail.php";
 
 /**
 * callback que envia los cooreos de subscripcion y contacto
