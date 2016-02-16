@@ -1,9 +1,9 @@
 <?php
 
-abstract class Cltvo_metabox_master implements Cltvo_metabox_interface{
+abstract class Cltvo_Metabox_Master implements Cltvo_Metabox_Interface{
 
-	protected $meta_key;
 	protected $meta_value;
+	protected $meta_key;
 
 	private $id_metabox;
 	protected $description_metabox;
@@ -15,11 +15,11 @@ abstract class Cltvo_metabox_master implements Cltvo_metabox_interface{
 
 	function __construct(){
 
-		$this->meta_key = $this->GetMetaKey();
+		$this->meta_key =  get_called_class();
 		$this->id_metabox = $this->meta_key."_mb";
 
 		if ($this->metaboxDisplayRule()) {
-			$this->CltvoMetaBox();
+			$this->CltvoMetaBoxHook();
 		}
 
 		$this->CltvoSaveMetaValue();
@@ -28,7 +28,7 @@ abstract class Cltvo_metabox_master implements Cltvo_metabox_interface{
 	/**
 	 * Agrega el hook que coloca el meta en el admin
 	 */
-	public function CltvoMetaBox(){
+	final public function CltvoMetaBoxHook(){
 		add_action( 'add_meta_boxes', function(){
 			add_meta_box(
 				$this->id_metabox,		//id
@@ -59,16 +59,16 @@ abstract class Cltvo_metabox_master implements Cltvo_metabox_interface{
 
 			// ---------------------- salva el meta box ----------------------
 
-			if( isset( $_POST[ $this->meta_key ] ) ) {
+			if( isset( $_POST[ get_called_class() ] ) ) {
 
-			    update_post_meta( $id, $this->meta_key , $_POST[ $this->meta_key ] );
+			    update_post_meta( $id, get_called_class() , $_POST[ get_called_class() ] );
 			}
 
 		} ); // guarda el valor de las metabox
 	}
 
 	/**
-	* define el metodo donde se mostrara el meta
+	* define donde se mostrara el meta
 	* @return boolean si es verdadero el meta sera desplegado en el admin en caso constrario no
 	*/
 	public static function metaboxDisplayRule(){
@@ -87,9 +87,9 @@ abstract class Cltvo_metabox_master implements Cltvo_metabox_interface{
 	 * @param object $object en principio es un objeto de WP_post
 	 * @return string|array valor del meta inicalizado
 	 */
-	public static function getMetaValue($object){
+	final public static function getMetaValue($object){
 		return static::setMetaValue(
-			get_post_meta($object->ID, static::GetMetaKey(), true)
+			get_post_meta($object->ID, get_called_class(), true)
 		);;
 	}
 
@@ -101,11 +101,5 @@ abstract class Cltvo_metabox_master implements Cltvo_metabox_interface{
 	 */
 	abstract public function CltvoDisplayMetabox( $object );
 
-	/**
-	 * define el meta key
-	 */
-	public static function GetMetaKey(){
-		return "";
-	}
 
 }

@@ -1,6 +1,6 @@
 <?php
 
-interface Cltvo_metabox_interface{
+interface Cltvo_Metabox_Interface{
 	/**
 	 * Es la funcion que muestra el contenido del metabox
 	 * @param object $object en principio es un objeto de WP_post
@@ -15,7 +15,7 @@ interface Cltvo_metabox_interface{
 	 */
 	public static function getMetaValue($object);
 	/**
-	 * define el metodo donde se mostrara el meta
+	 * define donde se mostrara el meta
 	 */
 	public static function metaboxDisplayRule();
 	/**
@@ -25,11 +25,6 @@ interface Cltvo_metabox_interface{
 	/**
 	 * Agrega el hook que coloca el meta en el admin
 	 */
-	public function CltvoMetaBox();
-
-	/**
-	 * define el meta key
-	 */
-	public static function GetMetaKey();
+	public function CltvoMetaBoxHook();
 
 }

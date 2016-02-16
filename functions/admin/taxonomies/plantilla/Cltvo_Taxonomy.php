@@ -1,11 +1,11 @@
 <?php
 
-class Cltvo_Secciones extends Cltvo_Taxonomy_Master
+class Cltvo_Taxonomy extends Cltvo_Taxonomy_Master
 {
 
-    const nombre_plural = 'Secciones';
-    const nombre_singular = 'sección';
-    const slug = 'secciones';
+    const nombre_plural = 'Taxonomies';
+    const nombre_singular = 'Taxonomy';
+    const slug = 'taxonomies';
 
 // args
     //const hierarchical = true; // padres eh hijos
@@ -16,7 +16,7 @@ class Cltvo_Secciones extends Cltvo_Taxonomy_Master
 
 // terms iniciales
     protected static $initialTerms = array(
-        "slug" => "name"
+        // "slug" => "name"
     );
 
 }

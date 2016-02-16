@@ -77,14 +77,16 @@ function cltvo_tax_col( $column_name, $post_id ) {
  *  ==============================================================================================================
  */
 
-	include 'Classes/Cltvo_Post_Type_interface.php';
+	include 'Classes/Cltvo_PostType_Interface.php';
 
 /** ==============================================================================================================
  *                                                abstract class
  *  ==============================================================================================================
  */
 
-	include 'Classes/Cltvo_Post_Type_master.php';
+	include 'Classes/Cltvo_PostType_Master.php';
+	include 'Classes/Cltvo_PostTypeCustom_Master.php';
+
 
 /** ==============================================================================================================
  *                                               agrega todos los objetos de posttypes

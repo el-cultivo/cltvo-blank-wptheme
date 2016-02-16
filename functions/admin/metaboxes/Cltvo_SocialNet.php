@@ -1,9 +1,18 @@
 <?php
 
-class SocialNet extends Cltvo_metabox_master
+class Cltvo_SocialNet extends Cltvo_Metabox_Master
 {
 
+    /**
+     * sobre escribiendo las opcciones del master
+     */
+    protected $description_metabox = "Redes Sociales";
+    protected $post_type = "page";
 
+
+    /**
+     * proiedades de esta clase
+     */
     protected static $redesConUrl = [
                         'facebook' => 'Facebook:',
 						'twitter' => 'Twitter:',
@@ -17,16 +26,8 @@ class SocialNet extends Cltvo_metabox_master
 						'telefono' => 'Teléfono:'
 					];
 
-  protected $description_metabox = "Redes Sociales";
 
-  protected $post_type = "page";
 
-  /**
-   * define el meta key
-   */
-  public static function GetMetaKey(){
-    return "social_net";
-  }
 
   /**
 	 * define el metodo donde se mostrara el meta

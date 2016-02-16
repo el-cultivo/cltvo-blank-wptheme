@@ -1,5 +1,5 @@
 <?php
-abstract class Cltvo_Post_Type_master {
+abstract class Cltvo_PostType_Master {
 
 	public $ID;
 	public $post;
