@@ -1,0 +1,37 @@
+/* DESIGN TEAM */
+  Team: ####
+  Contact: ####
+  Twitter: ####
+  From: ####
+
+/* DVP TEAM */
+	Team: El Cultivo
+	Contact: hola [at] elcultivo.mx
+	Twitter: @el_cultivo
+  Github: /el-cultivo
+  Website: http://www.elcultivo.mx/quienes-somos
+	From: Mexico City (CDMX), Mexico
+
+	CEO: Roberto Palomino
+  Contact: roberto [at] elcultivo.mx
+	Twitter: @Rbto_
+	From: Mexico City (CDMX), Mexico
+
+  Sr Developer: Eduardo González
+  Contact: developer.sr [at] elcultivo.mx
+  Twitter: @fectda
+  From: Mexico City (CDMX), Mexico
+
+  Jr Developer: Diego Villaseñor
+  Contact: developer [at] elcultivo.mx
+  From: Mexico City (CDMX), Mexico
+
+  Project Manager: Katia Perafán
+  Contact: strategy [at] elcultivo.mx
+  From: Mexico City (CDMX), Mexico
+
+/* SITE */
+	Last update: #####
+	Doctype: HTML5
+  CMS: Wordpress.org
+	IDE: Atom, Sublime Text, MAMP, CodeKit, Sequel Pro

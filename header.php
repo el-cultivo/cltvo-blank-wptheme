@@ -16,7 +16,7 @@
 
 	<meta name="description" content="" />
 	<meta name="keywords" content="" />
-	<meta name="author" content="humans.txt">
+	<meta name="author" content="<?php echo THEMEURL;?>humans.txt">
 
 	<?php
 	//generar el favicon usando http://www.favicomatic.com/ y agregar los archivos a images/favicon/
