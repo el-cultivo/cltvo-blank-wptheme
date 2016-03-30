@@ -1,0 +1,13 @@
+/*
+* Mixin for (almost completely) styling an input
+*
+*/
+
+@mixin inputStyling($color, $bgColor, $borderWidth, $borderType, $borderColor, $borderRadius, $padRL, $padTB, $width){
+    border: $borderWidth $borderType $borderColor;
+    border-radius: $borderRadius;
+    color:$color;
+    background-color: $bgColor;
+    padding: $padTB $padRL;
+    width: $width;
+}

@@ -1,0 +1,65 @@
+//_________________________ Helpers _________________________ \\
+
+/**
+ * All helpers use the !important keyword, if ever necessary their 
+ * output might be overriden with the !important keyword in a 
+ * property located lower in the cascade.
+ * 
+ */
+
+/**
+ *	Helpers Index:
+ *		Position
+ *		Display
+ *		Gutters
+ *		Paddings and Margins
+ *		JS Classes
+ * 
+ */
+
+
+/*************************** Position ***************************/
+
+.absolute {position: absolute !important;}
+.relative {position: relative !important;}
+.fixed, %fixed  {//usar por ejemplo para un menu flotante
+					position:fixed !important;
+				 	max-width: 100% !important;
+					width: 100% !important;
+					left:0;
+				}
+
+.fixed-desktop 	{	@include biggerThan(medio) { 
+						position:fixed !important;
+					 	max-width: 100% !important;
+					 	width: 100% !important;
+						left:0;
+					} 
+				}
+
+.left 			{float:left !important;}
+.right 			{float:right !important;}
+.top 			{top:0 !important;}
+.top56 			{ top:56px; }
+.ontop 			{ z-index:99 !important;}
+.z-0 			{ z-index: 0 !important;}
+
+/*************************** Display ***************************/
+.d-bl 			{ display:block !important;}
+.inline		 	{ display: inline;}
+
+/*************************** Gutters ***************************/
+.gutter-r 		{ padding-right: $pad/2 !important;	}
+.gutter-l 		{ padding-left: $pad/2 !important;	}
+.gutter-rl 		{ padding: 0 $pad/2 !important;	}
+
+
+/*************************** Paddings and Margins ***************************/
+.p0 			{ padding: 0 !important;}
+.pt 			{ padding-top: 26px;}
+.m0 			{ margin:0 !important;}
+.mb0			{ margin-bottom: 0 !important;}
+
+/*************************** JS Classes ***************************/
+.noScroll_JS 	{ overflow:hidden !important;} //add on body through JS to prevent scrolling when using a full hright fixed overlay
+

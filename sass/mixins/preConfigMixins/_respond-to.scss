@@ -1,0 +1,20 @@
+/**
+ * Creates an @media block with the corresponding content.
+ *
+ * Used to generate the breaks in the fluid grid.
+ * 
+ * @param  {map || map key || string} $break   Map with the names of breaks and their units or only the desired unit or the Map key.
+ * @return {@media}      
+ */
+@mixin respond-to($break) {
+  @if map_has_key($breaks, $break) {
+    @media only screen and (max-width: map_get($breaks, $break)) {
+      @content;
+    }
+  }
+  @else {
+    @media only screen and (max-width: $break) {
+      @content;
+    }
+  }
+}

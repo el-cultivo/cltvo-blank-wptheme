@@ -1,0 +1,20 @@
+// map the placeholders content to some selectors through a mixin
+@mixin mediaMixin($selector, $defaultSkin: true) {
+
+  #{$selector} {
+    ;
+  }
+
+  #{$selector}__ttl {
+    ;
+  }
+
+  #{$selector}__sbttl {
+    ;
+  }
+
+  @if $defaultSkin != false {
+    @include example-skin-default($selector, $hover);
+  }
+
+}

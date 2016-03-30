@@ -1,0 +1,139 @@
+/**
+* FUNCTIONS
+* ---------
+* Agrega aquí tus funciones 
+* 
+*/
+
+/**
+* Cuánto debe medir cada columna (unidad) 
+*
+* @param number $cuantas-cols: numero total de columnas 
+* @return number porcentaje del ancho de columnas
+*
+* Se usa -1 por la primer columna a la que se le quita el margen izquierdo 
+*/
+
+@function cada_col($cuantas-cols){
+	@return (100% - ( $base-porcentaje * ($cuantas-cols - 1)) ) / $cuantas-cols;
+}
+
+/**
+* Se usa en el Loop para crear todos los tamaños de columnas ej. .grade-12.column
+*
+* @param number $num: numero de la columna que se especifica
+* @return number porcentaje del ancho de la columna que se especifica
+*
+*/
+
+@function columns($num){
+    @return (cada_col($number_of_columns) * $num) + ($base-porcentaje * ($num - 1));
+}
+
+/**
+* Cuánto debe medir cada cuadro (unidad)
+*
+* @param number $cuantas-cols: numero total de cuadros 
+* @return number porcentaje del ancho de cuadros
+*
+* No se le resta porque todos tienen margen derecho
+*/
+
+@function cada_cuadro($cuantas-cols){
+	@return (100% - ( $base-porcentaje * ($cuantas-cols)) ) / $cuantas-cols;
+}
+
+/**
+* Se usa en el Loop para crear todos los tamaños de cuadros ej. .grade-12.column
+*
+* @param number $num: numero de cuadro que se especifica  
+* @return number porcentaje del ancho del cuadro que se especifica
+*
+*/
+
+@function cuadros($num){
+    @return (cada_cuadro($number_of_columns) * $num) + ($base-porcentaje * ($num - 1));
+}
+
+/**
+* Calcula los margenes de la class centered
+*
+* @param number $num: numero de columna 
+* @return number porcentaje del tamaño de la class centered
+*
+*/
+
+@function centered($num) {
+    @return 50% - ((($num * cada_col($number_of_columns)) + (($num - 1) * $base-porcentaje)) / 2);
+}
+
+/**
+* Crea el estilo para crear los espacios a la izquierda
+*
+* @param number $num: numero de columna 
+* @param boolean $first-child trigger agrenga un el margen de la ultima columna al caso seleccionado Por defecto false.
+* @return number porcentaje del tamaño empujar columnas 
+*
+*/
+
+@function push_x($num, $first-child: false) {
+	@if $first-child {
+		@return (cada_col($number_of_columns) * $num) + ($base-porcentaje * $num);
+	}
+	@else {
+		@return (cada_col($number_of_columns) * $num) + ($base-porcentaje * $num ) + $base-porcentaje;
+	}
+}
+
+/**
+* Generador de tamaños en función de la base 
+*
+* @param number $ratio: el número de veces que quieres multiplicar la base
+* @return number pixeles de referencia  
+*
+*/
+
+@function tamano($ratio){
+	@return $base * $ratio + px;
+}
+
+// @function tamano($n, $unit:px, $division:false){
+
+// 	$tamano: nth($tamanos, $n);
+// 	@if( type-of($division) == number ){
+// 		$tamano: $tamano/2;
+// 	}
+// 	@if($unit == px){
+// 		@return $tamano + px;
+// 	}@else if($unit == rem){
+// 		@return $tamano / $base + rem;
+// 	}	
+// }
+
+/**
+* Regresa el valor sin unidades
+*
+* @param number $num: valor a que se le quieran quitar las unidades 
+* @return number valor sin unidades 
+*
+*/
+
+@function sinUnidad($num) {
+	@return ($num / ($num * 0 + 1));
+}
+
+/**
+* Crea el nombre de las class de las columnas 
+*
+* @param number $number: numero de columna 
+* @return string regresa las clases
+*
+*/
+@function number-as-word($number){
+  $w: "one", "two", "three", "four", "five", "six", "seven", "eight", "nine", "ten", "eleven",
+"twelve", "thirteen", "fourteen", "fifteen", "sixteen", "seventeen", "eighteen", "nineteen",
+"twenty", "twenty-one", "twenty-two", "twenty-three", "twenty-four", "twenty-five", "twenty-six", "twenty-seven",
+"twenty-eight", "twenty-nine", "thirty", "thirty-one", "thirty-two", "thirty-three",
+"thirty-four", "thirty-five", "thirty-six";
+  @return nth($w, $number);
+}

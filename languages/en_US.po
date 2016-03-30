@@ -1,0 +1,124 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: garba-theme\n"
+"POT-Creation-Date: 2016-02-02 16:49-0600\n"
+"PO-Revision-Date: 2016-02-02 17:37-0600\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: en_US\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 1.8.6\n"
+"X-Poedit-Basepath: ..\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-KeywordsList: __;_e;_n:1,2;_x:1,2c;_ex:1,2c;_nx:4c,1,2;esc_attr__;"
+"esc_attr_e;esc_attr_x:1,2c;esc_html__;esc_html_e;esc_html_x:1,2c;"
+"_n_noop:1,2;_nx_noop:3c,1,2;__ngettext_noop:1,2\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Poedit-SearchPath-0: .\n"
+
+#: functions/admin-metabox_savepost.php:147
+msgid "Description"
+msgstr ""
+
+#: header-proyectos.php:14 header.php:14
+#, php-format
+msgid "Page %s"
+msgstr ""
+
+#: inc/general/contactForm.php:31
+msgid "Nombre"
+msgstr ""
+
+#: inc/general/contactForm.php:36
+msgid "Teléfono"
+msgstr ""
+
+#: inc/general/contactForm.php:41
+msgid "Correo"
+msgstr ""
+
+#: inc/general/contactForm.php:46
+msgid "Emmpresa"
+msgstr ""
+
+#: inc/general/contactForm.php:50
+msgid "Mensaje"
+msgstr ""
+
+#: inc/general/contactForm.php:52
+msgid "Enviar"
+msgstr ""
+
+#: inc/general/footer.php:18
+msgid "Inscribete a nuestro Newsletter"
+msgstr ""
+
+#: inc/general/footer.php:26
+msgid "Todos los derechos reservados"
+msgstr ""
+
+#: inc/general/footer.php:26
+msgid "Leer aviso de privacidad"
+msgstr ""
+
+#: inc/general/footer.php:26
+msgid "Desarrollo web por "
+msgstr ""
+
+#: inc/general/navSingle.php:9
+msgid "Ver venta en"
+msgstr ""
+
+#: inc/general/navSingle.php:22
+msgid "Proyecto Anterior"
+msgstr ""
+
+#: inc/general/navSingle.php:30
+msgid "Proyecto Siguiente"
+msgstr ""
+
+#: inc/general/project.php:17
+msgid "Pre Venta"
+msgstr ""
+
+#: inc/medias/mediaSingle.php:24
+msgid "Ver Venta"
+msgstr "For Sale"
+
+#: inc/medias/mediaSingle.php:37
+msgid "Innovación"
+msgstr "Innovation"
+
+#: inc/medias/mediaSingle.php:65
+msgid "Construcción"
+msgstr "Construction"
+
+#: inc/medias/mediaSingle.php:79
+msgid "Comercialización"
+msgstr "Comercialization"
+
+#: inc/menus/menuMain.php:9
+msgid "Preventa"
+msgstr "Presale"
+
+#: inc/menus/menuMain.php:10
+msgid "Venta"
+msgstr ""
+
+#: inc/menus/menuMain.php:13
+msgid "¿Qué Hacemos?"
+msgstr ""
+
+#: inc/menus/menuMain.php:14
+msgid "Proyectos"
+msgstr ""
+
+#: inc/menus/menuMain.php:18
+msgid "Contacto"
+msgstr ""
+
+#: index.php:7
+msgid "Materializamos y comercializamos arquitectura."
+msgstr ""

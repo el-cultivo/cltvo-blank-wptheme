@@ -1,0 +1,43 @@
+/**
+* Base Styles 
+* ---------------
+* Edítalos o sobreescríbelos
+* 
+*/
+
+@import "reset.scss";
+
+
+/**
+ * Super basic stylings
+ * 
+ */
+*{
+	@include border-sizing(border-box);
+	&::selection{ background: $colorFeatured; }
+	&::-moz-selection{background: $colorFeatured; }
+}
+
+html{font-size: $base-px;}
+
+html, body {height: 100%;}
+
+body {
+	position: relative;
+	text-rendering: optimizeLegibility;  // mejor legibilidad
+	-webkit-font-smoothing: antialiased; // Hace la fuente más bonita
+	// font-size: $base-px;
+}
+
+strong{font-weight: bold;}
+
+
+img {-ms-interpolation-mode: bicubic;}
+.column, .columns {
+	img{max-width:100%;}
+}
+
+p{
+	em{font-style: italic;}
+}
+
