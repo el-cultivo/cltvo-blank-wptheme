@@ -27,7 +27,7 @@
 */
 
 @function columns($num){
-    @return (cada_col($cols) * $num) + ($base-porcentaje * ($num - 1));
+    @return (cada_col($number_of_columns) * $num) + ($base-porcentaje * ($num - 1));
 }
 
 /**
@@ -52,7 +52,7 @@
 */
 
 @function cuadros($num){
-    @return (cada_cuadro($cols) * $num) + ($base-porcentaje * ($num - 1));
+    @return (cada_cuadro($number_of_columns) * $num) + ($base-porcentaje * ($num - 1));
 }
 
 /**
@@ -64,7 +64,7 @@
 */
 
 @function centered($num) {
-    @return 50% - ((($num * cada_col($cols)) + (($num - 1) * $base-porcentaje)) / 2);
+    @return 50% - ((($num * cada_col($number_of_columns)) + (($num - 1) * $base-porcentaje)) / 2);
 }
 
 /**
@@ -78,10 +78,10 @@
 
 @function push_x($num, $first-child: false) {
 	@if $first-child {
-		@return (cada_col($cols) * $num) + ($base-porcentaje * $num);
+		@return (cada_col($number_of_columns) * $num) + ($base-porcentaje * $num);
 	}
 	@else {
-		@return (cada_col($cols) * $num) + ($base-porcentaje * $num ) + $base-porcentaje;
+		@return (cada_col($number_of_columns) * $num) + ($base-porcentaje * $num ) + $base-porcentaje;
 	}
 }
 

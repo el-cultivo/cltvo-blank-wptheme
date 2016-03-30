@@ -1,0 +1,20 @@
+/**
+ * An "@media" mixin that responds to a smaller-than-given screen width.
+ *
+ * 
+ * @param  {map || map key || string} $break   Map with the names of breaks and their units or only the desired unit or the Map key.
+ * 
+ * @return {@media block}    
+ */
+@mixin smallerThan($media) {
+	 @if map_has_key($breaks, $break) {
+    @media only screen and (max-width: map_get($breaks, $break)) {
+      @content;
+    }
+  }
+  @else {
+    @media only screen and (max-width: $break) {
+      @content;
+    }
+  }
+}

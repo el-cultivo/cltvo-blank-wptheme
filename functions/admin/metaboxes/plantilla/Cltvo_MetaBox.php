@@ -7,19 +7,19 @@ class Cltvo_MetaBox extends Cltvo_Metabox_Master
      * sobre escribiendo los args del master
      */
     protected $description_metabox = "Nombre del meta";
-	// protected $post_type = array("post"); // postypes 
+	// protected $post_type = array("post"); // postypes
 	// protected $position = "normal"; // posicion
 	// protected $prioridad = "default"; //prioridad
 	// protected $ags = null; //args
 
 
     /**
-    * define el metodo donde se mostrara el meta
+    * define el metodo dónde se mostrara el meta
     * @return boolean si es verdadero el meta sera desplegado en el admin en caso constrario no
     */
-    // ublic static function metaboxDisplayRule(){
-    // return true;
-    //
+    // public static function metaboxDisplayRule(){
+    //     return true;
+    // }
 
 
     /**

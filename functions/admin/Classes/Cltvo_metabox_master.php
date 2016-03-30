@@ -22,7 +22,7 @@ abstract class Cltvo_Metabox_Master implements Cltvo_Metabox_Interface{
 			$this->CltvoMetaBoxHook();
 		}
 
-		$this->CltvoSaveMetaValue();
+		$this->CltvoSaveHook();
 	}
 
 	/**
@@ -47,24 +47,29 @@ abstract class Cltvo_Metabox_Master implements Cltvo_Metabox_Interface{
 	/**
 	 * guarda el valor del metabox
 	 */
-	public function CltvoSaveMetaValue(){
+	final public function CltvoSaveHook(){
 
 		add_action( 'save_post', function($id){
 
 			if( !current_user_can('edit_post', $id) ) return $id;
-
-			// Vs Autosave
 			if( defined('DOING_AUTOSAVE') AND DOING_AUTOSAVE ) return $id;
 			if( wp_is_post_revision($id) OR wp_is_post_autosave($id) ) return $id;
 
-			// ---------------------- salva el meta box ----------------------
+		// Aquí pondría el Nonce.
 
+		// ---------------------- salva el meta box ----------------------
 			if( isset( $_POST[ get_called_class() ] ) ) {
-
-			    update_post_meta( $id, get_called_class() , $_POST[ get_called_class() ] );
+			    $this->CltvoSaveMetaValue($id);
 			}
 
 		} ); // guarda el valor de las metabox
+	}
+
+	/**
+     * Guarda los meta datos.
+     */
+	public function CltvoSaveMetaValue($id){
+		update_post_meta( $id, get_called_class() , $_POST[ get_called_class() ] );
 	}
 
 	/**

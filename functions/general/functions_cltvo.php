@@ -12,21 +12,6 @@
  */
 
 
-// Valida de una forma sencilla (incompleta?)
-// si el string que le pasas es un mail
-function es_mail($string){
-	$es_mail = false;
-	$explode = explode('@', $string);
-	if( count($explode)== 2 ){
-		$explode_2 = explode('.', $explode[1]);
-		$cuantos_exp2 = count($explode_2);
-		if( $cuantos_exp2 >1 && $explode_2[$cuantos_exp2-1] != '')
-			$es_mail = true;
-	}
-	return $es_mail;
-}
-
-
 /**
  * Clase para las imagenes del post que contiene el id de la imagen, la src, el tamaño y el alt
  *

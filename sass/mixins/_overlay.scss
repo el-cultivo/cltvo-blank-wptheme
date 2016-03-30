@@ -1,0 +1,20 @@
+@mixin overlay($backGroundColor, $transitionOnHover){
+    display: block;
+    position:absolute;
+	top:0;
+	height:100%;
+	width:100%;
+	padding:inherit;
+
+	@if $transitionOnHover == true {
+	  background-color: $backGroundColor;
+	  opacity:0;
+		&:hover
+		{opacity:1;}
+		transition: opacity 300ms ease-in;
+	}
+	@else{
+	  opacity:1;
+	  background-color:$backGroundColor;
+	}
+}

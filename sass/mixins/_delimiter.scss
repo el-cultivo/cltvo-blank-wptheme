@@ -1,0 +1,15 @@
+/*
+* Creates css delimiters for breadcrumbs,
+* links, or else.
+*
+* $delimiter	symbol
+* 
+*/
+@mixin delimiter($delimiter, $padding, $top) {
+        & + &:before {
+        content: $delimiter;
+        position: relative;
+        padding: $padding;
+        top: $top;
+    }
+}

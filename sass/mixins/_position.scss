@@ -1,0 +1,18 @@
+/*
+* Position elements within a container: 
+* e.g.: position(50%, 50%) will place 
+* the element at the center of 
+* the container
+* 
+* Note: It is necessary to add position:relative 
+* to the parent container
+* 
+*/
+@mixin position($X, $Y){
+    position:absolute;
+    left: $X;
+    top: $Y; 
+	-webkit-transform: translate( -100% + $X  , -100% + $Y ); 
+	-ms-transform: translate( -100% + $X  , -100% + $Y ); 
+    transform:translate( -100% + $X  , -100% + $Y ); 
+}

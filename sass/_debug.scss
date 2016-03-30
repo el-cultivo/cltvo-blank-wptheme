@@ -1,0 +1,11 @@
+//_________________________ Debug _________________________ \\
+/**
+ * Scripts for debugging, 
+ * 
+ * To use, uncomment a line to activate debugging function or set a variable to true;
+ * 
+ */
+
+// @import "debug/_borders";//Applies borders to each element
+// @import "debug/_nestedBorders";// Applies different borders deepending on how deep are the elements being nested
+// @import "debug/_nestedHoverBorders";//On hover, applies different borders deepending on how deep are the elements being nested

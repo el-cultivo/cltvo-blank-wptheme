@@ -1,0 +1,30 @@
+/**
+ * Absolutetly centers an element inside another that contains it.
+ * Element will be centered either "vertically and horizontally", or only "vertically".
+ *
+ * Note that container element must have a position property different thatn "static".
+ *
+ * @param  {string} $XYorY 	String must be either 'xy' or 'y'. Else an error will be thrown.
+ *
+ * @return {css properties}     
+ */
+@mixin center($XYorY){
+
+	@if to-lower-case($XYorY) == 'xy' {
+	  position:absolute;
+	  left: 50%;
+    top: 50%; 
+	  -webkit-transform: translate( -50%, -50% ); 
+	  -ms-transform: translate( -50%, -50% ); 
+    transform:translate( -50%, -50% );
+	}@else if to-lower-case($XYorY) == 'y' {
+	  position:absolute;
+	  left: 50%;
+    -webkit-transform: translateY(-50% ); 
+	  -ms-transform: translateY(-50% ); 
+    transform:translateY(-50% );
+	}@else{
+	  @error 'Argument in mixin "center" must be either string "xy" or string "y"';
+	}
+    
+}

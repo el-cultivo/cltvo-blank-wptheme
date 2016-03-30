@@ -1,8 +1,9 @@
 /*
-Theme Name: -theme_name-
+Theme Name: - Theme name -
 Author: El Cultivo
 Author URI: http://elcultivo.mx
-Version: 0.0
+Description: Configuración básica para cualquier tema desarrollado por El Cultivo
+Version: Cltvo Blank Theme 2.0 beta
 */
 
-@import url('css/ultraligero.css');
+@import url('css/cltvo-responsive-frmwk.css');

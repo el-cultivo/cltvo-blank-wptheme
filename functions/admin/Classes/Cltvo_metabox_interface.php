@@ -18,10 +18,16 @@ interface Cltvo_Metabox_Interface{
 	 * define donde se mostrara el meta
 	 */
 	public static function metaboxDisplayRule();
+
 	/**
 	 * guarda el valor del metabox
 	 */
-	public function CltvoSaveMetaValue();
+	public function CltvoSaveHook();
+
+	/**
+	 * guarda el valor del metabox
+	 */
+	public function CltvoSaveMetaValue($id);
 	/**
 	 * Agrega el hook que coloca el meta en el admin
 	 */

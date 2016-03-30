@@ -1,0 +1,5 @@
+@mixin hoverTransition($property, $initialColor, $finalColor){
+	#{$property}: $initialColor;
+    transition: background-color .5s ease-out;
+    &:hover {background-color: $finalColor;}
+}

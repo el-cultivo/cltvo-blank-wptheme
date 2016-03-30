@@ -1,0 +1,25 @@
+//_________________________ Blocks _________________________ \\
+
+
+/*************************** Footer ***************************/
+
+@import "modules/general/_footer";//
+
+/*************************** Medias ***************************/
+
+//@include mediaMixin(.mediaMain);// en _components.scss
+//@include mediaMixin(.mediaModal);// en _components.scss
+@import "modules/medias/_mediaSimple";//del Home
+@import "modules/medias/_mediaSingle";
+@import "modules/medias/_mediaSlider";//del Home
+
+/*************************** Menus ***************************/
+
+@import "modules/menus/_menuTop";
+@import "modules/menus/_menuSingle";
+@import "modules/menus/_menuPrensa";
+
+/*************************** Single ***************************/
+
+@import "modules/general/_single";
+

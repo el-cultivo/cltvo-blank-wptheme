@@ -12,7 +12,7 @@
  */
 
 
-//add_action( 'wp_enqueue_scripts', 'cltvo_js' ); // incluye el functions.js
+// add_action( 'wp_enqueue_scripts', 'cltvo_js' ); // incluye el functions.js
 // add_action( 'admin_enqueue_scripts', 'cltvo_admin_js' ); // incluye el admin-functions.js. Descomentar para tener JS en admin (no olvidar crear el file [admin-functions.js])
 
 
@@ -23,7 +23,14 @@
 
 // incluye el functions.js
 function cltvo_js(){
-	wp_register_script( 'cltvo_functions_js', JSPATH.'functions.js', array('jquery'), false, true );
+	wp_register_script( 'cltvo_functions_js', JSPATH.'functions.js', array('jquery',/*'cltvo_scrollIt_js', 'cltvo_swiper_js','cltvo_validate_js', 'cltvo_validate_espanol_js'*/), false, true );
+
+	// wp_register_script( 'cltvo_swiper_js', JSPATH.'swiper.jquery.min.js', array('jquery'), false, true );
+	// wp_register_script( 'cltvo_scrollIt_js', JSPATH.'scrollIt.js', array('jquery'), false, true );
+    // wp_register_script( 'cltvo_validate_js', JSPATH.'jquery.validate.js', array('jquery'), false, true );
+	// wp_register_script( 'cltvo_validate_espanol_js', JSPATH.'/localization/messages_es.js', array('jquery'), false, true );
+
+
 	wp_localize_script( 'cltvo_functions_js', 'cltvo_js_vars', cltvo_js_vars() );
 
 	wp_enqueue_script('jquery');

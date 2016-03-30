@@ -4,8 +4,8 @@ abstract class Cltvo_PostType_Master {
 	public $ID;
 	public $post;
 	public $permalink;
-	public $thumbail_img;
-	public $thumbail_img_id;
+	public $thumbail_img; // hace referencia a la imagen destacada y no la tamaño de la imagen 
+	public $thumbail_img_id; // hace referencia a la imagen destacada y no la tamaño de la imagen
 	public $images;
 	public $terms;
 
@@ -25,7 +25,7 @@ abstract class Cltvo_PostType_Master {
 			$this->post = $post_obj;
 		}
 	// permalink
-		$this->permalink = get_post_permalink($this->post->ID);
+		$this->permalink = get_permalink($this->post->ID);
 	// ID
 		$this->ID = $this->post->ID;
 	// se cargan los metas
@@ -47,7 +47,7 @@ abstract class Cltvo_PostType_Master {
 	 */
 	public function setImages(){
 		// imagen destacada
-            $this->thumbail_img = $this->getThumbnailImg();
+            $this->thumbail_img = $this->getThumbnailImg(); // hace referencia a la imagen destacada y no la tamaño de la imagen
         // imagenes
             $this->images = $this->getImages();
 	}
@@ -58,7 +58,7 @@ abstract class Cltvo_PostType_Master {
 	 */
 	public function getThumbnailImg()
 	{
-		$this->thumbail_img_id = intval( get_post_thumbnail_id( $this->post->ID ) );
+		$this->thumbail_img_id = intval( get_post_thumbnail_id( $this->post->ID ) ); // hace referencia a la imagen destacada y no la tamaño de la imagen
 		return has_post_thumbnail($this->post->ID) ? new Cltvo_Img( $this->thumbail_img_id) : NULL;
 	}
 
