@@ -1,0 +1,38 @@
+{
+  "name": "cltvo-blank-wptheme",
+  "version": "1.0.0",
+  "description": "Instala gulp para realizar tareas de compilación de SCSS, y JS (Webpack y Babel). También incluye BrowserSync",
+  "main": "gulp.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "postinstall":"cd sass && npm install"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/el-cultivo/cltvo-blank-wptheme.git"
+  },
+  "devDependencies": {
+    "gulp": "^3.9.0",
+    "babel-cli": "^6.10.1",
+    "babel-core": "^6.11.4",
+    "babel-loader": "^6.2.4",
+    "babel-polyfill": "^6.9.1",
+    "babel-preset-es2015": "^6.9.0",
+    "browser-sync": "^2.11.1",
+    "gulp-autoprefixer": "^3.1.0",
+    "gulp-babel": "^6.1.2",
+    "gulp-concat": "^2.6.0",
+    "gulp-rename": "^1.2.2",
+    "gulp-sass": "^2.3.2",
+    "gulp-sourcemaps": "^1.6.0",
+    "gulp-util": "^3.0.7",
+    "gulp-watch": "^4.3.5",
+    "webpack": "^1.13.1"
+  },
+  "author": "El Cultivo",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/el-cultivo/cltvo-blank-wptheme/issues"
+  },
+  "homepage": "https://github.com/el-cultivo/cltvo-blank-wptheme#readme"
+}
