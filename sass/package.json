@@ -17,6 +17,6 @@
   },
   "homepage": "https://github.com/el-cultivo/mazorca#readme",
   "dependencies": {
-    "mazorca-core": "^1.1.5"
+    "mazorca-core": "^1.2.1"
   }
 }
