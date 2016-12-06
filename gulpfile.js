@@ -3,6 +3,7 @@ var watch_scss_path = 'sass',
     main_js_path = './js/',
     dist_js_path = 'js',
     bs_path = '/'
+
 /**
  * Required modules
  * @type {[]}
@@ -12,6 +13,7 @@ var watch = require('gulp-watch');
 var browserSync = require('browser-sync').create();
 var gutil = require("gulp-util");
 var rename = require("gulp-rename");
+var plumber = require("gulp-plumber");
 
 //Sass
 var sass = require('gulp-sass');
@@ -27,12 +29,13 @@ var concat = require('gulp-concat');
 var sourcemaps = require('gulp-sourcemaps');
 
 gulp.task('sass', function(){
-  return gulp.src(main_scss_path + 'mazorca.scss')
+  gulp.src(main_scss_path + 'mazorca.scss')
+    .pipe(plumber())
     .pipe(sourcemaps.init())
     .pipe(sass()) // Using gulp-sass
     .pipe(rename("mazorca.css"))
     .pipe(autoprefixer({
-      browsers: ['last 3 versions'],
+      browsers: ['last 6 versions'],
       cascade: false
     }))
     .pipe(sourcemaps.write('.'))
@@ -70,10 +73,10 @@ gulp.task('browser-sync', function() {
 
 gulp.task('watch', ['browser-sync', 'sass'/*, 'webpack'*/], function() {
   gulp.watch(watch_scss_path + '/**/*.scss', ['sass']);
-  // gulp.watch('js-gulp-test/**/*.js', ['webpack']);
+  // gulp.watch('dist_js_path/**/*.js', ['webpack']);
   gulp.watch(dist_js_path + '/*.js', browserSync.reload);
+  gulp.watch('./*.php', browserSync.reload);
 });
-
 
 
 
