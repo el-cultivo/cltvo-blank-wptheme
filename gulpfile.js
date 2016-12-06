@@ -3,17 +3,17 @@ var watch_scss_path = 'sass',
     main_js_path = './js/',
     dist_js_path = 'js',
     bs_path = '/'
-
 /**
  * Required modules
  * @type {[]}
  */
 var gulp = require('gulp');
 var watch = require('gulp-watch');
+var plumber = require("gulp-plumber");
+var notify = require("gulp-notify");
 var browserSync = require('browser-sync').create();
 var gutil = require("gulp-util");
 var rename = require("gulp-rename");
-var plumber = require("gulp-plumber");
 
 //Sass
 var sass = require('gulp-sass');
@@ -30,10 +30,18 @@ var sourcemaps = require('gulp-sourcemaps');
 
 gulp.task('sass', function(){
   gulp.src(main_scss_path + 'mazorca.scss')
-    .pipe(plumber())
+    .pipe(plumber({
+        errorHandler: notify.onError({
+          icon: './screenshot.png',
+          message: "on line <%= error.message.split('on line')[1] %>",
+          title: "Sass Error"
+        })
+      })
+    )
     .pipe(sourcemaps.init())
     .pipe(sass()) // Using gulp-sass
     .pipe(rename("mazorca.css"))
+    .pipe(notify('Mazorca ha sido compilado'))
     .pipe(autoprefixer({
       browsers: ['last 6 versions'],
       cascade: false
@@ -77,9 +85,3 @@ gulp.task('watch', ['browser-sync', 'sass'/*, 'webpack'*/], function() {
   gulp.watch(dist_js_path + '/*.js', browserSync.reload);
   gulp.watch('./*.php', browserSync.reload);
 });
-
-
-
-
-
-
