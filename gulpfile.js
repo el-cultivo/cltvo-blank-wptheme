@@ -81,7 +81,7 @@ gulp.task('browser-sync', function() {
 
 gulp.task('watch', ['browser-sync', 'sass'/*, 'webpack'*/], function() {
   gulp.watch(watch_scss_path + '/**/*.scss', ['sass']);
-  // gulp.watch('dist_js_path/**/*.js', ['webpack']);
+  // gulp.watch(dist_js_path+'/**/*.js', ['webpack']);
   gulp.watch(dist_js_path + '/*.js', browserSync.reload);
   gulp.watch('./*.php', browserSync.reload);
 });
