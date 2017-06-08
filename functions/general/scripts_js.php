@@ -12,8 +12,8 @@
  */
 
 
-// add_action( 'wp_enqueue_scripts', 'cltvo_js' ); // incluye el functions.js
-// add_action( 'admin_enqueue_scripts', 'cltvo_admin_js' ); // incluye el admin-functions.js. Descomentar para tener JS en admin (no olvidar crear el file [admin-functions.js])
+add_action( 'wp_enqueue_scripts', 'cltvo_js' ); // incluye el functions.js
+add_action( 'admin_enqueue_scripts', 'cltvo_admin_js' ); // incluye el admin-functions.js. Descomentar para tener JS en admin (no olvidar crear el file [admin-functions.js])
 
 
 /** ==============================================================================================================

@@ -1,0 +1,9 @@
+Categories
+
+wp_get_post_categories($post->ID);
+get_category_link($ID);
+get_cat_name($ID)
+get_the_category($ID)
+
+	Admin Categories
+		remove_meta_box( 'categorydiv','post','side' );

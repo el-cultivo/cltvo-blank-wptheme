@@ -1,7 +1,8 @@
 module.exports = function(main_js_path, dist_js_path) {
 	return {
 		entry: {
-		  preload: main_js_path + 'micorriza.js'
+		  functions: main_js_path + 'micorriza.js',
+		  'admin-functions': main_js_path + 'micorriza-admin.js',
 		},
 		module: {
 		  loaders: [
@@ -18,7 +19,7 @@ module.exports = function(main_js_path, dist_js_path) {
 		output: {
 			path: './'+ dist_js_path +'/',
 			publicPath: './'+ dist_js_path +'/',
-			filename: 'all.bundle.js',
+			filename: '[name].js',
 	//		chunkFilename: '[id].bundle.js'
 		},
 		devtool: 'source-map'

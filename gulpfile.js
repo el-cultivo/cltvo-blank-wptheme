@@ -1,8 +1,8 @@
 var watch_scss_path = 'sass',
     main_scss_path = watch_scss_path + '/',
-    main_js_path = './js/',
+    main_js_path = './es6/',
     dist_js_path = 'js',
-    bs_path = '/'
+    bs_path = '/';
 /**
  * Required modules
  * @type {[]}
@@ -33,8 +33,8 @@ gulp.task('sass', function(){
     .pipe(plumber({
         errorHandler: notify.onError({
           icon: './screenshot.png',
-          message: "on line <%= error.message.split('on line')[1] %>",
-          title: "Sass Error"
+          // message: "",
+          title: "Sass Error on line <%= error.message.split('on line')[1] %>"
         })
       })
     )
@@ -55,10 +55,10 @@ gulp.task('webpack', function(callback) {
   var myConfig = Object.create(webpackConfig);
   myConfig.plugins = [
     new webpack.optimize.DedupePlugin(),
-    new webpack.optimize.UglifyJsPlugin({ compress: {
-                warnings: false
-            }
-          })
+    // new webpack.optimize.UglifyJsPlugin({ compress: {
+    //             warnings: false
+    //         }
+    //       })
   ];
 
   // run webpack
@@ -79,9 +79,10 @@ gulp.task('browser-sync', function() {
 });
 
 
-gulp.task('watch', ['browser-sync', 'sass'/*, 'webpack'*/], function() {
+gulp.task('watch', ['browser-sync', 'sass', 'webpack'], function() {
   gulp.watch(watch_scss_path + '/**/*.scss', ['sass']);
-  // gulp.watch(dist_js_path+'/**/*.js', ['webpack']);
+  gulp.watch(main_js_path+'/**/*.js', ['webpack']);
   gulp.watch(dist_js_path + '/*.js', browserSync.reload);
+  gulp.watch('./**/*.php', browserSync.reload);
   gulp.watch('./*.php', browserSync.reload);
 });

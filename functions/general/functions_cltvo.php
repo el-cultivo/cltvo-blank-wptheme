@@ -18,6 +18,7 @@
  */
 
 	include 'Classes/Cltvo_Img.php';
+	include 'helper-functions/helpers.php';
 
 /**
  * regresa todas las imagenes del post con sus caracteristicas en un array

@@ -92,7 +92,7 @@ abstract class Cltvo_Metabox_Master implements Cltvo_Metabox_Interface{
 	 * @param object $object en principio es un objeto de WP_post
 	 * @return string|array valor del meta inicalizado
 	 */
-	final public static function getMetaValue($object){
+	public static function getMetaValue($object){
 		return static::setMetaValue(
 			get_post_meta($object->ID, get_called_class(), true)
 		);;
