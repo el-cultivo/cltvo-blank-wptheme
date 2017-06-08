@@ -39,7 +39,7 @@ class Cltvo_HexColorTextInput extends Cltvo_Metabox_Master {
 								<div class="hex-color-text-sample__container" 
 									style="height: 25px; 
 									width: 25px; 
-									background-image: url('<?php echoImg('transparent.png'); ?>');
+									background-image: url('<?php echoImg('admin/transparent.png'); ?>');
 									float: left; 
 									border: 1px solid black;">
 									<div class="hex-color-text-sample_JS" style="height: 100%; width: 100%; background-color:<?php echo $this->meta_value[$key] != '' ?  '#'.$this->meta_value[$key]  : 'transparent';?>"></div>
