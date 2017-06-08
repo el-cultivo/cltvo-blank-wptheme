@@ -1,6 +1,6 @@
 {
   "name": "mazorca",
-  "version": "1.0.0",
+  "version": "1.3.3",
   "description": "Paquete que instala el framework mazorca-core. Si no tienes mazorca-core instalado en tu sistema corre npm install mazroca-core@1.1.5 -g. Una vez hecho esto para instalar el boilerplate de marozca corre el siguiente comando: mazorca boilerplate (hacerlo en la raíz de la carpeta de sass) ",
   "main": "mazorca.scss",
   "scripts": {
@@ -17,6 +17,6 @@
   },
   "homepage": "https://github.com/el-cultivo/mazorca#readme",
   "dependencies": {
-    "mazorca-core": "^1.2.*"
+    "mazorca-core": "^1.3.*"
   }
 }
