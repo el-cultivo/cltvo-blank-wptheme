@@ -75,6 +75,13 @@ function themeInc($path, $global_post=true)
 	include ( get_stylesheet_directory() . $path );
 }
 
+
+/**
+ * Como themeInc, pero permite pasar variables al archivo incluido mediate un array llamado $opts
+ * 
+ * @param  string  	$path 	path to the image from theme directory
+ * @return string  			full path
+ */
 function cltvo_superInc($path, $opts = array(), $global_post = true) {
 	if ($global_post) {
 		global $post;
@@ -203,38 +210,6 @@ function queryChildren( $post, $default_args = true , $query_args = [] ){
 
 }
 
-/**
- * Verifica que una algo exista
- * 
- * @param  String, Array, Variable $something    
- * @param  string $returned If something does not exist
- * @return $somthing or $returned           
- */
-function init($something, $returned = '') {
-	return ( isset($something) ) ? $something : $returned;
-}
-
-
-/**
- * Inicializa un array
- * 
- * @param  array $array el array a inicializar
- * @return array inicializado
- */
-function initArray($array, $key, $returned = []) {
-	return ( isset($array[$key]) && is_array($array[$key]) ) ? $array[$key] : $returned;
-}
-
-/**
- * Inicializa un array anidado en otro array
- * 
- * @param  [type] $array         [description]
- * @param  [type] $sub_array_key [description]
- * @return [type]                [description]
- */
-function initSubArray($array, $sub_array_key) {
-	return ( is_array($array) && isset($array[$sub_array_key]) && is_array($array[$sub_array_key]) ) ? $array[$sub_array_key] : [];
-} 
 
 /**
  * Determines if an attachment is of the specified MIME Type
