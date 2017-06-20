@@ -41,11 +41,11 @@ class Cltvo_RadioButtons extends Cltvo_Metabox_Master {
 							<td>
 								<input 
 								<?php echo $this->meta_value == $key_value ? 'checked="checked"': ''; ?>
-								type="radio"
-								group="<?php echo $this->meta_key?>"
-								name="<?php echo $this->meta_key ?>"
-								id="<?php echo $this->meta_key."_".$key_value; ?>"
-								value="<?php echo $key_value?>"
+									type="radio"
+									group="<?php echo $this->meta_key?>"
+									name="<?php echo $this->meta_key ?>"
+									id="<?php echo $this->meta_key."_".$key_value; ?>"
+									value="<?php echo $key_value?>"
 								/>
 							</td>
 						</tr>
