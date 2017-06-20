@@ -1,146 +1,45 @@
+/**
+ * Gallery para el Cultivo V.2.0.0
+ */
 
-//Galería Meta - Agregar Item
-jQuery(window).load(function($){
-	jQuery('#table__galeria').on('click','.add__imagen_JS',function() {
-		// console.log(123);
-		var meta_name = jQuery(this).attr('meta-name');
-		var lastkey = 0;
-		var nextKey = 0;
-		jQuery('#tbody__imagen_JS').find('tr').each(function(){
-			var actualKey = parseInt( jQuery(this).attr('meta-key') );
-			if (lastkey <= actualKey ){
-				lastkey = actualKey;
-			}
-		});
-		nextKey = lastkey + 1;
-		var clone = jQuery("#template_clone_JS").clone()
-												.appendTo("#tbody__imagen_JS")
-												.css("visibility", "visible")
-												.attr( "meta-key", nextKey )
-												.removeAttr('id');	
-		clone.find('*').attr('disabled', false );
+import R from 'ramda'
+const $ = jQuery
 
-		clone.find('td').attr('id',meta_name+'_'+nextKey);
-		clone.find('td:nth-child(1) > input').attr('name',meta_name+'['+nextKey+'][imagen]')
-		clone.find('td:nth-child(1) > input').attr('id',meta_name+'_'+nextKey+'_imagen');
-		clone.attr('id',meta_name+'_'+nextKey);
-	});
-});
+const selectImage = (gallery_container, gallery_name) => function(e) {
+	e.preventDefault()
+	const meta_image_frame = wp.media.frames.meta_image_frame = wp.media({
+		title: "Agregar Imagen",
+		multiple: false,
+		library: {type: 'image'}
+	})
+	const media_set_image = function() {
+		let selection = wp.media.frames.meta_image_frame.state().get('selection');
 
-//Galería Meta - Resetear Item
-jQuery(window).load(function($){
-	jQuery('#table__galeria').on('click','.reset',function(e) {
-		e.preventDefault();
-	    var meta_name = jQuery(this).attr('meta-name');
-	    var num_ele = jQuery('#tbody__imagen_JS').children("tr").length;
-	    if( num_ele > 0) { // Verifica que haya al menos un elemento con esa clase__input
-	        var row = jQuery(this).parent().parent().parent().attr('meta-key'); // Obtiene la llave del elemento a eliminar
-	        jQuery('#table__galeria tr[meta-key='+row+']').remove(); // Elimina los elementos con esa llave
-	    }
-	    var counter=0;
-	    jQuery('#tbody__imagen_JS').find('tr').each(function(){
-	        jQuery(this).attr('meta-key',counter);
-	        jQuery(this).find('td:nth-child(1) > input').attr('name',meta_name+'['+counter+'][imagen]');
-
-	        jQuery(this).attr('id',meta_name+'_'+counter); 
-	        jQuery(this).find('td:nth-child(1) > input').attr('id',meta_name+'_'+counter+'_imagen');
-	        counter++;
-	    });
-	});
-});
-
-//Galería Meta - Eliminar Item
-jQuery(window).load(function($){
-	jQuery('#table__galeria').on('click','.delete__imagen_JS',function(e) {
-		e.preventDefault();
-	    var meta_name = jQuery(this).attr('meta-name');
-	    var num_ele = jQuery('#tbody__imagen_JS').children("tr").length;
-	    console.log("num_ele", num_ele);
-	    if( num_ele > 0) { // Verifica que haya al menos un elemento con esa clase__input
-	        var row = jQuery(this).parent().parent().attr('meta-key'); // Obtiene la llave del elemento a eliminar
-	        jQuery('#table__galeria tr[meta-key='+row+']').remove(); // Elimina los elementos con esa llave
-	    }
-	    var counter=0;
-	    jQuery('#tbody__imagen_JS').find('tr').each(function(){
-	        jQuery(this).attr('meta-key',counter);
-	        jQuery(this).find('td:nth-child(1) > input').attr('name',meta_name+'['+counter+'][imagen]');
-
-	        jQuery(this).attr('id',meta_name+'_'+counter); 
-	        jQuery(this).find('td:nth-child(1) > input').attr('id',meta_name+'_'+counter+'_imagen');
-	        counter++;
-	    });
-	});
-});
-
-
-//Galería Meta - Desplegar Imágenes
-jQuery(window).load(function($){
-	
-	function inputCheck() {
-		if ( jQuery(this).children('input').attr('value') !== '' ) {
-			jQuery(this).children('button').hide();
-			jQuery(this).children('#thumbnail').show();
-		} else {
-			jQuery(this).children('button').show();
-		}
-	}
-	
-	jQuery('td.thumbnail').each(inputCheck);
-	
-});
-
-//Galería Meta - Escoger Imagen de Item
-jQuery(window).load(function($){
-	
-    var meta_image_frame;
-
-    jQuery('#table__galeria').on('click','.media-button',function(e){
-	    
-	    var the_id = jQuery(this).parent().attr('id');
-	    
-        e.preventDefault();
-
-        if ( meta_image_frame ) {
-             meta_image_frame.open();
-            return;
-        }
+		if (!selection) { return;} // No selection
 		
-        // Sets up the media library frame
-		var meta_image_frame = wp.media.frames.meta_image_frame = wp.media({
-			title: "Agregar Imagen",
-			multiple: false,
-			library: {type: 'image'}
+		// Iterate through selected elements
+		selection.each(function(attachment) {
+			let id = attachment.attributes.id;
+			let thumbnail = attachment.attributes.sizes.thumbnail.url;
+			gallery_container.append(image_template(gallery_name, id, thumbnail))
 		});
 
-		var media_set_image = function() {
-			var selection = wp.media.frames.meta_image_frame.state().get('selection');
-			
-			if (!selection) { return;} // No selection
-			
-			// Iterate through selected elements
-			selection.each(function(attachment) {
-			    var id = attachment.attributes.id;
-			    var thumbnail = attachment.attributes.sizes.thumbnail.url;
-			    jQuery('#table__galeria #'+the_id+' .reset').show();
-			    jQuery('#table__galeria #'+the_id+' .media-input').val(id);
-			    jQuery('#table__galeria #'+the_id+' .media-input').hide();
-			    jQuery('#table__galeria #'+the_id+' .media-button').hide();
-			    jQuery('#table__galeria #'+the_id+' .thumbnail_holder').show();
-			    jQuery('#table__galeria #'+the_id+' .thumbnail_holder').html('<div class="reset">&#10005;</div><img width="100" src="'+thumbnail+'">');
-			    jQuery('#table__galeria #'+the_id+' .delete__imagen_JS').hide();
-			});
-		};
-		
-		wp.media.frames.meta_image_frame.on('close', media_set_image); // Closing event for media manger
-		wp.media.frames.meta_image_frame.on('select', media_set_image); // Image selection event
-		wp.media.frames.meta_image_frame.open(); // Showing media manager
+		//reinicializamos el handler del remove
+		let  remove_button = $('.remove-image-from-gallery_JS')
+		remove_button.off()
+		remove_button.on('click', remove);
+	};
 
-    });
-});
+	wp.media.frames.meta_image_frame.open(); // Showing media manager
+	wp.media.frames.meta_image_frame.on('select', media_set_image); // Image selection event
+}
 
+const remove =  e => {//debe reinicializarse después de que se agrega o remueve una imágen
+	e.preventDefault()
+	$(e.target).parent().remove()
+}
 
-//Galería Meta - Sortear Items
-jQuery(window).load(function($){
+const initSortable = function(){
 	let gallery = jQuery('#table__galeria')
 	
 	function start_function() {
@@ -164,7 +63,35 @@ jQuery(window).load(function($){
 			update: update_function
 		});			
 	}
+}
 
-});
+const image_template = (gallery_name, id, thumbnail_url) =>
+	 `<div id="${gallery_name}_${id}" class="tr_sortable gallery__image-container">
+		<div class="gallery__image" style="background-image: url('${thumbnail_url}')"></div>
+		<button class="button remove-image-from-gallery_JS">Remove</button>
+		<input type="hidden" value="${id}" name="${gallery_name}[][imagen]">
+	</div>`
 
+const printGalleryImages = (gallery_name, images) => {
+	let only_real_images = images.filter(image=> image.imagen !== "")//porque el array viene inicializado con un objeto default e inuil, tenemos que quitar el objeto default
+	let html =  only_real_images.map(image => 	image_template(gallery_name, image.imagen, image.url)).join('')
+	$(`#${gallery_name}`).append(html)
+}
 
+window.initGallery = (gallery_name, images) => {
+    const images_array = R.values(images)//porque wordpress o php hace cosas raras y a veces manda un objeto con objetos en lugar de un array con objetos, lo forzamos a que sea un array
+	$(window).load(function() {
+		const add_button = $('.add-image-to-gallery_JS')
+		const gallery_container = $(`#${gallery_name}`)
+		
+		printGalleryImages(gallery_name, images_array)
+		initSortable()
+		//handlers
+		add_button.on('click', selectImage(gallery_container, gallery_name));
+
+		const remove_button = $('.remove-image-from-gallery_JS')//tenemos que inicializar el remove button después de que se impriman las imagenes
+		remove_button.off();	
+		remove_button.on('click', remove);	
+	})
+}
+	
