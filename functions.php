@@ -8,8 +8,8 @@ define( 'CSSPATH', get_template_directory_uri() . '/css/' ); // css para el adim
 define( 'BLOGURL', get_home_url('/') );
 define( 'THEMEURL', get_bloginfo('template_url').'/' );
 
-// $theme_info = wp_get_theme(); // inicializacion de la traduccion
-// define( 'TRANSDOMAIN', $theme_info->template );
+// inicializacion de la traduccion
+define( 'TRANSDOMAIN', wp_get_theme()->template );
 
 
  // ---------------- paginas especiales
