@@ -1,1 +1,11 @@
+*.DS_Store
+/.sass-cache/
+*.scssc
+wp-config.php
+wp-content/uploads/
+config.codekit
+.htaccess
+error.log
+access.log
+.vscode
 /node_modules
