@@ -1,5 +1,5 @@
+#usar este gitignore en la raíz del proyecto de WP
 *.DS_Store
-/.sass-cache/
 *.scssc
 wp-config.php
 wp-content/uploads/
@@ -8,5 +8,9 @@ config.codekit
 error.log
 access.log
 .vscode
+
+#crear otro .gitignore en la carpeta de la tema con para ignorar estos archivos:
 /node_modules
-sass/node_modules/
+/sass/node_modules/
+/sass/.sass-cache/
+/vendor
