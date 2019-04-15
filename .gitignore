@@ -9,3 +9,4 @@ error.log
 access.log
 .vscode
 /node_modules
+sass/node_modules/
