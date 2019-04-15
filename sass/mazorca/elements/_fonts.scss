@@ -1,0 +1,31 @@
+%bodoni-book {
+	font-family: f(bodoni);
+}
+
+%bodoni-italic {
+	font-family: f(bodoni);
+	font-style: italic;
+}
+
+/*%regular {
+	font-family: f(opensans);
+	font-weight: normal;
+	font-style: normal;
+}*/
+
+%opensans-regular {
+	font-family: f(opensans);
+	font-weight: normal;
+	font-style: normal;
+}
+
+%opensans-bold {
+	font-family: f(opensans);
+	font-weight: bold;
+}
+
+%opensans-bold-italic {
+	font-family: f(opensans);
+	font-weight: bold;
+	font-style: italic;
+}

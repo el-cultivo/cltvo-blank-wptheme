@@ -1,0 +1,49 @@
+//_________________________ Config:Fuentes _________________________ \\
+
+/**
+ * Declare fonts using the Mixin
+ */
+// declara-font-face($font-family, $font-filename, $font-weight: normal, $font-style: normal, $font-stretch: normal)
+
+// Zona Paz
+@include declara-font-face(Bodoni, '../fonts/Bodoni/BodoniStd-BoldItalic', bold, italic);
+@include declara-font-face(Bodoni, '../fonts/Bodoni/BodoniStd-Bold', bold, normal);
+@include declara-font-face(Bodoni, '../fonts/Bodoni/BodoniStd-Poster', normal, normal);
+@include declara-font-face(Bodoni, '../fonts/Bodoni/BodoniStd-PosterCompressed', normal, normal);
+@include declara-font-face(Bodoni, '../fonts/Bodoni/BodoniStd-Italic', 500, italic);
+@include declara-font-face(Bodoni, '../fonts/Bodoni/BodoniStd', 500, normal);
+@include declara-font-face(Bodoni, '../fonts/Bodoni/BodoniStd-PosterItalic', normal, italic);
+@include declara-font-face(Bodoni, '../fonts/Bodoni/BodoniStd-BoldCondensed', bold, normal);
+@include declara-font-face(Bodoni, '../fonts/Bodoni/BodoniStd-BookItalic', normal, italic);
+@include declara-font-face(Bodoni, '../fonts/Bodoni/BodoniStd-Book', normal, normal);
+
+// @include declara-font-face(Bodoni, '../fonts/Bodoni/Bodoni-Bold', bold, normal);
+@include declara-font-face(Bodoni, '../fonts/Bodoni/Bodoni-Bold-2', bold, normal);
+@include declara-font-face(Bodoni, '../fonts/Bodoni/bodonibold2', bold, normal);
+
+@include declara-font-face(OpenSans, '../fonts/OpenSans/OpenSans-Italic', normal, italic);
+@include declara-font-face(OpenSans, '../fonts/OpenSans/OpenSans-Extrabold', 800, normal);
+@include declara-font-face(OpenSans, '../fonts/OpenSans/OpenSans', normal, normal);
+@include declara-font-face(OpenSans, '../fonts/OpenSans/OpenSans-Light', 300, normal);
+@include declara-font-face(OpenSans, '../fonts/OpenSans/OpenSans-BoldItalic', bold, italic);
+@include declara-font-face(OpenSans, '../fonts/OpenSans/OpenSans-SemiboldItalic', 600, italic);
+@include declara-font-face(OpenSans, '../fonts/OpenSans/OpenSans-Semibold', 600, normal);
+@include declara-font-face(OpenSans, '../fonts/OpenSans/OpenSans-Bold', bold, normal);
+@include declara-font-face(OpenSans, '../fonts/OpenSans/OpenSansLight-Italic', 300, italic);
+@include declara-font-face(OpenSans, '../fonts/OpenSans/OpenSans-ExtraboldItalic', 800, italic);
+
+
+
+/// Refer to font families through mapped variables.
+/// Font families must be written as lists, that is, between parenthesis.
+///
+///
+$fonts:(
+	bodoni:			('Bodoni', serif),
+	opensans:		('OpenSans', sans),
+	bauer: 			('Bauer') serif,
+);
+
+@function f($font) {
+	@return map-get($fonts, $font);
+}

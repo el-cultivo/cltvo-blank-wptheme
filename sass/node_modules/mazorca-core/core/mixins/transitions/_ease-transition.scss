@@ -1,0 +1,11 @@
+///
+/// Allows all css properties to be animated through transitions
+/// 
+/// 
+/// @author Daniel Cbs
+/// @since 1.1.13
+///
+
+@mixin ease-transition($speed: 0.3s) {
+   transition: all $speed ease;
+}

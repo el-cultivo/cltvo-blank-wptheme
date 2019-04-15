@@ -1,0 +1,16 @@
+@charset "UTF-8";
+//===Mazorca Core===//
+@import "node_modules/mazorca-core/_mazorca-core.scss";
+
+//===Configs===//
+@import "mazorca/config/_config";
+
+//===Vendor===//Css begins compling here
+	// @import "vendor/bootstrap/_bootstrap.scss";
+
+//===Mazorca===//
+@import "mazorca/_elements";
+@import "mazorca/_grid";//
+@import "mazorca/_components";
+@import "mazorca/_theme-helpers";
+@import "mazorca/_modules";

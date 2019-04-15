@@ -1,0 +1,226 @@
+/* A s p e c t   r a t i o */
+%box-aspect-ratio {
+    position: relative;
+    width: 100%;
+    // background-color: whitesmoke;
+}
+
+%imagen-aspect-ratio {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    user-select: none;
+    object-fit: cover;
+}
+
+/* C o n t e n e d o r */
+%max-contenedor {
+    width: 90%;
+    max-width: 960px;
+    margin: 0 auto;
+}
+
+/* W y s i w y g */
+%content,
+%contenido-wysiwyg {
+
+    a {
+        text-decoration: underline;
+    }
+
+    em {
+        font-style: italic;
+    }
+
+    strong {
+        // font-weight: bold;
+        font-weight: 500;
+    }
+
+    ul {
+
+        li {
+            &::before {
+                // content: "\2022";
+                // margin: 0 10px;
+            }
+        }
+    }
+
+    del {
+        text-decoration: underline;
+    }
+
+    h3 {
+        font-family: "OpenSans", sans;
+        font-size: 20px;
+        line-height: 24px;
+        font-weight: bold;
+    }
+
+    h4 {
+        font-family: "OpenSans", sans;
+        font-size: 18px;
+        line-height: 20px;
+        font-weight: bold;
+    }
+
+    h5 {
+        font-family: "OpenSans", sans;
+        font-size: 15px;
+        line-height: 18px;
+        font-weight: bold;
+    }
+
+    h6 {
+        font-family: "OpenSans", sans;
+        font-size: 13px;
+        line-height: 15px;
+        font-weight: bold;
+    }
+}
+
+%contenido-wysiwyg-biografia {
+
+    blockquote {
+        
+        max-width: 570px;
+        margin: 40px auto;
+        width: 65%;
+        @include under(sm) {
+            margin: 30px auto;
+        }
+        @include under(xs) {
+            width: 85%;
+        }
+
+        h1 {
+            font-family: "OpenSans", sans;
+            font-size: 26px;
+            line-height: 28px;
+            font-weight: bold;
+        }
+
+        h2 {
+            font-family: "OpenSans", sans;
+            font-size: 23px;
+            line-height: 25px;
+            font-weight: bold;
+        }
+
+        h3 {
+            @extend %opensans-bold;
+            text-transform: uppercase;
+            font-size: 14px;
+            line-height: 29px;
+        }
+
+        h6 {
+            
+        }
+
+        strong {
+            font-weight: bold;
+        }
+    }
+
+    p {
+        strong {
+            @extend %opensans-bold;
+        }
+
+        em {
+            font-style: italic;
+        }
+
+        del {
+            text-decoration: underline;
+        }
+    }
+
+    ul {
+        margin-left: 20px;
+
+        li {
+            &::before {
+                content: "\2022";
+                margin: 0 10px;
+            }
+        }
+    }
+
+    ol {
+        list-style-type: decimal;
+        margin-left: 50px;
+        li {
+
+        }
+    }
+
+    a {
+        text-decoration: underline;
+    }
+
+    h1 {
+        font-family: "OpenSans", sans;
+        font-size: 26px;
+        line-height: 28px;
+        font-weight: bold;
+    }
+
+    h2 {
+        font-family: "OpenSans", sans;
+        font-size: 23px;
+        line-height: 25px;
+        font-weight: bold;
+    }
+
+    h3 {
+        font-family: "OpenSans", sans;
+        font-size: 20px;
+        line-height: 24px;
+        font-weight: bold;
+    }
+
+    h4 {
+        font-family: "OpenSans", sans;
+        font-size: 18px;
+        line-height: 20px;
+        font-weight: bold;
+    }
+
+    h5 {
+        font-family: "OpenSans", sans;
+        font-size: 15px;
+        line-height: 18px;
+        font-weight: bold;
+    }
+
+    h6 {
+        font-family: "OpenSans", sans;
+        font-size: 13px;
+        line-height: 15px;
+        font-weight: bold;
+    }
+
+}
+
+/* F l e x   c e n t e r */
+%flex-center-xy {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+%link-leer-mas {
+    @extend %opensans-bold;
+    font-size: 13px;
+    line-height: 15px;
+    letter-spacing: 1px;
+    &:hover {
+        text-decoration: underline;
+    }
+}

@@ -1,0 +1,18 @@
+/// Returns the calculated value for a padding, depending if its an inner column, with padding-left and padding-right or an outer column with padding-right or padding-left only
+/// Note: use only for cases where you have more than 2 columns per row
+/// 
+/// @param {unit} $gutter the gutter between columns
+/// @param {number} $cols nomber of columns
+/// @param {string} $inner_or_outer either "inner" or "outer": if the value returned is for an 'inner' or 'outer' column
+/// @return {unit} the corresponding value for the gutter
+@function gutter-calculator($gutter, $inner_or_outer_or_central) {
+    $gutter: $gutter/2;
+    $pad: $gutter/3;
+    @if ($inner_or_outer_or_central == 'outer') {
+        @return $gutter + $pad;
+    } @elseif ($inner_or_outer_or_central == 'inner') {
+        @return $gutter - $pad;
+    } @elseif ($inner_or_outer_or_central == 'central') {
+        @return $gutter;
+    }
+}

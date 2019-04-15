@@ -1,0 +1,15 @@
+/// Combina dos mixins para crear columnas pentarias (5) regulares o irregulares
+///
+/// @param {number} gutter: padding de la columna
+///
+/// @example    .col-1-3 {@include ternary-column-maker(50px);}
+///             .col-1-3 {@include binary-column-maker(25, 50, 25, 25px, 100);}   
+///
+/// @author Diego Villaseñor y Cecilia M. Borja
+/// @since 0.0.1
+///
+
+@mixin pentary-column-maker($sm:50, $md: 50, $lg:50, $gutter:0, $container:150) {
+    @include pentary-cols($sm, $md, $lg, $container);
+    @include pentary-column-padding($gutter);
+}

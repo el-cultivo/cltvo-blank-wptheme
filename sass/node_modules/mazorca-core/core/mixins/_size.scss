@@ -1,0 +1,9 @@
+/// Onliner for setting height and width
+/// @params {number} $height
+/// @params {number} $width defaults to height
+/// @author Diego Villseñor
+///@since 1.1.5
+@mixin size($width, $height: $width) {
+	height: $height;
+	width: $width;
+}

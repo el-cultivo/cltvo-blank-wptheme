@@ -1,0 +1,26 @@
+/// Calcula columnas binarias regulares y columnas binarias irregulares.
+///
+/// @param {number} sm: width de columna pequeña
+/// @param {number} lg: width de columna
+///
+/// @example    .col-1-2 {@include binary-cols();} para columnas binarias regulares
+///             .col-1-2 {@include binary-cols(25, 100, 0, 125);} para columnas binarias irregulares
+///
+/// @author Diego Villaseñor y Cecilia M. Borja
+/// @since 0.0.1
+
+@mixin binary-cols($sm:50, $lg:50, $container:100) {
+    & {
+        width: 50%;
+    }
+
+    @if($sm != $lg) {
+        &--sm {
+            width: column_percentage($sm, $container);
+        }
+
+        &--lg {
+            width: column_percentage($lg, $container);
+        }
+    }
+}

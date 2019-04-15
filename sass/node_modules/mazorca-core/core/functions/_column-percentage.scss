@@ -1,0 +1,12 @@
+/// Calcula el tamaño de una columna
+///
+/// @param {number} $col_width: tamaño real de la columna
+/// @param {number} $container_width: tamaño de de contenedor
+///
+/// @author Diego Villaseñor y Cecilia M. Borja
+///	@since 0.0.1
+///
+
+@function column_percentage($col_width, $container_width) {
+	@return $col_width/$container_width*100%;
+}

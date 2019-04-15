@@ -1,0 +1,27 @@
+////_________________________ Preconfig Mixins _________________________\\
+//// Mixins that should go before the "config/_config" file
+////
+////
+////	Mixins Index:
+////		Inserting Content
+////		Objects
+////		Positioning
+////		Responsive
+////		Styling
+////		Transitions
+////
+////
+
+//======== Helpers========\\
+@import "_clearfix";// Nicholas Gallargher's famous clearfix.
+@import "_ultraligero-legacy-mixins";//from the ver 1.0 of the framework
+
+
+//======== Styling========\\
+@import "_reset";//Reset browser styles
+@import "_custom-appearance";// Set to true for -webkit-,-moz-appereance:none useful for editing radio buttons amog other things
+@import "_placeholder-color";// For styling inputs
+
+
+//======== Grid Generation========\\
+@import "_generador-de-columnas";// Create the columns for the fluid-grid

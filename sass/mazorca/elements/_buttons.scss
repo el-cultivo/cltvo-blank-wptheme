@@ -1,0 +1,13 @@
+%button {
+    width: 127px;
+    height: 35px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+	background-color: c(yellow);
+	border: none;
+	&:hover {
+		background-color: c(gray-dark);
+		cursor: pointer;
+	}
+}

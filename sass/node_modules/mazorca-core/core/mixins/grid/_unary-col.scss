@@ -1,0 +1,14 @@
+/// Calcula una sola columna
+///
+/// @example    .col-1-1 {@include unary-col(100%);} columna única con max_width de 100% del contenedor
+///
+/// @author Diego Villaseñor y Cecilia M. Borja
+/// @since 0.0.1
+///
+
+@mixin unary-col($max_width) {
+    max-width:$max_width;
+    width: 100%;
+    margin-right: auto;
+    margin-left: auto;
+}

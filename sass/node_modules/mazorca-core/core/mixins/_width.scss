@@ -1,0 +1,12 @@
+/// Define an specific max-width
+///
+/// NOTE: Very useful in small devices when the width of the element is not 100%
+///
+/// @param {number} max-width
+/// @author Diego Villaseñor and Cecilia M. Borja
+/// @since 1.0.0
+
+@mixin width($max-width) {
+    max-width: $max-width;
+    width: 100%;
+}

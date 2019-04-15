@@ -1,0 +1,12 @@
+/// Crea un row
+///
+/// @example    .row {@include row();}
+///
+/// @author Diego Villaseñor y Cecilia M. Borja
+/// @since 0.0.1
+
+@mixin row() {
+    width: 100%;
+    min-height: 1px;
+    position:relative;
+}

@@ -1,0 +1,32 @@
+/// Calcula columnas ternarias y columnas ternarias irregulares.
+///
+/// @param {number} sm: width de columna pequeña
+/// @param {number} md: width de columna mediana
+/// @param {number} lg: width de columna grande
+///
+/// @example    .col-1-3 {@include ternary-cols();} para columnas ternarias regulares
+///             .col-1-3 {@include ternary-cols(25, 100, 25, 0);} para columnas ternarias irregulares
+///
+/// @author Diego Villaseñor y Cecilia M. Borja
+/// @since 0.0.1
+///
+
+@mixin cuaternary-cols($sm:50, $md:50, $lg:50, $container:200) {
+    & {
+        width: (100%/4);
+    }
+
+    @if($sm != $lg) {
+        &--sm {
+            width: column_percentage($sm, $container);
+        }
+
+        &--md{
+            width: column_percentage($md, $container);
+        }
+
+        &--lg {
+            width: column_percentage($lg, $container);
+        }
+    }
+}

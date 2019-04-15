@@ -1,0 +1,15 @@
+/// Combina dos mixins para crear columnas binarias regulares o irregulares
+///
+/// @param {number} gutter: padding de la columna en px
+///
+/// @example    .col-1-2 {@include binary-column-maker($gutter:50px);}
+///             .col-1-2 {@include binary-column-maker(25, 50, 25px, 75);} 
+///
+/// @author Diego Villaseñor y Cecilia M. Borja
+/// @since 0.0.1
+///
+
+@mixin binary-column-maker($sm:50, $lg:50, $gutter:0, $container:100) {
+    @include binary-cols($sm, $lg, $container);
+    @include binary-column-padding($gutter);
+}

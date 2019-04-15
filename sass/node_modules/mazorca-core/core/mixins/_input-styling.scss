@@ -1,0 +1,21 @@
+
+/// Mixin for (almost completely) styling an input
+/// 
+/// @param {String} $color 
+/// @param {String} $bgColor
+/// @param {Number} $borderWidth
+/// @param {String} $borderType
+/// @param {String} $borderColor
+/// @param {Number} $borderRadius
+/// @param {List} $padRL
+/// @param {List} $padTB
+/// @param {Number} $width
+///
+@mixin input-styling($color:c(), $bgColor:transparent, $borderWidth:0, $borderType:none, $borderColor:c(), $borderRadius: 0, $padRL:0, $padTB:0, $width: 100%){
+	border: $borderWidth $borderType $borderColor;
+	border-radius: $borderRadius;
+	color:$color;
+	background-color: $bgColor;
+	padding: $padTB $padRL;
+	max-width: $width;
+}

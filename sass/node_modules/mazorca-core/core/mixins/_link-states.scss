@@ -1,0 +1,13 @@
+/// Sets properties for .selected, :hover and :active. It is assumed that all states will have the same styling.
+///
+///@content
+///@since 1.1.6
+///@author Diego Villaseñor
+
+@mixin link-states{
+	&.selected,
+	&:hover,
+	&:active {
+		@content;
+	}
+}

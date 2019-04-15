@@ -1,0 +1,133 @@
+/// Description Replicates the fluid percentual margins of "margin:0 auto" for a fixed width object, but allows for an offsetting in pixels or alignment of the element with regards to the center.
+@mixin calc-col($left-offset, $width, $max-width:null, $align-to:0) {
+	$centering-width: $width/2; // central axis of the div
+	$ml: 'Error';
+	//Transform $left-offset into percentage
+	//var $left-offset, $max-width
+	@if not is-percentage($left-offset) {
+		//Validations
+		@if $max-width == null {@error "Mixin calc-col's first argument is not in pecentage units. \a Please specify the $max-width of the row as the third argument of the mixin."}
+		@if not is-pixel($left-offset) {@error "Mixin calc-col's $left-offset has neither a percentage or a pixel unit."}
+		@if not is-pixel($max-width) {@error "Mixin calc-col's $max-width can not be a percentage."}
+		
+		//convert into a percentage
+		$left-offset: $left-offset / $max-width * 100;
+		$left-offset: to-number($left-offset + '%');
+
+		//if error occured
+		@if not is-percentage($left-offset) {@error "An error occured with mixin calc-col, $left-offset is not and percentage or could not be converted into one."}
+	} 
+	
+	@if is-percentage($width) {
+		@if $left-offset >= $width {
+			$ml: calc( #{$left-offset - $width} + $align-to);
+		} @else {
+			$ml: calc( #{$left-offset} + $align-to);
+		}
+	}
+	@else if is-pixel($width) {
+		// If offset it necessary
+		// @params $align-to, $width
+		// @returns $centering-width
+		@if $align-to != (0) {
+			$centering-width: $width - $align-to; //$centering-width + complement($centering-width - $algin-to)
+		}
+		
+		$ml: calc(#{$left-offset} - #{$centering-width});
+	}
+
+	//outputs
+	width: $width;
+	margin-left: $ml;
+	margin-right: auto;
+}
+
+
+
+/*calc-col*/
+.col-calc.basico {
+	@include calc-col(50%, 70px);
+}
+
+// .col-calc.offset {
+// 	@include calc-col(210px, 200px, 1400px);
+// }
+
+.debug.col-calc.offset-to {
+	// @include calc-col(50%, 200px, $align-to : 35px);
+	
+	//left offset 50%
+	width: 30%;
+	margin-left: calc(20%  + 35px);
+	margin-right: auto;
+
+}
+/*if tree*/
+
+// @if ref-elem-offset: auto, or % or px
+// @if ref-elem-width: % or px
+// @if elem width: % or px
+// @if elem-offset: %, px or null
+
+
+//ml 50%, w 300px Verde
+//
+.col-calc.offset-offcenter {// Rosa no left-offset
+	width: calc(50% + 300px);//$ref-offset, $ref-width
+}
+
+.col-calc.offset-offcenter.left-offset {//Azul fixed left-offset
+	width: calc(50%);//$ref-offset
+	margin-left: 300px;//$ref-width
+}
+.col-calc.offset-offcenter.left-offset.fixed-width {//Amarillo fixed-width
+	width: 500px;//$elem-width
+	margin-left: calc(50% + 300px - 500px);//$ref-offset, $ref-width - $elem-width
+}
+
+
+//ml 30% , w 40% Violeta
+//
+.col-calc.px-offset.px-width {//Rosa
+	width: 200px;//$elem-width
+	margin-left: calc(30% + 40% - 200px); //$ref-offset, $ref-width, $elem-width
+}
+
+.col-calc.px-offset.perc-width {//Rosa
+	width: 15%;//$elem-width
+	margin-left: calc(30% + 40% - 15%);
+}
+
+
+
+
+/*debug*/
+.debug.col-calc, .m0auto, .m0-40perc, .ref {
+	height: 20vh;
+	background-color: pink;
+}
+.m0auto {
+	width: 70px;
+	margin: 0 auto;
+}
+.m0-40perc {
+	margin-left: 50%;
+	width: 300px;
+	background-color: green;
+}
+
+.m0300px {
+	margin-left: 30%;
+	width: 40%;
+	background-color: violet;
+}
+
+.col-calc.offset.debug{
+	background-color: blue !important;
+}
+.col-calc.offset-offcenter.left-offset.debug {
+	background-color: blue;
+}
+.col-calc.offset-offcenter.left-offset.fixed-width.debug {
+	background-color: yellow;
+}

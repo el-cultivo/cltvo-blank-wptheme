@@ -1,0 +1,14 @@
+$colors: (
+	base:	#312822,
+	white:	#FFFFFF,
+	);
+
+@function c($color:base) {
+	@return map-get($colors, $color);
+}
+
+//no borrar
+$colorForeground: c();
+$colorBackground: c(white);
+$colorFeatured: c(base);
+$colorError: #8A1010;

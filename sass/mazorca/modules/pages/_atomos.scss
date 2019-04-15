@@ -1,0 +1,97 @@
+.atomos{
+
+	header#header,
+	footer.footer {
+		display: none !important;
+	}
+
+	h1,
+	h2,
+	h3,
+	h4,
+	h5,
+	h6,
+	p,
+	a,
+	form,
+	ul,
+	span,
+	div {
+		margin: 40px;
+	}
+
+
+
+}
+
+/* F u e n t e s */
+.title_mundo {
+	//@extend %bodoni-book;
+	font-size: 40px;
+}
+
+.title_mundo-2 {
+	//@extend %bodoni-italic;
+	font-size: 40px;
+}
+
+.title_mundo-3 {
+	font-family: f(opensans);
+	font-size: 40px;
+}
+
+.title_mundo-4 {
+	//@extend %opensans-bold;
+	font-size: 40px;
+}
+
+.title_mundo-5 {
+	//@extend %opensans-bold-italic;
+	font-size: 40px;
+}
+
+/* B o t o n e s */
+.boton-base {
+	//@extend %button;
+}
+
+/* M e n ú */
+.lista-menu {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-around;
+	align-items: center;
+}
+
+.citas__contenedor {
+	text-align: center;
+	padding: 45px 0 60px;
+}
+
+/* F o o t e r */
+.footer__contenedor {
+	border-top: .25px solid c(gray-dark);
+	padding-top: 10px;
+
+	.footer__lista {
+		display: flex;
+		flex-direction: row;
+		justify-content: space-around;
+		align-items: center;
+	}
+	.legales__lista {
+		display: flex;
+		flex-direction: row;
+		justify-content: space-around;
+		align-items: center;
+	}
+}
+
+.credito__contenedor {
+	width: 70%;
+	background-color: c(gray-dark);
+	height: 25px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}

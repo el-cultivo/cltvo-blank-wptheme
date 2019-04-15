@@ -5,36 +5,45 @@
   "main": "gulp.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "postinstall":"cd sass && npm install"
+    "start": "gulp watch"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/el-cultivo/cltvo-blank-wptheme.git"
   },
   "devDependencies": {
-    "gulp": "^3.9.0",
     "babel-cli": "^6.10.1",
     "babel-core": "^6.11.4",
     "babel-loader": "^6.2.4",
     "babel-polyfill": "^6.9.1",
+    "babel-preset-env": "^1.5.2",
     "babel-preset-es2015": "^6.9.0",
     "browser-sync": "^2.11.1",
+    "gulp": "^3.9.0",
     "gulp-autoprefixer": "^3.1.0",
     "gulp-babel": "^6.1.2",
     "gulp-concat": "^2.6.0",
     "gulp-notify": "^2.2.0",
     "gulp-plumber": "^1.1.0",
     "gulp-rename": "^1.2.2",
-    "gulp-sass": "^2.3.2",
     "gulp-sourcemaps": "^1.6.0",
     "gulp-util": "^3.0.7",
     "gulp-watch": "^4.3.5",
-    "webpack": "^1.13.1"
+    "masonry-layout": "^4.2.1",
+    "swiper": "^4.1.6",
+    "webpack": "^1.13.1",
+    "gulp-sass": "^4.0.1"
   },
   "author": "El Cultivo",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/el-cultivo/cltvo-blank-wptheme/issues"
   },
-  "homepage": "https://github.com/el-cultivo/cltvo-blank-wptheme#readme"
+  "homepage": "https://github.com/el-cultivo/cltvo-blank-wptheme#readme",
+  "dependencies": {
+    "jquery": "^3.2.1",
+    "mazorca-core": "^1.6.2",
+    "node-sass": "^4.8.3",
+    "ramda": "^0.24.1"
+  }
 }
