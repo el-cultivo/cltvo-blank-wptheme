@@ -15,11 +15,6 @@
 	<meta name="keywords" content="" />
 	<meta name="author" content="<?php echo THEMEURL;?>humans.txt">
 
-	<link href="<?php bloginfo('template_url'); ?>/style.css?v=1.4" rel="stylesheet" type="text/css" />
-
-	<!-- Slick -->
-	<link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
-
 	<!-- Font awesome -->
 	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css" integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt" crossorigin="anonymous">
 

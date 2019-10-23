@@ -44,7 +44,7 @@ class ScriptsServiceProvider
         }
 
         // Se agrega functions.js
-        wp_register_script( 'cltvo_functions_js', get_template_directory_uri() . '/js/functions.js', $scripts, 'v1.0', true );
+        wp_register_script( 'cltvo_functions_js', get_template_directory_uri() . '/js/functions.js', $scripts, '0.0', true );
 
         // Se agregan las variables de javascript.
         wp_localize_script( 'cltvo_functions_js', 'cltvo_js_vars', $this->getJavascriptVars() );

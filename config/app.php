@@ -12,6 +12,7 @@ return [
         App\Providers\MenuServiceProvider::class,
         App\Providers\MetaboxServiceProvider::class,
         App\Providers\ScriptsServiceProvider::class,
+        App\Providers\StylesServiceProvider::class,
         App\Providers\SupportServiceProvider::class,
         App\Providers\TaxonomyServiceProvider::class,
         App\Providers\OptionsServiceProvider::class,
