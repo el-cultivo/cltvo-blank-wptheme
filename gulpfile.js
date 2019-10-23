@@ -1,4 +1,6 @@
-var watch_scss_path = 'sass',
+var css_output_file_name = 'style.css',
+    css_output_path = './',
+    watch_scss_path = 'sass',
     main_scss_path = watch_scss_path + '/',
     main_js_path = './es6/',
     dist_js_path = 'js',
@@ -40,14 +42,14 @@ gulp.task('sass', function(){
     )
     .pipe(sourcemaps.init())
     .pipe(sass()) // Using gulp-sass
-    .pipe(rename("mazorca.css"))
-    .pipe(notify('Mazorca ha sido compilado'))
+    .pipe(rename( css_output_file_name ))
+    .pipe(notify('Mazorca ha sido compilado en '+css_output_path+css_output_file_name))
     .pipe(autoprefixer({
       browsers: ['last 6 versions'],
       cascade: false
     }))
     .pipe(sourcemaps.write('.'))
-    .pipe(gulp.dest('./css'))
+    .pipe(gulp.dest( css_output_path ))
     .pipe(browserSync.stream());
 });
 

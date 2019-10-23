@@ -1,3 +1,4 @@
+@charset "UTF-8";
 /*
 Theme Name: - Blank Cltvo Theme -
 Author: El Cultivo
@@ -5,5 +6,955 @@ Author URI: http://elcultivo.mx
 Description: Configuración básica para cualquier tema desarrollado por El Cultivo
 Version: Cltvo Blank Theme 3.0 beta
 */
+/*===Mazorca Core===*/
+/* Eric Meyer's Reset CSS v2.0 - http://cssreset.com */
+html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed, figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary, time, mark, audio, video {
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+  margin: 0;
+  padding: 0; }
 
-@import url('css/mazorca.css');
+article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section {
+  display: block; }
+
+body {
+  line-height: 1; }
+
+ol, ul {
+  list-style: none; }
+
+blockquote, q {
+  quotes: none; }
+
+blockquote:before, blockquote:after, q:before, q:after {
+  content: none; }
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0; }
+
+a {
+  text-decoration: none;
+  color: inherit; }
+
+/**
+* Basic Styles
+* ---------------
+* Edítalos o sobreescríbelos
+*
+*/
+/**
+ * Super basic stylings
+ *
+ */
+* {
+  box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box; }
+
+html {
+  height: 100%; }
+
+html, body {
+  min-height: 100%; }
+
+body {
+  position: relative;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  font-size: 14px;
+  font-family: BlissPro; }
+
+strong {
+  font-weight: bold; }
+
+img {
+  -ms-interpolation-mode: bicubic; }
+
+.column img, .columns img {
+  max-width: 100%; }
+
+img {
+  display: block;
+  max-width: 100%;
+  width: 100%; }
+
+p em {
+  font-style: italic; }
+
+section, article, aside, header, footer, nav, figure, figcaption {
+  display: block; }
+
+time, mark {
+  display: inline-block; }
+
+/**
+ * All helpers use the !important keyword, if ever necessary their
+ * output might be overriden with the !important keyword in a
+ * property located lower in the cascade.
+ *
+ */
+/**
+ *	Helpers Index:
+ *		Position
+ *		Display
+ *		Gutters
+ *		Paddings and Margins
+ *		JS Classes
+ *
+ */
+/*************************** Position ***************************/
+.absolute {
+  position: absolute !important; }
+
+.relative {
+  position: relative !important; }
+
+.fixed {
+  position: fixed !important;
+  max-width: 100% !important;
+  width: 100% !important;
+  left: 0; }
+
+.leer-mas__container {
+  position: relative;
+  overflow: hidden; }
+
+.flip {
+  -webkit-transform: rotate(180deg) translateX(-50%) !important;
+  -ms-transform: rotate(180deg) translateX(-50%) !important;
+  transform: rotate(180deg) translateX(-50%) !important; }
+
+.centerXY {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  -webkit-transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%); }
+
+.text-center {
+  text-align: center !important; }
+
+.flex {
+  display: -webkit-flex !important;
+  display: -ms-flexbox !important;
+  display: flex !important; }
+
+.left {
+  float: left !important; }
+
+.right {
+  float: right !important; }
+
+.top56 {
+  top: 56px; }
+
+.ontop {
+  z-index: 99 !important; }
+
+.z-0 {
+  z-index: 0 !important; }
+
+.w100 {
+  width: 100% !important; }
+
+.h100 {
+  height: 100% !important; }
+
+.op1 {
+  opacity: 1 !important; }
+
+.tdn {
+  text-decoration: none !important; }
+
+.text-overflow-ellipsis {
+  text-overflow: ellipsis !important;
+  overflow: hidden !important;
+  white-space: nowrap !important; }
+
+/*************************** Layout ***************************/
+.clearfix:before, .clearfix:after {
+  content: " ";
+  display: table; }
+
+.clearfix:after {
+  clear: both; }
+
+.clearfix {
+  *zoom: 1; }
+
+/*************************** Display ***************************/
+.d-bl {
+  display: block !important; }
+
+.inline {
+  display: inline !important; }
+
+.inline-block {
+  display: inline-block !important; }
+
+/*************************** Gutters ***************************/
+/*************************** Paddings and Margins ***************************/
+.p0 {
+  padding: 0 !important; }
+
+.pb0 {
+  padding-bottom: 0 !important; }
+
+.pr0 {
+  padding-right: 0 !important; }
+
+.pl0 {
+  padding-left: 0 !important; }
+
+.m0 {
+  margin: 0 !important; }
+
+.mb0 {
+  margin-bottom: 0 !important; }
+
+.mb40 {
+  margin-bottom: 40px !important; }
+
+/*************************** Arrows ***************************/
+.icon-arrow-up:after {
+  content: '\e801'; }
+
+.icon-arrow-down:after {
+  content: '\e800'; }
+
+/*************************** Drags, Selects ***************************/
+.undraggable-unselectable-cascading *,
+.undraggable-unselectable {
+  user-drag: none !important;
+  -webkit-user-drag: none !important;
+  user-select: none !important;
+  -moz-user-select: none !important;
+  -webkit-user-select: none !important;
+  -ms-user-select: none !important; }
+
+.unselectable {
+  user-select: none !important;
+  -moz-user-select: none !important;
+  -webkit-user-select: none !important;
+  -ms-user-select: none !important; }
+
+/*************************** Text ***************************/
+.ttu {
+  text-transform: uppercase !important; }
+
+.ttn {
+  text-transform: none !important; }
+
+/*************************** Animations ***************************/
+.transition-fast {
+  transition: all 0.3s; }
+
+.transition-slow {
+  transition: all 1s; }
+
+.hover-scale-up:hover {
+  -webkit-transform: scale(1.2) !important;
+  -ms-transform: scale(1.2) !important;
+  transform: scale(1.2) !important; }
+
+/*************************** JS Classes ***************************/
+[v-cloak] {
+  opacity: 0; }
+
+.noScroll_JS, .no-scroll {
+  overflow: hidden !important; }
+
+/*************************** Bootstrap ***************************/
+.hidden {
+  display: none !important; }
+
+/* Eric Meyer's Reset CSS v2.0 - http://cssreset.com */
+html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed, figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary, time, mark, audio, video {
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+  margin: 0;
+  padding: 0; }
+
+article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section {
+  display: block; }
+
+body {
+  line-height: 1; }
+
+ol, ul {
+  list-style: none; }
+
+blockquote, q {
+  quotes: none; }
+
+blockquote:before, blockquote:after, q:before, q:after {
+  content: none; }
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0; }
+
+a {
+  text-decoration: none;
+  color: inherit; }
+
+html {
+  font-size: 10px; }
+
+html, body {
+  height: 100%; }
+
+body {
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column; }
+
+.main-wrap {
+  -webkit-flex: 1 0 auto;
+  -ms-flex: 1 0 auto;
+  flex: 1 0 auto; }
+
+.footer {
+  -webkit-flex-shrink: 0;
+  -ms-flex-negative: 0;
+  flex-shrink: 0; }
+
+/**
+ * Declare fonts using the Mixin
+ */
+@font-face {
+  font-family: "Bodoni";
+  src: url("../fonts/Bodoni/BodoniStd-BoldItalic.eot");
+  src: url("../fonts/Bodoni/BodoniStd-BoldItalic.eot?#iefix") format("embedded-opentype");
+  src: url("../fonts/Bodoni/BodoniStd-BoldItalic.woff") format("woff");
+  src: url("../fonts/Bodoni/BodoniStd-BoldItalic.ttf") format("truetype");
+  font-weight: bold;
+  font-style: italic;
+  font-stretch: normal; }
+
+@font-face {
+  font-family: "Bodoni";
+  src: url("../fonts/Bodoni/BodoniStd-Bold.eot");
+  src: url("../fonts/Bodoni/BodoniStd-Bold.eot?#iefix") format("embedded-opentype");
+  src: url("../fonts/Bodoni/BodoniStd-Bold.woff") format("woff");
+  src: url("../fonts/Bodoni/BodoniStd-Bold.ttf") format("truetype");
+  font-weight: bold;
+  font-style: normal;
+  font-stretch: normal; }
+
+@font-face {
+  font-family: "Bodoni";
+  src: url("../fonts/Bodoni/BodoniStd-Poster.eot");
+  src: url("../fonts/Bodoni/BodoniStd-Poster.eot?#iefix") format("embedded-opentype");
+  src: url("../fonts/Bodoni/BodoniStd-Poster.woff") format("woff");
+  src: url("../fonts/Bodoni/BodoniStd-Poster.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+  font-stretch: normal; }
+
+@font-face {
+  font-family: "Bodoni";
+  src: url("../fonts/Bodoni/BodoniStd-PosterCompressed.eot");
+  src: url("../fonts/Bodoni/BodoniStd-PosterCompressed.eot?#iefix") format("embedded-opentype");
+  src: url("../fonts/Bodoni/BodoniStd-PosterCompressed.woff") format("woff");
+  src: url("../fonts/Bodoni/BodoniStd-PosterCompressed.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+  font-stretch: normal; }
+
+@font-face {
+  font-family: "Bodoni";
+  src: url("../fonts/Bodoni/BodoniStd-Italic.eot");
+  src: url("../fonts/Bodoni/BodoniStd-Italic.eot?#iefix") format("embedded-opentype");
+  src: url("../fonts/Bodoni/BodoniStd-Italic.woff") format("woff");
+  src: url("../fonts/Bodoni/BodoniStd-Italic.ttf") format("truetype");
+  font-weight: 500;
+  font-style: italic;
+  font-stretch: normal; }
+
+@font-face {
+  font-family: "Bodoni";
+  src: url("../fonts/Bodoni/BodoniStd.eot");
+  src: url("../fonts/Bodoni/BodoniStd.eot?#iefix") format("embedded-opentype");
+  src: url("../fonts/Bodoni/BodoniStd.woff") format("woff");
+  src: url("../fonts/Bodoni/BodoniStd.ttf") format("truetype");
+  font-weight: 500;
+  font-style: normal;
+  font-stretch: normal; }
+
+@font-face {
+  font-family: "Bodoni";
+  src: url("../fonts/Bodoni/BodoniStd-PosterItalic.eot");
+  src: url("../fonts/Bodoni/BodoniStd-PosterItalic.eot?#iefix") format("embedded-opentype");
+  src: url("../fonts/Bodoni/BodoniStd-PosterItalic.woff") format("woff");
+  src: url("../fonts/Bodoni/BodoniStd-PosterItalic.ttf") format("truetype");
+  font-weight: normal;
+  font-style: italic;
+  font-stretch: normal; }
+
+@font-face {
+  font-family: "Bodoni";
+  src: url("../fonts/Bodoni/BodoniStd-BoldCondensed.eot");
+  src: url("../fonts/Bodoni/BodoniStd-BoldCondensed.eot?#iefix") format("embedded-opentype");
+  src: url("../fonts/Bodoni/BodoniStd-BoldCondensed.woff") format("woff");
+  src: url("../fonts/Bodoni/BodoniStd-BoldCondensed.ttf") format("truetype");
+  font-weight: bold;
+  font-style: normal;
+  font-stretch: normal; }
+
+@font-face {
+  font-family: "Bodoni";
+  src: url("../fonts/Bodoni/BodoniStd-BookItalic.eot");
+  src: url("../fonts/Bodoni/BodoniStd-BookItalic.eot?#iefix") format("embedded-opentype");
+  src: url("../fonts/Bodoni/BodoniStd-BookItalic.woff") format("woff");
+  src: url("../fonts/Bodoni/BodoniStd-BookItalic.ttf") format("truetype");
+  font-weight: normal;
+  font-style: italic;
+  font-stretch: normal; }
+
+@font-face {
+  font-family: "Bodoni";
+  src: url("../fonts/Bodoni/BodoniStd-Book.eot");
+  src: url("../fonts/Bodoni/BodoniStd-Book.eot?#iefix") format("embedded-opentype");
+  src: url("../fonts/Bodoni/BodoniStd-Book.woff") format("woff");
+  src: url("../fonts/Bodoni/BodoniStd-Book.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+  font-stretch: normal; }
+
+@font-face {
+  font-family: "Bodoni";
+  src: url("../fonts/Bodoni/Bodoni-Bold-2.eot");
+  src: url("../fonts/Bodoni/Bodoni-Bold-2.eot?#iefix") format("embedded-opentype");
+  src: url("../fonts/Bodoni/Bodoni-Bold-2.woff") format("woff");
+  src: url("../fonts/Bodoni/Bodoni-Bold-2.ttf") format("truetype");
+  font-weight: bold;
+  font-style: normal;
+  font-stretch: normal; }
+
+@font-face {
+  font-family: "Bodoni";
+  src: url("../fonts/Bodoni/bodonibold2.eot");
+  src: url("../fonts/Bodoni/bodonibold2.eot?#iefix") format("embedded-opentype");
+  src: url("../fonts/Bodoni/bodonibold2.woff") format("woff");
+  src: url("../fonts/Bodoni/bodonibold2.ttf") format("truetype");
+  font-weight: bold;
+  font-style: normal;
+  font-stretch: normal; }
+
+@font-face {
+  font-family: "OpenSans";
+  src: url("../fonts/OpenSans/OpenSans-Italic.eot");
+  src: url("../fonts/OpenSans/OpenSans-Italic.eot?#iefix") format("embedded-opentype");
+  src: url("../fonts/OpenSans/OpenSans-Italic.woff") format("woff");
+  src: url("../fonts/OpenSans/OpenSans-Italic.ttf") format("truetype");
+  font-weight: normal;
+  font-style: italic;
+  font-stretch: normal; }
+
+@font-face {
+  font-family: "OpenSans";
+  src: url("../fonts/OpenSans/OpenSans-Extrabold.eot");
+  src: url("../fonts/OpenSans/OpenSans-Extrabold.eot?#iefix") format("embedded-opentype");
+  src: url("../fonts/OpenSans/OpenSans-Extrabold.woff") format("woff");
+  src: url("../fonts/OpenSans/OpenSans-Extrabold.ttf") format("truetype");
+  font-weight: 800;
+  font-style: normal;
+  font-stretch: normal; }
+
+@font-face {
+  font-family: "OpenSans";
+  src: url("../fonts/OpenSans/OpenSans.eot");
+  src: url("../fonts/OpenSans/OpenSans.eot?#iefix") format("embedded-opentype");
+  src: url("../fonts/OpenSans/OpenSans.woff") format("woff");
+  src: url("../fonts/OpenSans/OpenSans.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+  font-stretch: normal; }
+
+@font-face {
+  font-family: "OpenSans";
+  src: url("../fonts/OpenSans/OpenSans-Light.eot");
+  src: url("../fonts/OpenSans/OpenSans-Light.eot?#iefix") format("embedded-opentype");
+  src: url("../fonts/OpenSans/OpenSans-Light.woff") format("woff");
+  src: url("../fonts/OpenSans/OpenSans-Light.ttf") format("truetype");
+  font-weight: 300;
+  font-style: normal;
+  font-stretch: normal; }
+
+@font-face {
+  font-family: "OpenSans";
+  src: url("../fonts/OpenSans/OpenSans-BoldItalic.eot");
+  src: url("../fonts/OpenSans/OpenSans-BoldItalic.eot?#iefix") format("embedded-opentype");
+  src: url("../fonts/OpenSans/OpenSans-BoldItalic.woff") format("woff");
+  src: url("../fonts/OpenSans/OpenSans-BoldItalic.ttf") format("truetype");
+  font-weight: bold;
+  font-style: italic;
+  font-stretch: normal; }
+
+@font-face {
+  font-family: "OpenSans";
+  src: url("../fonts/OpenSans/OpenSans-SemiboldItalic.eot");
+  src: url("../fonts/OpenSans/OpenSans-SemiboldItalic.eot?#iefix") format("embedded-opentype");
+  src: url("../fonts/OpenSans/OpenSans-SemiboldItalic.woff") format("woff");
+  src: url("../fonts/OpenSans/OpenSans-SemiboldItalic.ttf") format("truetype");
+  font-weight: 600;
+  font-style: italic;
+  font-stretch: normal; }
+
+@font-face {
+  font-family: "OpenSans";
+  src: url("../fonts/OpenSans/OpenSans-Semibold.eot");
+  src: url("../fonts/OpenSans/OpenSans-Semibold.eot?#iefix") format("embedded-opentype");
+  src: url("../fonts/OpenSans/OpenSans-Semibold.woff") format("woff");
+  src: url("../fonts/OpenSans/OpenSans-Semibold.ttf") format("truetype");
+  font-weight: 600;
+  font-style: normal;
+  font-stretch: normal; }
+
+@font-face {
+  font-family: "OpenSans";
+  src: url("../fonts/OpenSans/OpenSans-Bold.eot");
+  src: url("../fonts/OpenSans/OpenSans-Bold.eot?#iefix") format("embedded-opentype");
+  src: url("../fonts/OpenSans/OpenSans-Bold.woff") format("woff");
+  src: url("../fonts/OpenSans/OpenSans-Bold.ttf") format("truetype");
+  font-weight: bold;
+  font-style: normal;
+  font-stretch: normal; }
+
+@font-face {
+  font-family: "OpenSans";
+  src: url("../fonts/OpenSans/OpenSansLight-Italic.eot");
+  src: url("../fonts/OpenSans/OpenSansLight-Italic.eot?#iefix") format("embedded-opentype");
+  src: url("../fonts/OpenSans/OpenSansLight-Italic.woff") format("woff");
+  src: url("../fonts/OpenSans/OpenSansLight-Italic.ttf") format("truetype");
+  font-weight: 300;
+  font-style: italic;
+  font-stretch: normal; }
+
+@font-face {
+  font-family: "OpenSans";
+  src: url("../fonts/OpenSans/OpenSans-ExtraboldItalic.eot");
+  src: url("../fonts/OpenSans/OpenSans-ExtraboldItalic.eot?#iefix") format("embedded-opentype");
+  src: url("../fonts/OpenSans/OpenSans-ExtraboldItalic.woff") format("woff");
+  src: url("../fonts/OpenSans/OpenSans-ExtraboldItalic.ttf") format("truetype");
+  font-weight: 800;
+  font-style: italic;
+  font-stretch: normal; }
+
+/*
+*   The Variables
+*   Feel free to play with them!
+*/
+/*Set to "true" for -webkit-,-moz-appereance:none
+                            useful for editing radio buttons amog other things*/
+/*similar as above but for selects*/
+/*
+*   If you need to style basic layout and stuff go to your
+*   "modules/_contactForm.scss" or similar file
+*/
+/*Input Elements' Params*/
+input, textarea {
+  background-color: transparent;
+  border: 0px none transparent;
+  border-radius: initial;
+  padding: 10px;
+  -moz-appearance: none;
+  -webkit-appearance: none; }
+
+input, textarea {
+  width: 100%; }
+
+textarea {
+  resize: vertical; }
+
+input[type="submit"],
+input[type="button"] {
+  background-color: #ffbe2c;
+  display: block; }
+
+input[type="date"],
+input[type="time"],
+input[type="button"] {
+  width: auto; }
+
+input::-webkit-datetime-edit {
+  color: black; }
+
+input::-webkit-inner-spin-button,
+input::-webkit-calendar-picker-indicator {
+  cursor: pointer;
+  opacity: 1; }
+
+input[type="checkbox"],
+input[type="radio"] {
+  cursor: pointer;
+  padding: 0;
+  height: 1rem;
+  width: 1rem;
+  vertical-align: text-top; }
+  input[type="checkbox"]:checked,
+  input[type="radio"]:checked {
+    background-color: black; }
+
+input[type="radio"] {
+  border-radius: 100%; }
+
+select {
+  -moz-appearance: none;
+  -webkit-appearance: none;
+  cursor: pointer; }
+
+input:focus, select:focus, textarea:focus, button:focus {
+  outline: none; }
+
+.label {
+  font-family: "OpenSans", sans;
+  font-size: 14px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  cursor: pointer; }
+
+/*%regular {
+	font-family: f(opensans);
+	font-weight: normal;
+	font-style: normal;
+}*/
+/*_________________________ Grid _________________________ */
+.grid__row {
+  position: relative;
+  width: 100%;
+  min-height: 1px; }
+
+.grid__container {
+  position: relative;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-wrap: wrap;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+  padding: 0 0px;
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 1200px;
+  width: 100%; }
+  @media only screen and (max-width: 768px) {
+    .grid__container {
+      max-width: 94%;
+      margin: 0 auto; } }
+
+.grid__col-1-1, .grid__col-1-2, .grid__col-1-3 {
+  position: relative; }
+
+.grid__col-1-1 {
+  width: 100%; }
+  @media only screen and (max-width: 768px) {
+    .grid__col-1-1 {
+      padding: 0px 20px 0px 20px; } }
+
+.grid__col-1-2 {
+  width: 50%; }
+
+.grid__col-1-2:nth-of-type(odd) {
+  padding-right: 10px; }
+
+.grid__col-1-2:nth-of-type(even) {
+  padding-left: 10px; }
+
+.grid__col-1-2:nth-of-type(even) {
+  padding-right: 20px;
+  padding-left: 20px; }
+
+.grid__col-1-2:nth-of-type(odd) {
+  padding-left: 20px;
+  padding-right: 20px; }
+
+@media only screen and (max-width: 768px) {
+  .grid__col-1-2 {
+    width: 100%;
+    padding: 0 20px !important; } }
+
+.grid__col-1-3 {
+  width: 33.33333%; }
+
+.grid__col-1-3:nth-of-type(3n-2) {
+  padding-right: 13.33333px; }
+
+.grid__col-1-3:nth-of-type(3n-1) {
+  padding-right: 6.66667px;
+  padding-left: 6.66667px; }
+
+.grid__col-1-3:nth-of-type(3n) {
+  padding-left: 13.33333px; }
+
+@media only screen and (max-width: 768px) {
+  .grid__col-1-3 {
+    width: calc(8.33333% * 12);
+    padding: 0px 20px 0px 20px !important; } }
+
+@media only screen and (max-width: 480px) {
+  .grid__col-1-3 {
+    padding: 0px 20px 0px 20px !important; } }
+
+.grid__col-1-4 {
+  width: 25%; }
+
+.grid__col-1-4:nth-of-type(4n-3) {
+  padding-right: 13.33333px; }
+
+.grid__col-1-4:nth-of-type(4n-2) {
+  padding-right: 6.66667px;
+  padding-left: 6.66667px; }
+
+.grid__col-1-4:nth-of-type(4n-1) {
+  padding-right: 6.66667px;
+  padding-left: 6.66667px; }
+
+.grid__col-1-4:nth-of-type(4n) {
+  padding-left: 13.33333px; }
+
+.grid__col-1-6 {
+  width: calc(8.33333% * 6);
+  padding-right: 10px;
+  padding-left: 0; }
+  @media only screen and (max-width: sm-big) {
+    .grid__col-1-6 {
+      width: calc(8.33333% * 8);
+      padding-right: 0;
+      padding-left: 0; } }
+  @media only screen and (max-width: xs-big) {
+    .grid__col-1-6 {
+      width: calc(8.33333% * 12);
+      padding-right: 0;
+      padding-left: 0; } }
+
+.grid__col-1-7 {
+  width: calc(8.33333% * 7);
+  padding-right: 10px;
+  padding-left: 10px; }
+  @media only screen and (max-width: sm-big) {
+    .grid__col-1-7 {
+      width: calc(8.33333% * 8);
+      padding-right: 0;
+      padding-left: 0; } }
+  @media only screen and (max-width: xs-big) {
+    .grid__col-1-7 {
+      width: calc(8.33333% * 12);
+      padding-right: 0;
+      padding-left: 0; } }
+
+.grid__col-1-8 {
+  width: calc(8.33333% * 8);
+  padding-right: 0px !important;
+  padding-left: 0px; }
+  @media only screen and (max-width: sm-big) {
+    .grid__col-1-8 {
+      width: 100%; } }
+  @media only screen and (max-width: xs-big) {
+    .grid__col-1-8 {
+      width: 100%;
+      margin-left: 0 !important; } }
+
+.grid__col-1-9 {
+  width: calc(8.33333% * 9);
+  padding-right: 20px !important;
+  padding-left: 20px; }
+  @media only screen and (max-width: 768px) {
+    .grid__col-1-9 {
+      width: 100%; } }
+
+.grid__col-1-10 {
+  width: calc(8.33333% * 10);
+  padding-right: 20px !important;
+  padding-left: 20px; }
+  @media only screen and (max-width: 768px) {
+    .grid__col-1-10 {
+      width: 100%; } }
+
+.grid__box {
+  position: relative;
+  width: 100%; }
+
+@media only screen and (max-width: 768px) {
+  .featured-home-contenedor .grid__col-1-9 {
+    width: calc(8.33333% * 8); } }
+
+@media only screen and (max-width: 650px) {
+  .featured-home-contenedor .grid__col-1-9 {
+    width: calc(8.33333% * 12); } }
+
+.featured-home-contenedor .grid__col-1-4 {
+  padding: 0 10px; }
+  @media only screen and (max-width: 768px) {
+    .featured-home-contenedor .grid__col-1-4 {
+      width: calc(8.33333% * 3.2); } }
+  @media only screen and (max-width: 650px) {
+    .featured-home-contenedor .grid__col-1-4 {
+      width: calc(8.33333% * 6);
+      margin: 0 auto; } }
+
+/* O f f s e t */
+.grid__offset-0-2 {
+  width: calc(8.33333% * 2);
+  margin: 0 10px; }
+  @media only screen and (max-width: 768px) {
+    .grid__offset-0-2 {
+      width: 0;
+      margin: 0px; } }
+
+/* A s p e c t   r a t i o */
+/* C o n t e n e d o r */
+/* W y s i w y g */
+/* F l e x   c e n t e r */
+/* _____ G E N E R A L _____ */
+.header {
+  background-color: #E8EBE9;
+  color: #12232E;
+  display: none; }
+
+.footer {
+  background-color: #E8EBE9;
+  color: #12232E;
+  display: none; }
+
+/* _____ P A G E S _____ */
+.atomos header#header,
+.atomos footer.footer {
+  display: none !important; }
+
+.atomos h1,
+.atomos h2,
+.atomos h3,
+.atomos h4,
+.atomos h5,
+.atomos h6,
+.atomos p,
+.atomos a,
+.atomos form,
+.atomos ul,
+.atomos span,
+.atomos div {
+  margin: 40px; }
+
+/* F u e n t e s */
+.title_mundo {
+  font-size: 40px; }
+
+.title_mundo-2 {
+  font-size: 40px; }
+
+.title_mundo-3 {
+  font-family: "OpenSans", sans;
+  font-size: 40px; }
+
+.title_mundo-4 {
+  font-size: 40px; }
+
+.title_mundo-5 {
+  font-size: 40px; }
+
+/* B o t o n e s */
+/* M e n ú */
+.lista-menu {
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -webkit-justify-content: space-around;
+  -ms-flex-pack: distribute;
+  justify-content: space-around;
+  -webkit-align-items: center;
+  -ms-flex-align: center;
+  align-items: center; }
+
+.citas__contenedor {
+  text-align: center;
+  padding: 45px 0 60px; }
+
+/* F o o t e r */
+.footer__contenedor {
+  border-top: 0.25px solid #737a7c;
+  padding-top: 10px; }
+  .footer__contenedor .footer__lista {
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-flex-direction: row;
+    -ms-flex-direction: row;
+    flex-direction: row;
+    -webkit-justify-content: space-around;
+    -ms-flex-pack: distribute;
+    justify-content: space-around;
+    -webkit-align-items: center;
+    -ms-flex-align: center;
+    align-items: center; }
+  .footer__contenedor .legales__lista {
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-flex-direction: row;
+    -ms-flex-direction: row;
+    flex-direction: row;
+    -webkit-justify-content: space-around;
+    -ms-flex-pack: distribute;
+    justify-content: space-around;
+    -webkit-align-items: center;
+    -ms-flex-align: center;
+    align-items: center; }
+
+.credito__contenedor {
+  width: 70%;
+  background-color: #737a7c;
+  height: 25px;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-align-items: center;
+  -ms-flex-align: center;
+  align-items: center; }
+
+.splash {
+  background-color: #12232E;
+  background: linear-gradient(to top, #12232E, #215056);
+  color: #E8EBE9;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -webkit-align-items: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-justify-content: space-around;
+  -ms-flex-pack: distribute;
+  justify-content: space-around;
+  width: 100%;
+  min-height: 100vh; }
+  .splash img {
+    max-width: 500px;
+    padding: 0 20px; }
+  .splash img.logo {
+    width: 200px;
+    -webkit-filter: brightness(0%) invert(100%);
+    filter: brightness(0%) invert(100%); }
+
+/* _____ H O M E _____ */
+/* @import "modules/pages/home/_home"; */
+
+/*# sourceMappingURL=style.css.map */
