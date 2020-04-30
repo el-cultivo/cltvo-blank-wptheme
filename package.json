@@ -41,7 +41,7 @@
   },
   "homepage": "https://github.com/el-cultivo/cltvo-blank-wptheme#readme",
   "dependencies": {
-    "jquery": "^3.2.1",
+    "jquery": "^3.5.0",
     "mazorca-core": "^1.6.2",
     "node-sass": "^4.8.3",
     "ramda": "^0.24.1"
