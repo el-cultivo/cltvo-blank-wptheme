@@ -38,6 +38,13 @@ class ActionsServiceProvider
         if (isSpecialPage('contacto')) {
             remove_post_type_support( 'page', 'editor' );
         }
+
+        //Verificamos que el plugin exista cuando se inicie el admin
+        if( self::isAcfActive() ){
+
+            self::syncAcfFields();
+
+        }
     }
 
     public function adminMenu()
@@ -58,5 +65,100 @@ class ActionsServiceProvider
     public function register()
     {
         //
+    }
+
+    /*
+        Función que verifica que el plugin de acf pro o acf normales, existan y están activados
+    */
+
+    public function isAcfActive()
+    {
+        $active = (is_plugin_active( 'advanced-custom-fields-pro/acf.php' ) || 
+            is_plugin_active( 'advanced-custom-fields/acf.php' ) )
+            ? true 
+            : false;
+
+        return $active;
+    }
+
+    /**
+     *  Función que actualiza automáticamente los acf dentro de la carpeta acf-json
+
+        Se obtuvo del siguiente link, https://gist.github.com/jessepearson/a537b2f78556cd705947
+        Analizando el código del plugin, una función similar se puede encontrar en /plugins/advanced-custom-fields-pro/includes/admin
+
+        Posiblemente el plugin en un futuro, incorpore la sincronización automática
+        Falta analizar la situación cuando eliminan los campos
+     */
+
+    public function syncAcfFields()
+    {
+        //Obtiene todos los grupos de campos
+        $groups = acf_get_field_groups();
+        $sync   = array();
+
+        // Si no hay grupos de campos
+        if( empty( $groups ) )
+            return;
+
+        // Buscamos los grupos de campos que aún no han sido importados
+        //Y los asignamos al arreglo sync
+        foreach( $groups as $group ) {
+            
+            // vars
+            $local      = acf_maybe_get( $group, 'local', false );
+            $modified   = acf_maybe_get( $group, 'modified', 0 );
+            $private    = acf_maybe_get( $group, 'private', false );
+
+            // ignore DB / PHP / private field groups
+            if( $local !== 'json' || $private ) {
+                
+                // do nothing
+                
+            } elseif( ! $group[ 'ID' ] ) {
+                
+                //Si aún no está en la base de datos, lo asignamos al arreglo de sync
+                $sync[ $group[ 'key' ] ] = $group;
+                
+            } elseif( $modified && $modified > get_post_modified_time( 'U', true, $group[ 'ID' ], true ) ) {
+                
+                //Si es digerente la fecha de modificacón, lo asignamos al arreglo de sync
+                $sync[ $group[ 'key' ] ]  = $group;
+            }
+        }
+
+        //Si hay algo que sincronizar
+        if( ! empty( $sync ) ) {
+            
+            // Inicializamos el arreglo
+            $new_ids = array();
+            
+            //Deshabilitamos los filtros
+            acf_disable_filters();
+            acf_enable_filter('local');
+
+            //Deshabilitamos json para prevenir que un nuevo archivo sea creado
+            acf_update_setting('json', false);
+
+            //Recorremos sync
+            foreach( $sync as $group_key => $group ) {
+                
+                //Obtenemos el grupo de campos
+                $field_group = $sync[ $group_key ];
+                
+                // append fields
+                if( acf_have_local_fields( $group_key ) ) {
+
+                    $field_group[ 'fields' ] = acf_get_fields( $group_key );
+                    
+                }
+
+                // insertamos los campos
+                acf_import_field_group( $field_group );
+            }
+        }else{
+            //Si está vacío sync, retornamos
+            return;
+        }
     }
 }
