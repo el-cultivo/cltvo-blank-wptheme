@@ -1,5 +1,6 @@
-En esta carpeta existirán todos los archivos json correspondientes a cada grupo de campos creados con el plugin de ACF
+En esta carpeta se almacenan automáticamente todos los custom fields de un proyecto.
 
-También se realizó la configuración para la actualización automática de los campos. 
+Cada uno de los grupos de campos creados en el administrador, corresponde a cada uno de los archivos almacenados en esta carpeta.
 
-Dicha configuración, la puedes encontrar en app/providers/ActionServiceProvider.php
+También se configuró la funcionalidad para que cada vez que existan cambios o adiciones en estos archivos, se actualicen automáticamente al entrar al admin.
+Dicha función se puede encontrar en ActionServiceProvider.php dentro de la carpeta del tema.
