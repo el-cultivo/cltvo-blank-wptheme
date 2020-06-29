@@ -16,6 +16,8 @@ class ActionsServiceProvider
         add_action('admin_init', [$this, 'adminInit']);
         add_action('admin_menu', [$this, 'adminMenu'] );
         add_action('init', [$this, 'init']);
+        add_action('tgmpa_register', [$this, 'registerRequiredPlugins']);
+
     }
 
     public function init()
@@ -39,12 +41,12 @@ class ActionsServiceProvider
             remove_post_type_support( 'page', 'editor' );
         }
 
-        //Verificamos que el plugin exista cuando se inicie el admin
-        if( self::isAcfActive() ){
-
+        //Verificamos que el plugin de ACF exista cuando se inicie el admin
+        if( self::isAcfActive() )
+        {
             self::syncAcfFields();
-
         }
+
     }
 
     public function adminMenu()
@@ -66,6 +68,23 @@ class ActionsServiceProvider
     {
         //
     }
+
+
+    /*
+        Función que muestra un mensaje con los plugins necesarios y sugeridos para el tema
+    */
+
+    public function registerRequiredPlugins(){
+        
+        //Llama al arreglo de plugins en el archivo
+        $plugins = require_once __DIR__ . '/../../config/required_plugins.php';
+        
+        //Llama al arreglo de configuraciones del archivo
+        $config = require_once __DIR__ . '/../../config/conf_plugins.php';
+
+        tgmpa( $plugins, $config );
+    }
+
 
     /*
         Función que verifica que el plugin de acf pro o acf normales, existan y están activados
