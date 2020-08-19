@@ -44,6 +44,7 @@ class ActionsServiceProvider
         //Verificamos que el plugin de ACF exista cuando se inicie el admin
         if( self::isAcfActive() )
         {
+            self::specialPageLocation();
             self::syncAcfFields();
         }
 
@@ -178,6 +179,16 @@ class ActionsServiceProvider
         }else{
             //Si está vacío sync, retornamos
             return;
+        }
+    }
+
+    /*
+        Función que inicializa la clase Custom Location para que se puedan seleccionar special pages en los campos de ubicación en los acf
+    */
+    public function specialPageLocation(){
+        if( function_exists('acf_register_location_type') ) {
+            include_once(__DIR__.'/../../includes/custom/CustomLocation.php' );
+            acf_register_location_type( 'CustomLocation' );
         }
     }
 }
