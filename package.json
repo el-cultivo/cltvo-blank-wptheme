@@ -43,7 +43,7 @@
   "dependencies": {
     "jquery": "^3.2.1",
     "mazorca-core": "^1.6.2",
-    "node-sass": "^4.8.3",
+    "node-sass": "^4.13.1",
     "ramda": "^0.24.1"
   }
 }
