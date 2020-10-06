@@ -36,7 +36,7 @@ return [
         'slug'               => 'advanced-custom-fields-pro',
         'source'             => get_template_directory() . '/includes/plugins/advanced-custom-fields-pro.zip',
         'required'           => true,
-        'version'            => '5.8.12',
+        'version'            => '5.9.1',
         'force_activation'   => true,
         'force_deactivation' => false,
         'external_url'       => '',
