@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 return [
 
@@ -24,8 +24,8 @@ return [
     //Post types order (Para ordenar con drag and drop los Post Types, sólo es sugerido)
     [
         'name'         => 'Post Types Order',
-        'slug'         => 'post-types-order', 
-        'required'    =>  false,  
+        'slug'         => 'post-types-order',
+        'required'    =>  false,
         'force_activation'   => true,
         'force_deactivation' => false
     ],
@@ -55,5 +55,14 @@ return [
         'force_deactivation' => false,
         'external_url'       => '',
         'is_callable'        => '',
+    ],
+
+    //Mailgun plugin (requerudo en producción)
+    [
+        'name'               => 'Mailgun',
+        'slug'               => 'mailgun',
+        'required'           => true,
+        'force_activation'   => (WP_DEBUG) ? false : true,
+        'force_deactivation' => false
     ],
 ];
