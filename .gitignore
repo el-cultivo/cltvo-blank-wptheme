@@ -3,6 +3,7 @@
 *.scssc
 wp-config.php
 wp-content/uploads/
+wp-content/plugins/
 config.codekit
 .htaccess
 error.log
