@@ -7,12 +7,10 @@
 
 	<link rel="profile" href="http://gmpg.org/xfn/11">
 
-	<title><?php wp_title(); ?></title>
+	<title><?php bloginfo( 'name' ); ?></title>
 
 	<?php include_once('inc/favicon.php'); ?>
 
-	<meta name="description" content="" />
-	<meta name="keywords" content="" />
 	<meta name="author" content="<?php echo THEMEURL;?>humans.txt">
 
 	<!-- Font awesome -->
