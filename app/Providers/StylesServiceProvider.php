@@ -9,7 +9,7 @@ class StylesServiceProvider
     ];
 
     protected $cdn = [
-        'cltvo_slick_css' => '//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css',
+        'cltvo_slick_css' => '//cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.css',
     ];
 
     /**
