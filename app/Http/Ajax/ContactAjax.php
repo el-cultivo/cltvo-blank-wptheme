@@ -25,7 +25,13 @@ class ContactAjax extends Ajax
             'email'         => 'required',
         ]);
 
-        $this->from_address = $this->getMailgunFromAddress();
+        $mailgun = get_theme_support('CLTVO_USEMAILGUN');
+
+        if (!empty($mailgun) && $mailgun[0] == true){
+            $this->from_address = $this->getMailgunFromAddress();
+        }else{
+            $this->from_address = 'admin@elcultivo.mx';
+        }
 
         // Mail para el comprador.
         Mail::to($input['email'])->send(new ContactMail($input));

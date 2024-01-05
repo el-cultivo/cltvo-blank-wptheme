@@ -1,4 +1,5 @@
-<?php get_header(); ?>
+<?php get_header(); 
+?>
 
 <div class="splash">
     <img class="logo" src="<?php echo THEMEURL; ?>/images/cultivo_logo.svg" alt="">

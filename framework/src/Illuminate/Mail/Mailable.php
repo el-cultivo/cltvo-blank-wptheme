@@ -90,12 +90,20 @@ class Mailable
 
     public function send()
     {
+
         $this->build();
 
-        if(WP_DEBUG){
-            return (new SMTPMailer)->send($this);
-        }else {
+        $mailgun = get_theme_support('CLTVO_USEMAILGUN');
+
+        if (!empty($mailgun) && $mailgun[0] == true){
+            if(WP_DEBUG){
+                return (new SMTPMailer)->send($this);
+            }else {
+                return (new Mailer)->send($this);
+            }
+        }else{
             return (new Mailer)->send($this);
         }
+        
     }
 }

@@ -8,7 +8,7 @@ cltvo_blank_wptheme
 * 2.- Dentro de la carpeta de temas, descargar este proyecto y al finalizar la descarga, eliminar la carpeta .git (para que no sufra modificaciones éste repositorio).
 * 3.- Cambiar el nombre de la carpeta recién instalada/descargada a nombre-proyecto-theme
 * 4.- Dentro de la carpeta del tema (la del paso anterior) se deben correr los comandos`npm install`y`composer install`
-* 5.- Para finalizar, en el administrador del sitio de WP, en el apartado de apariencia debemos activar el tema
+* 5.- En el administrador del sitio de WP, en el apartado de apariencia debemos activar el tema
 
 ## Variaciones entre versiones del blank theme
 * Versión 3
@@ -28,6 +28,10 @@ cltvo_blank_wptheme
 	- Plugins: Los ACF se agregan automáticamente (cuando ya se activó el tema) en una carpeta llamada acf-json (dentro del tema), por lo que ya no es necesario exportar e importar los ACF cuando se ocupa esta versión.
 	- Plugins: Se agrega un nuevo campo de location en las opciones de los ACF (cuando se selecciona en dónde irá el campo) ese campo se llama Special Pages y sirve para que no se pierda la configuración de la correspondencia de los campos entre las pages
 	- Email: Para esta versión se ocupa el plugin de Mailgun, y del "from" en la configuración de este plugin, se obtiene rl correo a donde se enviará la información de contacto
+
+* Versión 3.2.1
+	- Para definir el uso de Mailgun en el envío de correos, es necesario modificar la variable para el tema CLTVO_USEMAILGUN en functions.php y ponerla en true. Por defecto se usa el de WP Engine así que la variable se encuentra siempre en false.
+
 
 
 
