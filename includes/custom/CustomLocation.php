@@ -3,6 +3,7 @@
 class CustomLocation extends ACF_Location {
 
 	protected $special_pages;
+	protected $config; // Declare the property
 
     public function initialize() 
     {
@@ -12,7 +13,7 @@ class CustomLocation extends ACF_Location {
         $this->object_type = 'page';
         $this->config = require realpath(__DIR__.'/../../') . '/config/app.php';
     }
-
+	
     public function get_values( $rule ) {
 	    $special_pages = $this->config['special-pages'];
 
