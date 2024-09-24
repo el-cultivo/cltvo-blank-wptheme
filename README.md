@@ -32,8 +32,8 @@ cltvo_blank_wptheme
 * Versión 3.2.1
 	- Para definir el uso de Mailgun en el envío de correos, es necesario modificar la variable para el tema CLTVO_USEMAILGUN en functions.php y ponerla en true. Por defecto se usa el de WP Engine así que la variable se encuentra siempre en false.
 
-
-
+* Versión 3.2.2
+	- Se agrega en functions.php la función cltvo_role_edit(), para otorgarle permiso al rol de editor de poder administrar los menús
 
 ## Notas importantes
 * Para enviar correctamente los correos la constante WP_DEBUG debe estar en false
