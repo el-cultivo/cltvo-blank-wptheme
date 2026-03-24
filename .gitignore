@@ -1,9 +1,6 @@
 #usar este gitignore en la raíz del proyecto de WP
 *.DS_Store
 *.scssc
-wp-config.php
-wp-content/uploads/
-wp-content/plugins/
 config.codekit
 .htaccess
 error.log
@@ -22,6 +19,7 @@ Thumbs.db
 # wordpress specific
 wp-config.php
 wp-content/uploads/
+wp-content/languages/
 wp-content/blogs.dir/
 wp-content/upgrade/*
 wp-content/backup-db/*
@@ -84,3 +82,4 @@ wp-content/mu-plugins/wpe-wp-sign-on-plugin*
 /sass/node_modules/
 /sass/.sass-cache/
 /vendor
+package-lock.json

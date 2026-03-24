@@ -35,6 +35,103 @@ cltvo_blank_wptheme
 * Versión 3.2.2
 	- Se agrega en functions.php la función cltvo_role_edit(), para otorgarle permiso al rol de editor de poder administrar los menús
 
+* Versión 3.2.3 (Actual)
+	- Se agrega la carpeta de languages al .gitignore para proyectos con multiples idiomas
+
+	- Sincronización de ACF controlada (IMPORTANTE)
+		•	Se elimina el sync automático de ACF al cargar admin
+		•	Se agrega herramienta manual: `Tools → ACF JSON Sync`
+		¿Por qué?
+		Se detectaron problemas en proyectos con:
+			•	WPML
+			•	múltiples idiomas
+			•	duplicación de Field Groups
+			•	inconsistencias entre JSON y DB
+
+		Nueva estrategia:
+			•	El source of truth = acf-json
+			•	Sync manual bajo demanda
+			•	Validaciones para evitar corrupción
+
+		Qué hace el sync:
+			•	Importa solo si:
+				•	no existe en DB, o
+				•	JSON es más reciente
+				•	NO elimina Field Groups (evita pérdida de info)
+				•	Detecta huérfanos (DB ≠ JSON)
+
+	- Compatibilidad ACF + WPML (CRÍTICO)
+		•	Problema
+			ACF + WPML guarda JSON por idioma:
+				acf-json/
+					├── en/
+					├── es/
+			•	Esto provoca:
+				•	Fields no visibles en otros idiomas
+				•	Sync incompleto
+				•	Duplicaciones
+
+		•	Solución implementada
+			Se fuerza a ACF a cargar TODOS los JSON: `acf/settings/load_json`
+			Incluyendo:
+				•	/acf-json
+				•	/acf-json/en
+				•	/acf-json/es
+				•	cualquier subfolder
+
+			Resultado:
+				•	ACF siempre ve todos los field groups
+				•	Sync consistente entre idiomas
+
+	- Detección de Field Groups huérfanos
+
+		Se agregó validación que detecta:
+
+		Field Groups que existen en DB pero ya no tienen JSON
+
+		Esto ayuda a:
+			•	limpiar basura histórica
+			•	evitar duplicaciones invisibles
+
+		Importante:
+			•	NO se eliminan automáticamente
+			•	se deben revisar manualmente
+
+	- Nuevas Flags del tema (functions.php):
+		`add_theme_support('title-tag');`
+		`add_theme_support('CLTVO_USEMAILGUN', false);`
+		`add_theme_support('CLTVO_DISABLE_COMMENTS', true);`
+
+		title-tag
+			•	Permite que plugins como Yoast controlen el <title>
+
+		CLTVO_USEMAILGUN
+			•	Define si se usa Mailgun o el mailer del server
+
+		CLTVO_DISABLE_COMMENTS
+			•	Desactiva comentarios globalmente
+			•	Puede configurarse por excepción: `['except' => ['post']]`
+
 ## Notas importantes
 * Para enviar correctamente los correos la constante WP_DEBUG debe estar en false
 * En versiones de producción, se deben actualizar las versiones de los css y js esto se hace cambiando el número en el quinto parámetro ('0.0') de las funciones `wp_register_style` y `wp_register_script`
+* ACF + WPML
+	•	Siempre trabajar con JSON como fuente principal
+	•	Evitar editar directamente en producción sin sync
+	•	Usar el tool de sync después de:
+		•	pull
+		•	deploy
+		•	cambio de idioma
+
+## Estado actual
+* Sync funcional
+* En investigación: edge cases con WPML y posibles duplicaciones históricas
+* Se recomienda monitoreo en proyectos activos
+
+## Recomendaciones
+* Siempre hacer backup antes de sync masivo
+* No confiar en DB como fuente de verdad
+* Revisar huérfanos periódicamente
+* Evitar editar ACF directo en producción sin control
+
+
