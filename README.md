@@ -35,7 +35,7 @@ cltvo_blank_wptheme
 * Versión 3.2.2
 	- Se agrega en functions.php la función cltvo_role_edit(), para otorgarle permiso al rol de editor de poder administrar los menús
 
-* Versión 3.2.3 (Actual)
+* Versión 3.3 (Actual)
 	- Se agrega la carpeta de languages al .gitignore para proyectos con multiples idiomas
 
 	- Sincronización de ACF controlada (IMPORTANTE)
