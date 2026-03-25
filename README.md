@@ -115,6 +115,10 @@ cltvo_blank_wptheme
 * En investigación: edge cases con WPML y posibles duplicaciones históricas
 * Se recomienda monitoreo en proyectos activos
 
+## Alertas
+* Se identificó que las alertas de Dependabot relacionadas con PHPMailer provienen de una dependencia declarada directamente en el `composer.json` del blank theme (`phpmailer/phpmailer: ^6.0`). El riesgo no está en el constraint por sí solo, sino en la versión resuelta en composer.lock, que quedó desactualizada.
+* En proyectos activos, la revisión debe hacerse caso por caso según su composer.lock y uso real de la dependencia.
+
 ## Recomendaciones
 * Siempre hacer backup antes de sync masivo
 * No confiar en DB como fuente de verdad
