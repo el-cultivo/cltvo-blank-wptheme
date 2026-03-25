@@ -82,4 +82,3 @@ wp-content/mu-plugins/wpe-wp-sign-on-plugin*
 /sass/node_modules/
 /sass/.sass-cache/
 /vendor
-package-lock.json
