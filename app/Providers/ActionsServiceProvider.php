@@ -691,7 +691,7 @@ class ActionsServiceProvider
             <p>
                 Estos grupos existen en la base de datos pero <strong>no tienen archivo correspondiente en <code>acf-json/</code></strong>.
                 Este tool <strong>no borra automáticamente</strong> para evitar pérdidas accidentales.
-                Si estás 100% segura de que ya no se usan, muévelos a <strong>Papelera</strong> o elimínalos permanentemente desde ACF.
+                Si estás 100% segurx de que ya no se usan, muévelos a <strong>Papelera</strong> o elimínalos permanentemente desde ACF.
             </p>
 
             <?php if (empty($orphans['items'])): ?>
