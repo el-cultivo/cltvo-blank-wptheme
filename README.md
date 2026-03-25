@@ -39,49 +39,34 @@ cltvo_blank_wptheme
 	- Se agrega la carpeta de languages al .gitignore para proyectos con multiples idiomas
 
 	- Sincronización de ACF controlada (IMPORTANTE)
-		•	Se elimina el sync automático de ACF al cargar admin
-		•	Se agrega herramienta manual: `Tools → ACF JSON Sync`
-		¿Por qué?
-		Se detectaron problemas en proyectos con:
-			•	WPML
-			•	múltiples idiomas
-			•	duplicación de Field Groups
-			•	inconsistencias entre JSON y DB
-
-		Nueva estrategia:
-			•	El source of truth = acf-json
-			•	Sync manual bajo demanda
-			•	Validaciones para evitar corrupción
-
-		Qué hace el sync:
-			•	Importa solo si:
-				•	no existe en DB, o
-				•	JSON es más reciente
-				•	NO elimina Field Groups (evita pérdida de info)
-				•	Detecta huérfanos (DB ≠ JSON)
+	  	-	Se elimina el sync automático de ACF al cargar admin
+		-	Se agrega herramienta manual: `Tools → ACF JSON Sync`
+	  	-	¿Por qué? Se detectaron problemas en proyectos con: WPML (múltiples idiomas), duplicación de Field Groups, inconsistencias entre JSON y DB
+		-	Nueva estrategia: El source of truth = acf-json; Sync manual bajo demanda; Validaciones para evitar corrupción.
+	
+		-	Qué hace el sync:
+				-	Importa solo si: no existe en DB, o JSON es más reciente. NO elimina Field Groups (evita pérdida de info) y detecta huérfanos (DB ≠ JSON)
 
 	- Compatibilidad ACF + WPML (CRÍTICO)
-		•	Problema
-			ACF + WPML guarda JSON por idioma:
+ 		- Problema: ACF + WPML guarda JSON por idioma:
+
 				acf-json/
 					├── en/
 					├── es/
-			•	Esto provoca:
-				•	Fields no visibles en otros idiomas
-				•	Sync incompleto
-				•	Duplicaciones
+     
+		  Esto provoca: Fields no visibles en otros idiomas; Sync incompleto; Duplicaciones.
 
-		•	Solución implementada
-			Se fuerza a ACF a cargar TODOS los JSON: `acf/settings/load_json`
-			Incluyendo:
-				•	/acf-json
-				•	/acf-json/en
-				•	/acf-json/es
-				•	cualquier subfolder
+	    - Solución implementada
+			Se extiende la configuración de ACF `acf/settings/load_json` para incluir todos los subdirectorios dentro de acf-json incluyendo:
+   
+				/acf-json
+				/acf-json/en
+				/acf-json/es
+				cualquier subfolder
 
-			Resultado:
-				•	ACF siempre ve todos los field groups
-				•	Sync consistente entre idiomas
+		- Resultado:
+				- ACF siempre ve todos los field groups
+				- Sync consistente entre idiomas
 
 	- Detección de Field Groups huérfanos
 
@@ -98,19 +83,21 @@ cltvo_blank_wptheme
 			•	se deben revisar manualmente
 
 	- Nuevas Flags del tema (functions.php):
+
 		`add_theme_support('title-tag');`
 		`add_theme_support('CLTVO_USEMAILGUN', false);`
 		`add_theme_support('CLTVO_DISABLE_COMMENTS', true);`
 
-		title-tag
-			•	Permite que plugins como Yoast controlen el <title>
-
-		CLTVO_USEMAILGUN
-			•	Define si se usa Mailgun o el mailer del server
-
-		CLTVO_DISABLE_COMMENTS
-			•	Desactiva comentarios globalmente
-			•	Puede configurarse por excepción: `['except' => ['post']]`
+			title-tag
+				•	Permite que plugins como Yoast controlen el <title>
+	
+			CLTVO_USEMAILGUN
+				•	Define si se usa Mailgun o el mailer del server
+	
+			CLTVO_DISABLE_COMMENTS
+				•	Desactiva comentarios globalmente
+				•	Puede configurarse por excepción: `['except' => ['post']]`
+   
 
 ## Notas importantes
 * Para enviar correctamente los correos la constante WP_DEBUG debe estar en false
