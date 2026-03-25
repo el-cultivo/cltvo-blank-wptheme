@@ -19,6 +19,7 @@ Thumbs.db
 # wordpress specific
 wp-config.php
 wp-content/uploads/
+wp-content/plugins/
 wp-content/languages/
 wp-content/blogs.dir/
 wp-content/upgrade/*
