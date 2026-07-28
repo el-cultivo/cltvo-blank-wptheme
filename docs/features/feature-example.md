@@ -1,3 +1,7 @@
+<!-- 
+**Crear un archivo .md por funcionalidad y poner el nombre de la funcionalidad en el nombre del arhivo. Evitar crear un archivo "features.md"**
+-->
+
 **Origen:**
 
 <!-- 
@@ -12,7 +16,8 @@ Usar esta bandera para indicar si el feature se desarolló para el blank-theme y
 
 # Nombre de la funcionalidad
 
-<!-- 
+<!--
+  ⚠️importante: aunque el título del documento es el nombre de la funcionalidad. **Crear un archivo .md por funcionalidad** 
   Nombre en español, claro y directo. Debe describir qué es, no qué hace.
   Ejemplos: "Integración de FAQs por API", 
   Evitar: "Feature de FAQs", "Módulo nuevo", "Sistema de asesores v2"
