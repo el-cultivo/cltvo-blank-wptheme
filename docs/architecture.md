@@ -11,6 +11,31 @@ Cada proyecto vive en su propio repositorio independiente. El boilerplate no se 
 
 > ⚠️ Pendiente: mapear la estructura real de carpetas del tema.
 
+
+## Core del tema
+
+El tema utiliza una estructura interna para centralizar el registro e inicialización de sus componentes principales.
+
+Ver [Esctructura del tema](./core/estructura-tema.md).
+
+### Providers
+
+Los Providers se encuentran en `app/Providers/` y se registran desde `config/app.php`. Se encargan de inicializar funcionalidades globales como scripts, estilos, menús, acciones, filtros, Custom Post Types y taxonomías.
+
+Ver [Providers](./core/providers.md).
+
+### Custom Post Types
+
+Los Custom Post Types se implementan mediante clases que extienden `Illuminate\CustomPostType` y se registran a través de `CustomPostTypeServiceProvider`.
+
+Ver [Custom Post Types](./core/custom-post-types.md).
+
+### Taxonomías
+
+Las taxonomías personalizadas se implementan mediante clases que extienden `Illuminate\Taxonomy` y se registran a través de `TaxonomyServiceProvider`.
+
+Ver [Taxonomías](./core/taxonomies.md).
+
 ---
 
 ## Compilación
