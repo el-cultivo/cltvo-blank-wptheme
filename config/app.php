@@ -37,4 +37,10 @@ return [
 
     'special-tags' => [],
 
+    'features' => [
+        // Desactiva comentarios globalmente.
+        // true = todos los post types.
+        // ['except' => ['post']] = todos excepto los indicados.
+        'disable_comments' => true,
+    ],
 ];

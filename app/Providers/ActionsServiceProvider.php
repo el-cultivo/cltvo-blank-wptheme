@@ -2,7 +2,9 @@
 
 namespace App\Providers;
 
-class ActionsServiceProvider
+use Illuminate\Support\ServiceProvider;
+
+class ActionsServiceProvider extends ServiceProvider
 {
     public function boot()
     {
@@ -11,12 +13,7 @@ class ActionsServiceProvider
         add_action('admin_menu',        [$this, 'adminMenu']);
         add_action('init',             [$this, 'init']);
         add_action('tgmpa_register',   [$this, 'registerRequiredPlugins']);
-
-        add_action('after_setup_theme', function () {
-            if ( current_theme_supports('CLTVO_DISABLE_COMMENTS') ) {
-                $this->wireDisableComments();
-            }
-        }, 20);
+        $this->registerComments();
     }
 
     public function init()
@@ -764,58 +761,110 @@ class ActionsServiceProvider
         </div>
         <?php
     }
-
+    
     /**
      * ===========================
      * DISABLE COMMENTS
      * ===========================
      */
-    private function wireDisableComments()
+    private function registerComments()
     {
-        $support  = get_theme_support('CLTVO_DISABLE_COMMENTS');
-        $opts     = is_array($support) && isset($support[0]) ? (array) $support[0] : [];
-        $except   = isset($opts['except']) ? (array) $opts['except'] : [];
+        $config = $this->app->config['features']['disable_comments'] ?? false;
 
+        if (!$config) {
+            return;
+        }
+
+        $this->wireDisableComments($config);
+    }
+
+    private function wireDisableComments($config = true)
+    {
+        $opts   = is_array($config) ? $config : [];
+        $except = isset($opts['except']) ? (array) $opts['except'] : [];
+
+        /**
+         * Determina si los comentarios están deshabilitados
+         * para el post type actual.
+         */
+        $commentsDisabled = function($post_id = null) use ($except) {
+            $post_type = get_post_type($post_id ?: get_the_ID());
+
+            return !$post_type || !in_array($post_type, $except, true);
+        };
+
+        /**
+         * Quita soporte de comments y trackbacks
+         * de todos los post types excepto los configurados.
+         */
         add_action('admin_init', function() use ($except) {
             $post_types = get_post_types();
-            foreach ($post_types as $pt) {
-                if (in_array($pt, $except, true)) continue;
-                if (post_type_supports($pt, 'comments')) {
-                    remove_post_type_support($pt, 'comments');
-                    remove_post_type_support($pt, 'trackbacks');
+
+            foreach ($post_types as $post_type) {
+                if (in_array($post_type, $except, true)) {
+                    continue;
                 }
+
+                remove_post_type_support($post_type, 'comments');
+                remove_post_type_support($post_type, 'trackbacks');
             }
         });
 
-        add_filter('comments_open', '__return_false', 20);
-        add_filter('pings_open',    '__return_false', 20);
-        add_filter('comments_array', function($c){ return []; }, 10, 2);
+        /**
+         * Cierra comments y pings en frontend,
+         * respetando las excepciones.
+         */
+        add_filter('comments_open', function($open, $post_id) use ($commentsDisabled) {
+            return $commentsDisabled($post_id) ? false : $open;
+        }, 20, 2);
 
-        add_action('admin_menu', function () {
-            remove_submenu_page('options-general.php', 'options-discussion.php');
-        }, 999);
+        add_filter('pings_open', function($open, $post_id) use ($commentsDisabled) {
+            return $commentsDisabled($post_id) ? false : $open;
+        }, 20, 2);
 
-        add_action('admin_menu', function() {
-            remove_menu_page('edit-comments.php');
-        }, 999);
+        /**
+         * Evita devolver comentarios para post types
+         * donde se encuentran deshabilitados.
+         */
+        add_filter('comments_array', function($comments, $post_id) use ($commentsDisabled) {
+            return $commentsDisabled($post_id) ? [] : $comments;
+        }, 10, 2);
 
-        add_action('admin_init', function() {
-            global $pagenow;
-            if ($pagenow === 'edit-comments.php') {
-                wp_safe_redirect(admin_url()); exit;
-            }
-        });
-
-        add_action('wp_dashboard_setup', function() {
-            remove_meta_box('dashboard_recent_comments', 'dashboard', 'normal');
-        });
-
-        add_action('admin_bar_menu', function($wp_admin_bar){
-            $wp_admin_bar->remove_node('comments');
-        }, 60);
-
-        add_filter('comments_template', function($file){
-            return get_stylesheet_directory() . '/empty-comments.php';
+        /**
+         * Utiliza un template vacío cuando Comments
+         * están deshabilitados para el post type actual.
+         */
+        add_filter('comments_template', function($file) use ($commentsDisabled) {
+            return $commentsDisabled() ? get_stylesheet_directory() . '/empty-comments.php' : $file;
         }, 99);
+
+        /**
+         * Si no existen excepciones, Comments está
+         * completamente deshabilitado y ocultamos
+         * también su administración en WordPress.
+         */
+        if (empty($except)) {
+            add_action('admin_menu', function() {
+                remove_submenu_page('options-general.php', 'options-discussion.php');
+                remove_menu_page('edit-comments.php');
+            }, 999);
+
+            add_action('admin_init', function() {
+                global $pagenow;
+
+                if (in_array($pagenow, ['edit-comments.php', 'options-discussion.php'], true)) {
+                    wp_safe_redirect(admin_url());
+                    exit;
+                }
+            });
+
+            add_action('wp_dashboard_setup', function() {
+                remove_meta_box('dashboard_recent_comments', 'dashboard', 'normal');
+            });
+
+            add_action('admin_bar_menu', function($wp_admin_bar) {
+                $wp_admin_bar->remove_node('comments');
+            }, 60);
+        }
     }
 }
