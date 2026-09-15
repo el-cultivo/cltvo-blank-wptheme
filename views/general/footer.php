@@ -1,9 +1,3 @@
 <footer class="footer">
-		
-		<div class="footer__contenedor">
-			<div class="grid__container">
-				Todos los derechos reservados © 2019 El Cultivo
-			</div>
-			
-		</div>
-	</footer>
+	<p>Todos los derechos reservados <?php esc_html(bloginfo('name')); ?> &copy; <?php echo wp_date('Y'); ?></p>
+</footer>
