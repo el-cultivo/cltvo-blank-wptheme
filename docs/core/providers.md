@@ -69,27 +69,46 @@ La responsabilidad exacta de cada provider depende de su implementación. La tab
 
 ---
 
-## Métodos `register()` y `boot()`
+## Inicialización de providers
 
-Los providers revisados exponen dos métodos:
+El ciclo de inicialización se encuentra en:
+
+```text
+framework/src/Illuminate/Foundation/Application.php
+```
+
+`Application` carga `config/app.php`, recorre el arreglo `providers`, instancia cada clase y ejecuta directamente:
+
+```php
+$object->boot();
+```
+
+El flujo actual es:
+
+```text
+config/app.php
+    ↓
+providers
+    ↓
+new Provider($this)
+    ↓
+boot()
+```
+
+Algunos providers incluyen un método:
 
 ```php
 public function register()
 {
     //
 }
-
-public function boot()
-{
-    //
-}
 ```
 
-En los providers revisados, `boot()` concentra la inicialización efectiva de cada responsabilidad. En varios de ellos `register()` existe como parte de la estructura del provider pero actualmente no contiene lógica.
+pero **el framework actual no ejecuta `register()` automáticamente**.
 
-La implementación concreta puede variar entre providers, por lo que no debe asumirse que ambos métodos realizan siempre trabajo.
+Por lo tanto, dentro de la implementación actual del blank theme, `boot()` es el punto efectivo de inicialización de los providers.
 
----
+
 
 # ActionsServiceProvider
 
@@ -202,7 +221,7 @@ Las `special-pages` permiten declarar páginas requeridas por el tema y mantener
 
 También permite crear categorías y etiquetas especiales requeridas por alguna funcionalidad del proyecto.
 
-Ver [AppServiceProvider](./providers/app.md).
+Ver [AppServiceProvider](./app.md).
 
 ---
 
@@ -622,7 +641,7 @@ Un provider adicional tiene sentido cuando se necesita centralizar una nueva res
 El flujo general es:
 
 1. Crear la clase dentro de `app/Providers/`.
-2. Implementar la inicialización necesaria en `register()` y/o `boot()` de acuerdo con la arquitectura utilizada.
+2. Implementar la inicialización necesaria en `boot()`. El framework actual no ejecuta `register()` automáticamente.
 3. Registrar la clase en `config/app.php`.
 
 Ejemplo:
@@ -647,7 +666,7 @@ providers
     ↓
 app/Providers/*
     ↓
-register() / boot()
+boot()
     ↓
 registro e inicialización de componentes
 ```

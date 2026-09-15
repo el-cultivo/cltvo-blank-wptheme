@@ -14,11 +14,21 @@ El formato está basado en [Keep a Changelog](https://keepachangelog.com/es-ES/1
 - Flag `CLTVO_DISABLE_COMMENTS` en `functions.php` para desactivar comentarios globalmente, con soporte para excepciones por post type.
 - Flag `title-tag` en `functions.php` para permitir que plugins como Yoast controlen el `<title>`.
 
-## [3.3.1] - 2026-03-025
+### Documentation
+
+- Se agrega documentación técnica de la arquitectura del blank theme.
+- Se documentan bootstrap, framework, configuración, helpers, providers, templates y views.
+- Se documenta el funcionamiento de Custom Post Types, taxonomías, AJAX, Controllers, Actions, Filters, Menus, Metaboxes, Options y Theme Support.
+- Se documentan las integraciones con ACF y el sistema de correo/Mailgun.
+- Se documenta el frontend: build con Laravel Mix, JavaScript y estructura Sass/Mazorca.
+- Se agrega `docs/README.md` como índice de navegación y `theme-structure.md` como mapa del repositorio.
+- Se identifican componentes legacy y puntos pendientes de refactor sin modificar todavía su comportamiento.
+
+## [3.3.1] - 2026-03-25
 
 ### Changed
 
-- Gitignore ahora incluye la carpet de plugins
+- `.gitignore` ahora incluye la carpeta de plugins.
 
 ###  Security 
 
@@ -41,14 +51,14 @@ El formato está basado en [Keep a Changelog](https://keepachangelog.com/es-ES/1
 ## [3.2.2] - 2024-08-29
 
 ### Added
-- Función `cltvo_role_edit()` en `functions.php` para otorgar al rol de editor permisos de administración de menús.
+- Función `cltvo_role_edit()` en `functions.php` para agregar la capability `edit_theme_options` al rol Editor.
 
 ---
 
 ## [3.2.1] - 2024-01-04
 
 ### Changed
-- La flag `CLTVO_USEMAILGUN` en `functions.php` ahora controla el uso de Mailgun vs. el mailer del servidor (WP Engine). Por defecto se encuentra en `false`.
+- Flag `CLTVO_USEMAILGUN` en `functions.php` para controlar el flujo de envío de correo utilizado por el theme.
 
 ---
 

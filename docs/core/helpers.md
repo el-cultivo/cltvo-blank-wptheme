@@ -11,7 +11,7 @@ app/helpers.php
 
 funciona como punto central para **funciones auxiliares globales propias de cada proyecto**.
 
-El blank theme incluye algunas funciones de ejemplo, son funciones de ejemplo incluidas en el blank theme y no es necesario conservarlas en cada proyecto. En proyectos nuevos el contenido puede limpiarse, reemplazarse o adaptarse según las necesidades de implementación.
+El blank theme incluye algunas funciones de ejemplo, pero no es necesario conservarlas en cada proyecto. En proyectos nuevos el contenido puede limpiarse, reemplazarse o adaptarse según las necesidades de implementación.
 
 La finalidad del archivo es evitar concentrar funciones auxiliares del proyecto directamente en `functions.php` y mantenerlas en una ubicación reconocible dentro de `app/`.
 
@@ -88,6 +88,7 @@ obtener CPTs
 ordenar colecciones
 preparar información
 queries compartidas
+helpers de búsqueda
 transformaciones reutilizables
 ```
 
@@ -159,7 +160,9 @@ El archivo actual del blank theme contiene funciones de ejemplo relacionadas pri
 - `starts_with`;
 - tipologías.
 
-Estas funciones sirven como referencia de implementaciones anteriores, pero **no forman parte de una estructura obligatoria del blank theme y pueden eliminarse si el proyecto no las necesita**.
+Estas funciones sirven como referencia de implementaciones anteriores, pero **no forman parte de una estructura obligatoria que todos los proyectos deban conservar**.
+
+En proyectos recientes pueden eliminarse si no son necesarias.
 
 Por lo tanto, la documentación del blank theme debe considerar estable el **propósito de `app/helpers.php`**, no necesariamente las funciones que actualmente contiene.
 
@@ -188,6 +191,7 @@ helpers globales del proyecto
     ├── queries reutilizables
     ├── ordenamiento
     ├── preparación de datos
+    ├── búsquedas
     └── utilidades compartidas
 
 NO

@@ -115,7 +115,7 @@ La integración contempla:
 
 Debido a que esta funcionalidad es crítica para el flujo de desarrollo del blank theme, su comportamiento debe entenderse antes de modificar o eliminar archivos dentro de `acf-json`.
 
-Ver para más detalles [ACF](../integrations/acf.md).
+Ver para más detalles [ACF](../../integrations/acf.md).
 
 ---
 
@@ -188,4 +188,4 @@ boot()
 
 ## Documentación relacionada
 
-- [Advanced Custom Fields (ACF)](../integrations/acf.md)
+- [Advanced Custom Fields (ACF)](../../integrations/acf.md)
