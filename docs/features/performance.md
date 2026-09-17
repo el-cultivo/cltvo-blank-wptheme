@@ -10,15 +10,28 @@ Módulo transversal del boilerplate que estandariza las optimizaciones de perfor
 
 ```
 includes/
-└── performance/
-    ├── performance.php   — Punto de entrada del módulo; carga los archivos requeridos
-    ├── scripts.php       — Defer para scripts internos; Partytown para scripts externos
-    ├── images.php        — Tamaños de imagen y helpers
-    └── head.php          — Preconnects y preload del LCP
+├── performance/
+│   ├── performance.php   — Punto de entrada del módulo; carga los archivos requeridos
+│   ├── scripts.php       — Defer para scripts internos; Partytown para scripts externos
+│   ├── images.php        — Tamaños de imagen y helpers
+│   └── head.php          — Preconnects y preload del LCP
 └── analytics.php         — Scripts de tracking del proyecto
+~partytown/               — Librería de Partytown (raíz del tema)
 ```
 
-Para agregar un nuevo archivo al módulo: crear el archivo dentro de `includes/performance/` y registrarlo en `performance.php`.
+El módulo se carga desde `functions.php` con un `require_once` de `performance.php`. Para agregar un nuevo archivo al módulo: crear el archivo dentro de `includes/performance/` y registrarlo en `performance.php`.
+
+### Hooks en `header.php`
+
+El módulo imprime su salida mediante tres acciones que `header.php` dispara antes de `wp_head()`, en este orden:
+
+| Hook | Salida |
+| :--- | :--- |
+| `cltvo_preconnect` | Etiquetas `<link rel="preconnect">` |
+| `cltvo_lcp_preload` | `<link rel="preload">` de la imagen del hero |
+| `cltvo_partytown` | Configuración y script de Partytown |
+
+Si se reescribe el `header.php` del proyecto, conservar estos `do_action()`.
 
 ---
 
@@ -31,6 +44,8 @@ Todos los scripts internos registrados en WordPress reciben `defer` automáticam
 ### Scripts externos (Partytown)
 
 Los scripts externos de tracking van en `analytics.php` usando la variable `$type`. Partytown los corre en un web worker, liberando el hilo principal del navegador y mejorando el TBT (Total Blocking Time).
+
+La librería de Partytown vive dentro del tema, en la carpeta `~partytown/` de la raíz. `scripts.php` la carga desde `get_template_directory_uri() . '/~partytown/'`, por lo que no requiere ningún paso extra de instalación ni archivos fuera del tema. Para actualizarla, reemplazar el contenido de la carpeta con la versión nueva de la librería.
 
 #### Activar / desactivar Partytown
 
@@ -74,8 +89,8 @@ Los tamaños base se ajustan por proyecto según los breakpoints del diseño, en
 ```php
 add_image_size('cltvo-sm', 1280, 9999, false); // 640px * 2
 add_image_size('cltvo-md', 2048, 9999, false); // 1024px * 2
-add_image_size('cltvo-lg', 2880, 9999, false); // 1440px * 2
-add_image_size('cltvo-xl', 2560, 9999, false); // Tope máximo
+add_image_size('cltvo-lg', 2800, 9999, false); // 1400px * 2
+add_image_size('cltvo-xl', 5120, 9999, false); // 2560px * 2 — Tope máximo
 ```
 
 ### Helper de imagen
