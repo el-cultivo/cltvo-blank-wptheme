@@ -1,20 +1,19 @@
 <!DOCTYPE html>
 <html <?php language_attributes(); ?>>
 <head>
-	<meta charset="<?php bloginfo( 'charset' ); ?>">
+    <meta charset="<?php bloginfo('charset'); ?>">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+    <link rel="profile" href="http://gmpg.org/xfn/11">
 
-	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+    <?php do_action('cltvo_preconnect'); ?>
 
-	<link rel="profile" href="http://gmpg.org/xfn/11">
+    <?php do_action('cltvo_lcp_preload'); ?>
 
-	<title><?php bloginfo( 'name' ); ?></title>
+    <?php do_action('cltvo_partytown'); ?>
 
-	<?php include_once('inc/favicon.php'); ?>
-
-	<meta name="author" content="<?php echo THEMEURL;?>humans.txt">
-
-	<?php wp_head(); ?>
-
+    <?php include_once('includes/favicon.php'); ?>
+    <meta name="author" content="<?php echo THEMEURL;?>humans.txt">
+    <?php wp_head(); ?>
 </head>
 <body <?php body_class(); ?> >
 
@@ -30,7 +29,7 @@
 	 *CLTVO: poner esto en true sólo en la versiones locales.
 	 */
 
-	if( !defined('CLTVO_ISLOCAL') || ( CLTVO_ISLOCAL != true) ){ include_once('inc/analytics.php'); }
+	if( !defined('CLTVO_ISLOCAL') || ( CLTVO_ISLOCAL != true) ){ include_once('includes/analytics.php'); }
 
 	?>
 
@@ -39,7 +38,7 @@
 	<!--<![endif]-->
 
 	<!-- Aquí abre el main-wrap -->
-	<div class="main-wrap">
+	<main class="main-wrap">
 
 		<!-- N a v -->
 		<?php get_template_part('views/general/header'); ?>

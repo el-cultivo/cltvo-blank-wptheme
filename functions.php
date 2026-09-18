@@ -4,6 +4,9 @@ require __DIR__.'/bootstrap/autoload.php';
 
 $app = require_once __DIR__.'/bootstrap/app.php';
 
+// Módulo de performance: defer de scripts, Partytown, imágenes y head
+require_once __DIR__.'/includes/performance/performance.php';
+
 // Banderas del tema
 function custom_theme_setup() {
 	//Título por plugin
@@ -14,6 +17,10 @@ function custom_theme_setup() {
 	add_theme_support('CLTVO_DISABLE_COMMENTS', true);
 	// Desactivar en todos menos en algunos CPTs
 	// add_theme_support('CLTVO_DISABLE_COMMENTS', ['except' => ['post']]);
+
+	// Activar o desactivar cuando sea requerido para el uso de partytown
+	add_theme_support('CLTVO_PARTYTOWN', true);
+
 }
 
 // Enganchar la función a la acción 'after_setup_theme'

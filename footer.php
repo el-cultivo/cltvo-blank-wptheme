@@ -1,4 +1,4 @@
-	</div> <!-- Aquí cierra el main-wrap -->
+	</main> <!-- Aquí cierra el main-wrap -->
 
 	
 	<?php get_template_part('views/general/footer'); ?>
